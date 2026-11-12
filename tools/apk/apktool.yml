@@ -1,0 +1,22 @@
+version: 2.10.0
+apkFileName: base58.apk
+isFrameworkApk: false
+usesFramework:
+  ids:
+  - 1
+  tag: null
+sdkInfo:
+  minSdkVersion: 24
+  targetSdkVersion: 36
+packageInfo:
+  forcedPackageId: 127
+  renameManifestPackage: null
+versionInfo:
+  versionCode: 143
+  versionName: '6.2'
+resourcesAreCompressed: false
+sharedLibrary: false
+sparseResources: false
+doNotCompress:
+- resources.arsc
+- png

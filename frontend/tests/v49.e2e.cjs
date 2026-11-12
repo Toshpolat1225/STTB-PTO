@@ -1,0 +1,20 @@
+// 4.9: yuqori kapsula, ☰ menyu, andoza kartochka, 4 mavzu: node frontend/tests/v49.e2e.cjs <ilova.html>
+const { chromium } = require('playwright');
+let F=0;const ok=(c,m)=>{console.log((c?'OK   ':'FAIL ')+m);if(!c)F++;};
+(async()=>{const b=await chromium.launch();const p=await (await b.newContext({viewport:{width:412,height:880}})).newPage();const errs=[];p.on('pageerror',e=>errs.push(e.message));
+await p.goto('file://'+process.argv[2]);await p.waitForTimeout(4500);
+await p.evaluate(()=>{currentUser={tabel:ADMIN_TABEL,name:'Test',role:'admin'};document.body.classList.remove('locked');});
+let r=await p.evaluate(async()=>{const o={};for(const fn of ['openXodimTree()',"openScreen('screen-vagonlar')",'slOpen()','vgmOpen()',"openHisob('akt')"]){eval(fn);await new Promise(r=>setTimeout(r,500));const s=document.querySelector('.screen.active');o[s.id]=!!(s.querySelector('.h9-bar .h9-menu')&&s.querySelector('.h9-bar .h9-back')&&s.querySelectorAll('.h9-cap .h9-b:not(.dl59-btn)').length===4&&!s.querySelector('#undoRedoBar:not(.h9-hid)'));}return o;});
+ok(Object.values(r).every(Boolean),'yuqori qator 5 sahifada: '+JSON.stringify(r));
+r=await p.evaluate(async()=>{openXodimTree();await new Promise(r=>setTimeout(r,400));h9More();const t=[...document.querySelectorAll('#h9Menu button span')].map(x=>x.textContent);h9MenuClose();return t;});
+ok(r.some(t=>/Ovoz/.test(t))&&r.some(t=>/Sahifa dizayni/.test(t))&&r.some(t=>/Qoʻllanma/.test(t)),'⋮ menyu: '+r.join(' | '));
+r=await p.evaluate(async()=>{h9DrawerOpen();await new Promise(r=>setTimeout(r,300));const n=document.querySelectorAll('#h9Drw .h9-di').length;const it=[...document.querySelectorAll('#h9Drw .h9-dk .h9-di')].find(x=>/Vagonlar parki/.test(x.textContent));it.click();await new Promise(r=>setTimeout(r,900));return {n,act:document.querySelector('.screen.active').id,open:document.getElementById('h9Drw').classList.contains('on')};});
+ok(r.n>15&&!r.open&&/vagmenu|vagonlar/.test(r.act),'☰ menyu → Vagonlar parki: '+JSON.stringify(r));
+r=await p.evaluate(async()=>{h9DrawerOpen();await new Promise(r=>setTimeout(r,200));const b=agmkBack();return {b,open:document.getElementById('h9Drw').classList.contains('on')};});ok(!r.open,'Orqaga — menyuni yopadi');
+r=await p.evaluate(async()=>{const o={};slOpen();await new Promise(r=>setTimeout(r,300));o.sl=[...document.querySelectorAll('#screen-salohiyat .vgm-c')].every(c=>c.classList.contains('btn-card')&&c.querySelector('.btn-icon')&&c.querySelector('.btn-text'));
+openHisob('akt');HS.akt=null;hsRender();await new Promise(r=>setTimeout(r,300));o.akt=[...document.querySelectorAll('#screen-hisob .hs-card')].every(c=>c.classList.contains('btn-card')&&c.querySelector('.btn-icon'));
+HS.akt='kolodka';hsRender();await new Promise(r=>setTimeout(r,300));o.kq=!!document.querySelector('#kqCat.btn-card');o.two=[...document.querySelectorAll('#screen-hisob .db-two.btn-card')].filter(c=>/man/.test(c.getAttribute('onclick')||'')).length; /* 4.9 b113: kartochka — qoʻlda, AI ⋮ ichida */return o;});
+ok(r.sl&&r.akt&&r.kq&&r.two>=2,'andoza kartochka: '+JSON.stringify(r));
+r=await p.evaluate(()=>({t:AGMK_THEMES.map(x=>x[0]),cur:themeGet()}));ok(r.t.join()==='classic,classic2,glass,vitrina,vitrina2,minimal','mavzular (6.1: + STTB Klassik 2, Vitrina 2): '+r.t.join());
+r=await p.evaluate(()=>{themeApply('copper',true);return document.body.getAttribute('data-theme')});ok(r==='classic','eski mavzu → Klassik');
+console.log('err',errs);await b.close();process.exit(F||errs.length?1:0);})();

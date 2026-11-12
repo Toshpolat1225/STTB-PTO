@@ -1,0 +1,2424 @@
+{
+"versiya": "loyiha 14.10.2026",
+"manba": [
+"OʻzR Kambagʻallikni qisqartirish va bandlik vazirligi buyrugʻi, AV 3617-son, 14.04.2025 — temir yoʻl transporti xodimlari uchun namunaviy normalar",
+"Xalqaro standartlar: EN ISO 20471, EN 342, EN 343, EN ISO 20345, EN 397, EN 388, IEC 60903, EN ISO 11611, EN 166, EN 149, EN 352, EN 361"
+],
+"katalog": [
+{
+"kod": "kostum",
+"nom": "Yozgi ish kostumi (ip gazlama, spets odejda)",
+"tur": "kiyim",
+"standart": "EN ISO 13688; GOST 12.4.280"
+},
+{
+"kod": "kombinezon",
+"nom": "Ish kombinezoni (ip gazlama)",
+"tur": "kiyim",
+"standart": "EN ISO 13688"
+},
+{
+"kod": "brezent",
+"nom": "Brezent kostum (uchqun va eritmadan himoya)",
+"tur": "kiyim",
+"standart": "EN ISO 11611 (payvand); EN ISO 11612"
+},
+{
+"kod": "elkostum",
+"nom": "Elektrik kostumi (antistatik, yoyga chidamli)",
+"tur": "kiyim",
+"standart": "EN 1149-5; IEC 61482-2"
+},
+{
+"kod": "kislkostum",
+"nom": "Kislota-ishqordan himoya kostumi",
+"tur": "kiyim",
+"standart": "EN 13034"
+},
+{
+"kod": "xalat",
+"nom": "Ip gazlama xalat",
+"tur": "kiyim",
+"standart": "EN ISO 13688"
+},
+{
+"kod": "fartuk",
+"nom": "Rezina (suv/kislota oʻtkazmaydigan) fartuk",
+"tur": "kiyim",
+"standart": "EN 14605"
+},
+{
+"kod": "jilet",
+"nom": "Otrajeniyali signal nimcha (jilet)",
+"tur": "signal",
+"standart": "EN ISO 20471, 2-sinf; GOST 12.4.281"
+},
+{
+"kod": "plash",
+"nom": "Kapishonli suv oʻtkazmaydigan plash",
+"tur": "kiyim",
+"standart": "EN 343"
+},
+{
+"kod": "kurtka_q",
+"nom": "Qishki issiq kurtka (kofayka)",
+"tur": "qishki",
+"standart": "EN 342; GOST 12.4.303"
+},
+{
+"kod": "shim_q",
+"nom": "Qishki qalin issiq shim",
+"tur": "qishki",
+"standart": "EN 342; GOST 12.4.303"
+},
+{
+"kod": "ichki_q",
+"nom": "Issiq ichki kiyim",
+"tur": "qishki",
+"standart": "EN ISO 13688"
+},
+{
+"kod": "botinka",
+"nom": "Maxsus charm botinka (metall burunli, neftbardosh taglik)",
+"tur": "poyabzal",
+"standart": "EN ISO 20345 S3; GOST 12.4.137"
+},
+{
+"kod": "etik",
+"nom": "Kirza / yufta etik",
+"tur": "poyabzal",
+"standart": "EN ISO 20345"
+},
+{
+"kod": "rezetik",
+"nom": "Rezina etik",
+"tur": "poyabzal",
+"standart": "EN ISO 20345 S5"
+},
+{
+"kod": "etik_q",
+"nom": "Qishki issiq etik / botinka",
+"tur": "qishki",
+"standart": "EN ISO 20345 CI"
+},
+{
+"kod": "kaska",
+"nom": "Himoya kaskasi (qishda — issiq podshlemnik bilan)",
+"tur": "bosh",
+"standart": "EN 397; GOST 12.4.128"
+},
+{
+"kod": "kepka",
+"nom": "Yozgi bosh kiyim (kepka)",
+"tur": "bosh",
+"standart": "—"
+},
+{
+"kod": "qolqop",
+"nom": "Kombinatsiyalangan ish qoʻlqopi",
+"tur": "qoʻl",
+"standart": "EN 388"
+},
+{
+"kod": "qolqop_br",
+"nom": "Brezent / payvandchi qoʻlqopi",
+"tur": "qoʻl",
+"standart": "EN 12477; EN 388"
+},
+{
+"kod": "qolqop_ki",
+"nom": "Kislota-ishqorbardosh qoʻlqop",
+"tur": "qoʻl",
+"standart": "EN ISO 374"
+},
+{
+"kod": "dielqolqop",
+"nom": "Dielektrik qoʻlqop",
+"tur": "elektr",
+"standart": "IEC 60903; EN 60903"
+},
+{
+"kod": "dielgalosh",
+"nom": "Dielektrik galosh / gilamcha",
+"tur": "elektr",
+"standart": "IEC 61111; GOST 13385"
+},
+{
+"kod": "kozoynak",
+"nom": "Himoya koʻzoynagi",
+"tur": "yuz",
+"standart": "EN 166"
+},
+{
+"kod": "niqob",
+"nom": "Payvandchi niqobi (shchitok)",
+"tur": "yuz",
+"standart": "EN 175; EN 379"
+},
+{
+"kod": "respirator",
+"nom": "Respirator (chang/aerozol)",
+"tur": "nafas",
+"standart": "EN 149 FFP2"
+},
+{
+"kod": "protivogaz",
+"nom": "Shlangli protivogaz",
+"tur": "nafas",
+"standart": "EN 138"
+},
+{
+"kod": "quloqchin",
+"nom": "Quloqchin yoki quloq tiqini (shovqindan)",
+"tur": "quloq",
+"standart": "EN 352"
+},
+{
+"kod": "belbog",
+"nom": "Himoya belbogʻi (balandlikda ishlash)",
+"tur": "balandlik",
+"standart": "EN 361; EN 358"
+}
+],
+"guruhlar": [
+{
+"id": "lok",
+"nom": "Lokomotiv brigadasi (elektrovoz, teplovoz mashinisti va yordamchisi)",
+"band": "3617, 20-band",
+"qator": [
+{
+"b": "kostum",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "kombinezon",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "qolqop",
+"oy": 1,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "kozoynak",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "botinka",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "dielqolqop",
+"oy": 0,
+"soni": 2,
+"mavsum": "yil",
+"shart": "elektrovoz",
+"navb": true,
+"manba": "OʻzR 3617"
+},
+{
+"b": "dielgalosh",
+"oy": 0,
+"soni": 2,
+"mavsum": "yil",
+"shart": "elektrovoz",
+"navb": true,
+"manba": "OʻzR 3617"
+},
+{
+"b": "jilet",
+"oy": 6,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "kurtka_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "etik_q",
+"oy": 12,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "shim_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "kaska",
+"oy": 24,
+"soni": 1,
+"mavsum": "yil",
+"shart": "karyer",
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "respirator",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": "karyer",
+"navb": false,
+"manba": "korxona taklifi"
+}
+]
+},
+{
+"id": "drez",
+"nom": "Drezina, avtomotrisa haydovchisi / mashinisti va yordamchisi",
+"band": "3617, 151-band",
+"qator": [
+{
+"b": "kostum",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "qolqop",
+"oy": 2,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "kepka",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "kozoynak",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "botinka",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "jilet",
+"oy": 6,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "kurtka_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "etik_q",
+"oy": 12,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "shim_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "kaska",
+"oy": 24,
+"soni": 1,
+"mavsum": "yil",
+"shart": "karyer",
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "respirator",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": "karyer",
+"navb": false,
+"manba": "korxona taklifi"
+}
+]
+},
+{
+"id": "tamir",
+"nom": "Harakat tarkibi va lokomotivlarni taʼmirlash / koʻzdan kechirish chilangarlari",
+"band": "3617, 17-band",
+"qator": [
+{
+"b": "kostum",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "botinka",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "qolqop",
+"oy": 1,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "kozoynak",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "kaska",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "respirator",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "kislkostum",
+"oy": 18,
+"soni": 1,
+"mavsum": "yil",
+"shart": "TXP",
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "fartuk",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": "TXP",
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "jilet",
+"oy": 6,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "kurtka_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "etik_q",
+"oy": 24,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "shim_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+}
+]
+},
+{
+"id": "vagon",
+"nom": "Vagonlarni koʻzdan kechirish chilangari",
+"band": "3617, 11-band",
+"qator": [
+{
+"b": "brezent",
+"oy": 9,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "kostum",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "etik",
+"oy": 6,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "qolqop_br",
+"oy": 1,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "belbog",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "protivogaz",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": true,
+"manba": "OʻzR 3617"
+},
+{
+"b": "jilet",
+"oy": 6,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "kaska",
+"oy": 24,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "kurtka_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "shim_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "etik_q",
+"oy": 24,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+}
+]
+},
+{
+"id": "yol",
+"nom": "Temir yoʻl ishchisi, temir yoʻl montyori, sunʼiy inshootlar kuzatuvchisi",
+"band": "3617, 5- va 28-band",
+"qator": [
+{
+"b": "kostum",
+"oy": 18,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "plash",
+"oy": 36,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "kepka",
+"oy": 24,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "botinka",
+"oy": 24,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "jilet",
+"oy": 6,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "qolqop",
+"oy": 1,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "kurtka_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "etik_q",
+"oy": 24,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "shim_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "kaska",
+"oy": 24,
+"soni": 1,
+"mavsum": "yil",
+"shart": "karyer",
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "respirator",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": "karyer",
+"navb": false,
+"manba": "korxona taklifi"
+}
+]
+},
+{
+"id": "tuz",
+"nom": "Poyezdlar tuzuvchi",
+"band": "3617, 7-band",
+"qator": [
+{
+"b": "plash",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "kostum",
+"oy": 24,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "kepka",
+"oy": 6,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "jilet",
+"oy": 6,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "qolqop",
+"oy": 2,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "botinka",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "kurtka_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "etik_q",
+"oy": 12,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "shim_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "kaska",
+"oy": 24,
+"soni": 1,
+"mavsum": "yil",
+"shart": "karyer",
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "respirator",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": "karyer",
+"navb": false,
+"manba": "korxona taklifi"
+}
+]
+},
+{
+"id": "stan",
+"nom": "Stansiya navbatchisi",
+"band": "3617, 1-band",
+"qator": [
+{
+"b": "plash",
+"oy": 36,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": true,
+"manba": "OʻzR 3617"
+},
+{
+"b": "jilet",
+"oy": 6,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "qolqop",
+"oy": 3,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "botinka",
+"oy": 24,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "kurtka_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "shim_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+}
+]
+},
+{
+"id": "pereezd",
+"nom": "Pereezd navbatchisi",
+"band": "3617, 29-band",
+"qator": [
+{
+"b": "kostum",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "plash",
+"oy": 36,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "botinka",
+"oy": 24,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "qolqop",
+"oy": 3,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "jilet",
+"oy": 6,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "kurtka_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "shim_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "etik_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+}
+]
+},
+{
+"id": "post",
+"nom": "Markazlashtirish posti, boshqaruv pulti operatori",
+"band": "3617, 66-band",
+"qator": [
+{
+"b": "kostum",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "botinka",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "qolqop",
+"oy": 1,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "jilet",
+"oy": 6,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "kurtka_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+}
+]
+},
+{
+"id": "payvand",
+"nom": "Elektr-gaz payvandchi",
+"band": "3617, 31- va 125-band",
+"qator": [
+{
+"b": "brezent",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "qolqop_br",
+"oy": 1,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "botinka",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "kozoynak",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "kaska",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": true,
+"manba": "OʻzR 3617"
+},
+{
+"b": "dielqolqop",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": true,
+"manba": "OʻzR 3617"
+},
+{
+"b": "niqob",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "respirator",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "kurtka_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "etik_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "ichki_q",
+"oy": 12,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "shim_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+}
+]
+},
+{
+"id": "smb",
+"nom": "SMB va elektr jihozlari elektromontyorlari, elektromexaniklar, sozlovchilar",
+"band": "3617, 43- va 49-band",
+"qator": [
+{
+"b": "elkostum",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "plash",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "botinka",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "qolqop_br",
+"oy": 1,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "kepka",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "qolqop_ki",
+"oy": 6,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "kaska",
+"oy": 24,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "fartuk",
+"oy": 24,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "dielqolqop",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": true,
+"manba": "OʻzR 3617"
+},
+{
+"b": "dielgalosh",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": true,
+"manba": "OʻzR 3617"
+},
+{
+"b": "jilet",
+"oy": 6,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "kurtka_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "rezetik",
+"oy": 0,
+"soni": 2,
+"mavsum": "qish",
+"shart": null,
+"navb": true,
+"manba": "OʻzR 3617"
+},
+{
+"b": "shim_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+}
+]
+},
+{
+"id": "kontakt",
+"nom": "Kontakt tarmogʻi va havo elektr uzatish liniyalari elektromontyorlari",
+"band": "3617, 40-band",
+"qator": [
+{
+"b": "elkostum",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "plash",
+"oy": 36,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "jilet",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "kepka",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "botinka",
+"oy": 24,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "kaska",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "belbog",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "dielqolqop",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": true,
+"manba": "korxona taklifi"
+},
+{
+"b": "qolqop",
+"oy": 1,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "kurtka_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "shim_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "etik_q",
+"oy": 24,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+}
+]
+},
+{
+"id": "kran",
+"nom": "Kran mashinistlari (kozlovoy, avtokran, avtovishka)",
+"band": "3617, 75-band",
+"qator": [
+{
+"b": "kostum",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "botinka",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "qolqop",
+"oy": 3,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "kaska",
+"oy": 24,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "jilet",
+"oy": 6,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "kurtka_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "etik_q",
+"oy": 24,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "shim_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+}
+]
+},
+{
+"id": "yuk",
+"nom": "Stropalchi, yuk tashuvchi, yuk qabul qiluvchi-topshiruvchi",
+"band": "3617, 60-band (oʻxshash)",
+"qator": [
+{
+"b": "kostum",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "botinka",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "plash",
+"oy": 36,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "qolqop",
+"oy": 1,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "kaska",
+"oy": 24,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "jilet",
+"oy": 6,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "kurtka_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "etik_q",
+"oy": 24,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "shim_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+}
+]
+},
+{
+"id": "stanok",
+"nom": "Tokar, frezalovchi, randalovchi, temirchi, asbobsoz va sex chilangarlari",
+"band": "3617, 27- va 108-band",
+"qator": [
+{
+"b": "kostum",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "botinka",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "qolqop_br",
+"oy": 1,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "kozoynak",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "kaska",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "quloqchin",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": "shovqin",
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "fartuk",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": "temirchi",
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "kurtka_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "etik_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+}
+]
+},
+{
+"id": "mash",
+"nom": "Yoʻl, togʻ-kon va qurilish mashinalari mashinistlari, konveyer, kompressor, qozonxona",
+"band": "davlat normasida alohida yoʻq — korxona taklifi",
+"qator": [
+{
+"b": "kostum",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "botinka",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "qolqop",
+"oy": 1,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "kaska",
+"oy": 24,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "quloqchin",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "respirator",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "kozoynak",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "jilet",
+"oy": 6,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "kurtka_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "shim_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "etik_q",
+"oy": 24,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+}
+]
+},
+{
+"id": "haydov",
+"nom": "Avtomobil, avtobus, samosval haydovchilari, traktorchi",
+"band": "3617, 152-band",
+"qator": [
+{
+"b": "kombinezon",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "botinka",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "qolqop",
+"oy": 2,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "jilet",
+"oy": 6,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "kurtka_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "kaska",
+"oy": 24,
+"soni": 1,
+"mavsum": "yil",
+"shart": "karyer",
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "respirator",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": "karyer",
+"navb": false,
+"manba": "korxona taklifi"
+}
+]
+},
+{
+"id": "qoriq",
+"nom": "Qoʻriqchilar (binolar, temir yoʻl inshootlari)",
+"band": "davlat normasida yoʻq — korxona taklifi",
+"qator": [
+{
+"b": "kostum",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "plash",
+"oy": 36,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "botinka",
+"oy": 24,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "jilet",
+"oy": 6,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "kurtka_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "shim_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "etik_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+}
+]
+},
+{
+"id": "tozal",
+"nom": "Farrosh, hudud tozalovchisi, bogʻbon, yuvuvchi-tozalovchi, hammom ishchisi",
+"band": "3617, 156-band",
+"qator": [
+{
+"b": "kostum",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "fartuk",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "qolqop",
+"oy": 1,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "plash",
+"oy": 36,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "rezetik",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": "nam ish",
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "kurtka_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+}
+]
+},
+{
+"id": "ombor",
+"nom": "Omborchilar",
+"band": "3617, 70-band",
+"qator": [
+{
+"b": "xalat",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "qolqop",
+"oy": 3,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "kurtka_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "respirator",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": "kimyoviy ombor",
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "kozoynak",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": "kimyoviy ombor",
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "qolqop_ki",
+"oy": 6,
+"soni": 1,
+"mavsum": "yil",
+"shart": "kimyoviy ombor",
+"navb": false,
+"manba": "korxona taklifi"
+}
+]
+},
+{
+"id": "qurilish",
+"nom": "Qurilish va taʼmirlash ishchilari (duradgor, suvoqchi, montajchi, plitkachi, gaz uskunalari)",
+"band": "korxona taklifi",
+"qator": [
+{
+"b": "kostum",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "botinka",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "qolqop",
+"oy": 1,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "kaska",
+"oy": 24,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "kozoynak",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "respirator",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": "chang/gaz",
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "kurtka_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "shim_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+}
+]
+},
+{
+"id": "akkum",
+"nom": "Akkumulyatorchi, izolyatsiyalovchi, laborant",
+"band": "3617, 17- va 43-band (oʻxshash)",
+"qator": [
+{
+"b": "kislkostum",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "fartuk",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "rezetik",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "qolqop_ki",
+"oy": 6,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "kozoynak",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "respirator",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+}
+]
+},
+{
+"id": "usta",
+"nom": "Ustalar va yoʻlga chiquvchi muhandis-texnik xodimlar (usta, yoʻl ustasi, revizor, defektoskopchi, marksheyder, yoʻriqchi mashinist)",
+"band": "3617, 60-band",
+"qator": [
+{
+"b": "kostum",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "plash",
+"oy": 36,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "botinka",
+"oy": 12,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "jilet",
+"oy": 6,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "kaska",
+"oy": 24,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "qolqop",
+"oy": 3,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+},
+{
+"b": "kurtka_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "etik_q",
+"oy": 24,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "OʻzR 3617"
+},
+{
+"b": "shim_q",
+"oy": 36,
+"soni": 1,
+"mavsum": "qish",
+"shart": null,
+"navb": false,
+"manba": "korxona taklifi"
+}
+]
+},
+{
+"id": "ofis",
+"nom": "Operatorlar va idora xodimlari (buxgalter, iqtisodchi, dispetcher, operator va b.)",
+"band": "doimiy berilmaydi",
+"qator": [
+{
+"b": "jilet",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": true,
+"manba": "korxona taklifi"
+},
+{
+"b": "kaska",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": true,
+"manba": "korxona taklifi"
+},
+{
+"b": "botinka",
+"oy": 0,
+"soni": 1,
+"mavsum": "yil",
+"shart": null,
+"navb": true,
+"manba": "korxona taklifi"
+}
+]
+}
+],
+"qoidalar": [
+"Foydalanish muddati buyum xodimga berilgan kundan boshlab hisoblanadi.",
+"Qishki buyumlar (kurtka, shim, issiq etik) qish mavsumidan oldin — 15-oktyabrgacha beriladi; yozda ham muddat hisoblanaveradi.",
+"«Yaroqsiz boʻlguncha» belgili buyumlar muddatsiz: eskirsa yoki shikastlansa dalolatnoma bilan almashtiriladi.",
+"«Navbatchi» buyumlar xodimga emas, ish joyiga (lokomotiv, post, smena) biriktiriladi va smenadan smenaga topshiriladi.",
+"Har bir berish shaxsiy kartochkaga yoziladi: sana, buyum, oʻlcham, soni, standart/sertifikat, beruvchi va oluvchi tasdigʻi.",
+"Muddatidan oldin ish jarayonida yaroqsiz boʻlsa — dalolatnoma asosida bepul almashtiriladi.",
+"Boshqa lavozimga oʻtganda yangi lavozim normasi qoʻllanadi; ishdan boʻshaganda muddati tugamagan buyumlar korxona tartibiga koʻra qaytariladi.",
+"Har bir xodimning oʻlchamlari saqlanadi: boʻyi, kiyim oʻlchami, poyabzal oʻlchami, bosh oʻlchami.",
+"Barcha buyumlar sertifikatlangan boʻlishi kerak; korxona normasi davlat namunaviy normasidan kam boʻlmasligi, faqat yaxshi tomonga farq qilishi mumkin.",
+"Muddat tugashidan 30 kun oldin ilova xodim, uning rahbari va omborga eslatadi."
+],
+"moslash": [
+{
+"guruh": "akkum",
+"regex": "akkumulyator|izolyatsiyalovchi|laborant"
+},
+{
+"guruh": "payvand",
+"regex": "payvand"
+},
+{
+"guruh": "lok",
+"regex": "(elektrovoz|teplovoz|lokomotiv brigadasi uchun yo).*mashinist|(elektrovoz|teplovoz) mashinist"
+},
+{
+"guruh": "drez",
+"regex": "drezina|avtomotris"
+},
+{
+"guruh": "ofis",
+"regex": "boshqarma boshlig|bo.lim boshlig|umumiy masalalar|yoshlar|tovar-moddiy|logistika|kapital qurilish|naryadchi"
+},
+{
+"guruh": "usta",
+"regex": "\\busta\\b|ustasi|revizor|defektoskop|marksheyder|o.lchovchi|boshlig|o.rinbosar|^energetik$|bosh energetik|^mexanik$|^bosh mexanik|nazoratchisi"
+},
+{
+"guruh": "post",
+"regex": "markazlashtirish posti|boshqaruv pulti"
+},
+{
+"guruh": "ofis",
+"regex": "muhandis|inspektor|iqtisodchi|buxgalter|yuriskonsult|dispetcher|kassir|taftishchi|mutaxassis|operatori|dasturlovchi"
+},
+{
+"guruh": "kontakt",
+"regex": "kontakt tarmog|havo elektr uzatish|elektruzatish"
+},
+{
+"guruh": "kran",
+"regex": "kran|avtovishka|gidro ko"
+},
+{
+"guruh": "vagon",
+"regex": "vagonlarni ko.zdan"
+},
+{
+"guruh": "tamir",
+"regex": "harakat tarkibini|lokomotivlarni ko.zdan|chilangar-elektrik|yoqilg.i apparatura|yo.l mashinalari va mexanizmlarini ta.mirlovchi|ortish-tushirish mashinalariga"
+},
+{
+"guruh": "tuz",
+"regex": "poyezdlar tuzuvchi"
+},
+{
+"guruh": "pereezd",
+"regex": "pere(e|ye)zd"
+},
+{
+"guruh": "stan",
+"regex": "stansiyasi bo.yicha navbatchi|ish taqsimlovchi"
+},
+{
+"guruh": "smb",
+"regex": "elektromontyor|elektromexani|sozlovchi|elektr dastgohlar|elektrik dastgohi|elektr-chilangar|sanash-hisoblash"
+},
+{
+"guruh": "yol",
+"regex": "temir yo.l ishchisi|temir yo.l montyori|sun.iy inshoot"
+},
+{
+"guruh": "stanok",
+"regex": "tokar|frezalovchi|randalovchi|temirchi|asbobsoz|chilangar"
+},
+{
+"guruh": "mash",
+"regex": "ekskavator|buldozer|ortish mashinasi|konveyer|bunkerlovchi|maydalovchi|g.alvirlovchi|kompressor|qozonxona|rixtovka|yotqizuvchi|strelkali|shaylovchi|traktor"
+},
+{
+"guruh": "haydov",
+"regex": "haydovchi"
+},
+{
+"guruh": "yuk",
+"regex": "stropal|yuk tashuvchi|qabul qiluvchi-topshiruvchi"
+},
+{
+"guruh": "qoriq",
+"regex": "qo.riqchi"
+},
+{
+"guruh": "tozal",
+"regex": "farrosh|tozalovchi|bog.bon|yuvuvchi|hammom|baliqshunos"
+},
+{
+"guruh": "ombor",
+"regex": "omborchi"
+},
+{
+"guruh": "qurilish",
+"regex": "duradgor|suvoqchi|montajchi|plitkachi|gaz uskunalari|badiiy-bezak"
+},
+{
+"guruh": "ofis",
+"regex": "."
+}
+],
+"shartlar": [
+{
+"shart": "karyer",
+"regex": "razrez|karyer|karer|okolotka"
+},
+{
+"shart": "elektrovoz",
+"regex": "elektrovoz"
+},
+{
+"shart": "shovqin",
+"regex": "temirchi|tokar|frezalovchi|randalovchi"
+},
+{
+"shart": "temirchi",
+"regex": "temirchi"
+}
+]
+}

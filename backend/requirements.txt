@@ -1,0 +1,6 @@
+# AGMK-STTB server — Python 3.11+ (versiyalar qatʼiy belgilangan)
+starlette==1.0.0
+uvicorn==0.46.0
+psycopg[binary,pool]==3.3.6
+psycopg-pool==3.3.3
+cryptography==46.0.7

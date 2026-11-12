@@ -1,0 +1,8 @@
+# Internetsiz ilova (frontend) yangilash: tayyor index.html mavjud agmk-sttb/backend:local obraziga qoʻyiladi.
+# index.html — ilova_yangi/index_shablon.html + shu kompyuterdagi frontend/private (windows/ilova_birlashtir.py).
+FROM agmk-sttb/backend:local
+USER root
+COPY ilova_yangi/index.html /app/ilova/index.html
+# 4.4: yangi sxema migratsiyalari (masalan 0006_xodka.sql) — server ishga tushganda oʻzi qoʻllaydi (har biri alohida tranzaksiyada)
+COPY backend/app/migrations/ /app/app/migrations/
+USER agmk

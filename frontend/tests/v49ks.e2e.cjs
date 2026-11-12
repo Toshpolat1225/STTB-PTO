@@ -1,0 +1,27 @@
+// 4.9 b111: imzo chekuvchilar kolodka uslubida (kalkulyatsiya, priyom, razuk, nosozlik) — soxta ismlar: node frontend/tests/v49ks.e2e.cjs <ilova.html>
+const { chromium } = require('playwright');
+let F=0;const ok=(c,m)=>{console.log((c?'OK   ':'FAIL ')+m);if(!c)F++;};
+(async()=>{const b=await chromium.launch();const p=await (await b.newContext({viewport:{width:412,height:880}})).newPage();const errs=[];p.on('pageerror',e=>errs.push(e.message));
+await p.goto('file://'+process.argv[2]);await p.waitForTimeout(4500);
+const r=await p.evaluate(async()=>{currentUser={tabel:ADMIN_TABEL,name:'Test',role:'admin'};document.body.classList.remove('locked');
+ const T=async d=>{const R=await dxRender(cxDxId(d),cxDxData(d));return R.lay.pages.map(o=>o.filter(z=>z.k==='t').map(z=>z.s).join(' ')).join(' ').replace(/\s+/g,' ');};
+ const P=(n,l)=>({n,l}),o={};
+ const rz={type:'razuk',zav:'5555',model:'2ВС-105',month:'2026-10',ks:{ap:[P('Тестов А.А.','Главный инженер УПЖТ')],km:[P('Первов П.П.','Начальник ПТО'),P('Второв В.В.','Инженер ПТО')],bt:[1,2,3,4,5,6,7].map(i=>P('Нижнев Н.'+String.fromCharCode(1040+i)+'.','Должность'))}};
+ const t1=await T(rz); o.rz=/Тестов А\.А\./.test(t1)&&/Первов/.test(t1)&&/Второв/.test(t1)&&!/Досметов/.test(t1)&&(t1.match(/Нижнев/g)||[]).length===7&&!/\{\{/.test(t1);
+ const pr={type:'priem',zav:'5555',model:'2ВС-105',month:'2026-10',mats:[],works:[],ks:{ap:[P('Тестов А.А.','Главный инженер УПЖТ')],sd:[P('Первов П.П.','Начальник ПТО')],pr:[P('Третьев Т.Т.','Мастер'),P('Четвертов Ч.Ч.','Мастер')]}};
+ const t2=await T(pr); o.pr=/А\.А\. Тестов/.test(t2)&&/П\.П\. Первов/.test(t2)&&!/Куклюшкин/.test(t2)&&/Третьев/.test(t2)&&/Четвертов/.test(t2);
+ const ns={type:'nosoz',zav:'5555',date:'2026-10-24',sg:CX_NOSOZ_SG.map(x=>x.slice()),ks:{ap:[P('Testov A.A.','STTB bosh muhandisi')],sg:[P('Birov B.B.','ICHTB boshligʻi'),P('Ikkov I.I.','Usta')]}};
+ const t3=await T(ns); o.ns=/A\.A\. Testov/.test(t3)&&/Birov/.test(t3)&&/Ikkov/.test(t3)&&!/\{\{/.test(t3);
+ const base={type:'razuk',zav:'5555',model:'2ВС-105',month:'2026-10'}; o.def=/Досметов/.test(await T(base));
+ const h=CX_T.calc[2]({type:'calc',zav:'5555',month:'2026-10',mats:[],works:[{n:3,cnt:1}],ks:{ag:[P('Келишев К.К.','Гл. механик')],ap:[P('Тестов А.А.','Гл. инженер')],sg:[P('Первов П.П.','Экономист')]}}); o.calc=/Келишев/.test(h)&&/Тестов/.test(h)&&/Первов/.test(h);
+ const sh=await cxDxSigHtml(rz), R=await dxFromSigHtml(sh); o.sign=R.lay.pages.flat().some(z=>z.k==='t'&&/Второв/.test(z.s));
+ ['razuk','priem','nosoz','calc'].forEach(t=>localStorage.removeItem('agmk_ks_'+t));
+ cxNew('nosoz'); o.ui=!!document.querySelector('#ksPpl .kq-p') && ![...document.querySelectorAll('#cxModal .hs-h')].some(x=>/^Imzolar/.test(x.textContent));
+ ksPick('sg',-1); await new Promise(r=>setTimeout(r,150)); $id('kqPL').value='Usta'; $id('kqPN').value='Yangiyev Y.Y.'; kqPickOk(); await new Promise(r=>setTimeout(r,150));
+ o.mem=/Yangiyev/.test(CXV.cur.members||''); cxNew('nosoz'); o.last=(CXV.cur.ks&&CXV.cur.ks.sg||[]).some(x=>x.n==='Yangiyev Y.Y.');
+ return o;});
+ok(r.rz,'Razuk: tasdiqlovchi, komissiya (kam), pastki imzolar (koʻp — nusxalanadi)');ok(r.pr,'Priyom: bosh harf oldinda, ortiqcha qator olib tashlanadi');ok(r.ns,'Nosozlik: tasdiqlovchi va aʼzolar');
+ok(r.def,'Oʻzgartirilmagan hujjat — blankadagi asl roʻyxat');ok(r.calc,'Kalkulyatsiya: kelishildi, tasdiqlovchi, imzolar');ok(r.sign,'Imzoga yuborilgan hujjat imzolovchida aynan shu roʻyxat bilan chiziladi');
+ok(r.ui,'Kartochkalar oynasi (eski «Imzolar» qatorlari oʻrniga)');ok(r.mem,'Nosozlik matnidagi aʼzolar roʻyxati yangilanadi');ok(r.last,'Oxirgi tanlanganlar eslab qolinadi');
+ok(!errs.length,'Sahifa xatolari yoʻq '+errs.slice(0,2).join(' | '));
+console.log(F?`❌ ${F} ta xato`:'✅ hammasi oʻtdi');await b.close();process.exit(F?1:0);})();

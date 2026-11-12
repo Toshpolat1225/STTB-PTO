@@ -1,0 +1,14 @@
+.git
+**/node_modules
+**/__pycache__
+**/*.pyc
+frontend/dist
+backups
+company
+secrets
+.env
+*.apk
+*.db
+*.dump
+_oflayn
+obrazlar.tar

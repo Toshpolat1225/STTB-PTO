@@ -1,0 +1,8 @@
+# Internetsiz tezkor yangilash: faqat server (Python) fayllari oʻzgarganda.
+# Mavjud agmk-sttb/backend:local obrazi ustiga backend/app qoʻyiladi — internet (Docker Hub, npm, apt) kerak emas.
+# Ilova (frontend) oʻzgargan boʻlsa — bu yaramaydi, toʻliq yigʻish (ISHGA_TUSHIRISH.bat) kerak.
+FROM agmk-sttb/backend:local
+USER root
+RUN rm -rf /app/app
+COPY backend/app /app/app
+USER agmk

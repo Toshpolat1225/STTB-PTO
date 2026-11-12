@@ -1,0 +1,1503 @@
+
+
+    <!-- ORTGA/OLDINGA QAYTARISH (UNDO/REDO) -->
+    <div class="undo-redo-bar" id="undoRedoBar">
+        <button id="btn-undo" onclick="undoAction()" title="Ortga qaytarish" disabled>↩️</button>
+        <button id="btn-redo" onclick="redoAction()" title="Oldinga qaytarish" disabled>↪️</button>
+    </div>
+
+    <!-- SPLASH SCREEN -->
+    <div id="splash-screen">
+        <img src="data:image/jpeg;base64,@@ASSET:assets/img_7ef7609415.jpg@@" alt="AGMK STTB Loading">
+        <div class="splash-bottom-gradient"></div>
+        <div class="splash-brand"><div class="agmk-emb splash-agmk"></div><div class="splash-t1">“OLMALIQ KON-METALLURGIYA KOMBINATI” AJ</div><div class="splash-t2">Sanoat temir yoʻl transporti boshqarmasi</div></div>
+        <div class="splash-author">By: A.Tojimurodov</div>
+        <div class="loading-container">
+            <div class="loading-bar">
+                <div id="loading-progress" class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGIN MODAL -->
+    <div id="userModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h2 style="color:#38bdf8; font-size:18px; margin-bottom:8px; text-align:center;">Tizimga Kirish</h2>
+            <p style="font-size:12px; color:#cbd5e1; margin-bottom:20px; text-align:center;">Barcha o'zgarishlar sizning hisobingiz orqali imzolanadi.</p>
+            <div class="form-group">
+                <label>F.I.O. (Ism Familiyangiz):</label>
+                <input type="text" id="loginNameInput" placeholder="Masalan: Azizbek">
+            </div>
+            <div class="form-group" style="margin-bottom:20px;">
+                <label>Lavozimingiz:</label>
+                <div class="combo" id="roleCombo">
+                    <input type="text" id="loginRoleSearch" placeholder="Lavozimni tanlang yoki qidiring..." autocomplete="off" spellcheck="false">
+                    <span class="combo-caret" onpointerdown="event.preventDefault(); toggleRoleList()">▾</span>
+                    <div class="combo-list hidden" id="loginRoleList" role="listbox"></div>
+                </div>
+                <input type="hidden" id="loginRoleInput">
+            </div>
+            <button class="save-btn" onclick="saveUserSession()">Kirish va Sinxronlash</button>
+        </div>
+    </div>
+
+    <!-- BILDIRISHNOMA MODALI -->
+    <div id="notifModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h2 style="color:#facc15; font-size:17px; text-align:center;">⚠️ Eslatma</h2>
+            <div id="notifBody" style="font-size:13px; color:#cbd5e1; margin:15px 0; line-height:1.8;"></div>
+            <button class="save-btn" onclick="document.getElementById('notifModal').classList.add('hidden')">Tushunarli</button>
+        </div>
+    </div>
+
+    <!-- AI CHAT MODALI -->
+    <div id="aiChatModal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-width:420px; display:flex; flex-direction:column; height:72vh;">
+            <h2 style="color:#a855f7; font-size:17px; margin-bottom:2px; text-align:center;">AI Yordamchi</h2>
+            <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:10px;">
+                <p id="aiContextLabel" style="font-size:10px; color:#94a3b8; margin:0;"></p>
+                <button id="ai-voice-toggle" onclick="toggleAiVoiceOutput()" title="Ovozli javob yoq/o'chir" style="background:none; border:1px solid #334155; border-radius:20px; padding:2px 8px; font-size:11px; color:#94a3b8; cursor:pointer;">🔊 Ovozli javob</button>
+            </div>
+            <div id="aiMessages" style="flex:1; overflow-y:auto; background:#0f172a; border:1px solid #334155; border-radius:10px; padding:10px; margin-bottom:10px; font-size:12px; display:flex; flex-direction:column; gap:8px;"></div>
+            <div style="display:flex; gap:8px;">
+                <input type="text" id="aiInput" placeholder="Savolingizni yozing yoki mikrofonni bosing..." style="flex:1;" onkeydown="if(event.key==='Enter')sendAiMessage()">
+                <button class="save-btn" id="ai-mic-btn" style="width:auto; padding:12px 14px; margin:0; background:#7c3aed;" onclick="startAiVoiceInput()" title="Ovoz bilan so'rash">🎤</button>
+                <button class="save-btn" style="width:auto; padding:12px 16px; margin:0;" onclick="sendAiMessage()">➤</button>
+            </div>
+            <button onclick="document.getElementById('aiChatModal').classList.add('hidden'); stopAiSpeaking()" style="margin-top:8px; background:#334155; color:#fff; border:none; padding:10px; border-radius:8px; width:100%; font-weight:bold; cursor:pointer;">Yopish</button>
+        </div>
+    </div>
+
+    <!-- PASPORTNI TAHRIRLASH MODALI -->
+    <div id="editPassportModal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-width: 400px; max-height: 90vh; overflow-y: auto;">
+            <h2 style="color:#38bdf8; font-size:16px; margin-bottom:12px; text-align:center;">Vagon Pasportini Tahrirlash</h2>
+            <div class="form-group">
+                <label>Vagon Raqami (ID):</label>
+                <input type="text" id="edit-id">
+            </div>
+            <div class="form-group">
+                <label>Inventar №:</label>
+                <input type="text" id="edit-inv">
+            </div>
+            <div class="form-group">
+                <label>Vagon Modeli:</label>
+                <select id="edit-model" class="custom-select" style="background:#0f172a; border:1px solid #334155; color:white; padding:10px; border-radius:8px; width:100%;">
+                    <option value="Dumpkar 115">Dumpkar 115</option>
+                    <option value="Dumpkar 105">Dumpkar 105</option>
+                    <option value="Dumpkar 60">Dumpkar 60</option>
+                    <option value="Yopiq yuk vagoni">Yopiq yuk vagoni</option>
+                    <option value="Poluvagon">Poluvagon</option>
+                    <option value="Cisterna">Cisterna</option>
+                    <option value="Platforma">Platforma</option>
+                    <option value="Xopper">Xopper</option>
+                    <option value="ЖД кран platformasi">ЖД кран platformasi</option>
+                    <option value="Izotermik/ Refrijeratli vagon">Izotermik/ Refrijeratli vagon</option>
+                    <option value="Yo'lovchi vagoni">Yo'lovchi vagoni</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Seh:</label>
+                <select id="edit-seh" class="custom-select" style="background:#0f172a; border:1px solid #334155; color:white; padding:10px; border-radius:8px; width:100%;">
+                    <option value="Boshqarma">Boshqarma</option>
+                    <option value="TYS-1/ЖДЦ-1">TYS-1/ЖДЦ-1</option>
+                    <option value="TYS-2/ЖДЦ-2">TYS-2/ЖДЦ-2</option>
+                    <option value="TYS-3/ЖДЦ-3">TYS-3/ЖДЦ-3</option>
+                    <option value="TYS-4/ЖДЦ-4">TYS-4/ЖДЦ-4</option>
+                    <option value="VH/ВС">VH/ВС</option>
+                    <option value="SMBvaAX / СЦБ">SMBvaAX / СЦБ</option>
+                    <option value="KTUX/СПТО">KTUX/СПТО</option>
+                    <option value="NQMK/КНСМ">NQMK/КНСМ</option>
+                    <option value="KT /КС">KT /КС</option>
+                    <option value="IQX/СВО">IQX/СВО</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Vagon Holati (Guruh):</label>
+                <select id="edit-status" class="custom-select" style="background:#0f172a; border:1px solid #334155; color:white; padding:10px; border-radius:8px; width:100%;">
+                    <option value="Auto">Avto (sanadan hisoblanadi)</option>
+                    <option value="Soz">Soz (Yashil)</option>
+                    <option value="Yaqin">Muddati yaqinlashmoqda (Sariq)</option>
+                    <option value="Ta'mir talab">Ta'mir talab (Qizil)</option>
+                    <option value="Tamirda">Tamirda (Ko'k)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Ishlab chiqarilgan yili:</label>
+                <input type="text" id="edit-yil">
+            </div>
+            <div class="form-group">
+                <label>Oxirgi ta'mir turi:</label>
+                <input type="text" id="edit-tamir-turi">
+            </div>
+            <div class="form-group">
+                <label>Oxirgi ta'mir sanasi:</label>
+                <input type="date" id="edit-tamir-sanasi" class="custom-input" style="background:#0f172a; border:1px solid #334155; color:white; padding:10px; border-radius:8px; width:100%;">
+            </div>
+            <div class="form-group" style="margin-bottom:15px;">
+                <label>Keyingi ta'mir sanasi:</label>
+                <input type="date" id="edit-keyingi" class="custom-input" style="background:#0f172a; border:1px solid #334155; color:white; padding:10px; border-radius:8px; width:100%;">
+            </div>
+            <div style="display:flex; gap:10px;">
+                <button class="save-btn" style="background:#334155;" onclick="closeEditModal()">Bekor qilish</button>
+                <button class="save-btn" onclick="savePassportChanges()">Saqlash</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- YANGI VAGON QO'SHISH MODALI -->
+    <div id="addVagonModal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-width: 400px; max-height: 90vh; overflow-y: auto;">
+            <h2 style="color:#38bdf8; font-size:16px; margin-bottom:12px; text-align:center;">➕ Yangi Vagon Qo'shish</h2>
+            <div class="form-group">
+                <label>Vagon Raqami (ID):</label>
+                <input type="text" id="add-id">
+            </div>
+            <div class="form-group">
+                <label>Inventar №:</label>
+                <input type="text" id="add-inv" placeholder="Masalan: 37550">
+            </div>
+            <div class="form-group">
+                <label>Vagon Modeli:</label>
+                <select id="add-model" class="custom-select" style="background:#0f172a; border:1px solid #334155; color:white; padding:10px; border-radius:8px; width:100%;">
+                    <option value="Dumpkar 115">Dumpkar 115</option>
+                    <option value="Dumpkar 105">Dumpkar 105</option>
+                    <option value="Dumpkar 60">Dumpkar 60</option>
+                    <option value="Yopiq yuk vagoni">Yopiq yuk vagoni</option>
+                    <option value="Poluvagon">Poluvagon</option>
+                    <option value="Cisterna">Cisterna</option>
+                    <option value="Platforma">Platforma</option>
+                    <option value="Xopper">Xopper</option>
+                    <option value="ЖД кран platformasi">ЖД кран platformasi</option>
+                    <option value="Izotermik/ Refrijeratli vagon">Izotermik/ Refrijeratli vagon</option>
+                    <option value="Yo'lovchi vagoni">Yo'lovchi vagoni</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Seh:</label>
+                <select id="add-seh" class="custom-select" style="background:#0f172a; border:1px solid #334155; color:white; padding:10px; border-radius:8px; width:100%;">
+                    <option value="Boshqarma">Boshqarma</option>
+                    <option value="TYS-1/ЖДЦ-1">TYS-1/ЖДЦ-1</option>
+                    <option value="TYS-2/ЖДЦ-2">TYS-2/ЖДЦ-2</option>
+                    <option value="TYS-3/ЖДЦ-3">TYS-3/ЖДЦ-3</option>
+                    <option value="TYS-4/ЖДЦ-4">TYS-4/ЖДЦ-4</option>
+                    <option value="VH/ВС">VH/ВС</option>
+                    <option value="SMBvaAX / СЦБ">SMBvaAX / СЦБ</option>
+                    <option value="KTUX/СПТО">KTUX/СПТО</option>
+                    <option value="NQMK/КНСМ">NQMK/КНСМ</option>
+                    <option value="KT /КС">KT /КС</option>
+                    <option value="IQX/СВО">IQX/СВО</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Ishlab chiqarilgan yili:</label>
+                <input type="text" id="add-yil" placeholder="Masalan: 1985">
+            </div>
+            <div class="form-group">
+                <label>Oxirgi ta'mir turi:</label>
+                <input type="text" id="add-tamir-turi" value="Depo ta'miri (DR)">
+            </div>
+            <div class="form-group">
+                <label>Oxirgi ta'mir sanasi:</label>
+                <input type="date" id="add-tamir-sanasi" class="custom-input" style="background:#0f172a; border:1px solid #334155; color:white; padding:10px; border-radius:8px; width:100%;">
+            </div>
+            <div class="form-group">
+                <label>Keyingi ta'mir sanasi (holat shu sanadan avto-hisoblanadi):</label>
+                <input type="date" id="add-keyingi" class="custom-input" style="background:#0f172a; border:1px solid #334155; color:white; padding:10px; border-radius:8px; width:100%;">
+            </div>
+            <div class="form-group" style="margin-bottom:15px;">
+                <label>Boshlang'ich holat:</label>
+                <select id="add-status" class="custom-select" style="background:#0f172a; border:1px solid #334155; color:white; padding:10px; border-radius:8px; width:100%;">
+                    <option value="Auto">Avto (sanadan hisoblanadi)</option>
+                    <option value="Tamirda">Tamirda (Ko'k)</option>
+                </select>
+            </div>
+            <div style="display:flex; gap:10px;">
+                <button class="save-btn" style="background:#334155;" onclick="document.getElementById('addVagonModal').classList.add('hidden')">Bekor qilish</button>
+                <button class="save-btn" onclick="addNewVagon()">Qo'shish</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- LIGHTBOX VIEWER MODAL -->
+    <div id="imageViewerModal" class="modal-overlay hidden">
+        <div class="pv-stage" id="pvStage"><img id="viewerImage" class="pv-img" alt=""></div>
+        <div class="pv-top"><span id="imageCounter" class="pv-count">1 / 1</span><span class="pv-actions"><button class="pv-del hidden" id="pvDel" onclick="deleteViewerImage()" title="Rasmni o'chirish">🗑 O'chirish</button><button class="pv-close" onclick="closeImageViewer()" title="Yopish">✕</button></span></div>
+        <button class="pv-nav pv-prev" id="pvPrev" onclick="prevImage()">‹</button>
+        <button class="pv-nav pv-next" id="pvNext" onclick="nextImage()">›</button>
+        <div class="pv-bottom">
+            <div id="viewerAuthorInfo"></div>
+            <div id="pvMeta" class="pv-meta"></div>
+            <div class="pv-hint">Ikki barmoq bilan kattalashtiring, ikki marta bosing yoki o'ngga-chapga suring</div>
+        </div>
+    </div>
+
+
+    <!-- =================================
+         1. ASOSIY EKRAN (BOSH MENU)
+    ================================== -->
+    <div id="screen-main" class="screen active">
+        <div style="padding: 15px 15px 10px 15px; flex-shrink: 0; background: var(--agmk-bgH1); background-size: cover; background-position: center; z-index: 10; border-bottom: 1px solid rgba(255,255,255,0.15);">
+            <div class="header" style="margin-bottom: 12px; padding-top: 5px;">
+                <div class="app-logo">
+                    <img src="data:image/jpeg;base64,@@ASSET:assets/img_2b5385da97.jpg@@" alt="STTB Logo">
+                </div>
+
+                <div class="main-brand" onclick="openProfile()" title="Profil va parametrlar"><button class="main-dots" type="button">⋮</button><h1><i class="agmk-emb hdr-agmk"></i>AGMK-STTB</h1></div>
+            </div>
+
+            <div class="main-acc-row">
+                    <div class="user-badge" onclick="openAccountMenu()">
+                        <div class="user-icon">👤</div>
+                        <div class="user-info">
+                            <span id="currentUserName" class="user-name">Mehmon</span>
+                            <span id="currentUserRole" class="user-role">Tizimga kiring</span>
+                        </div>
+                    </div>
+                <button class="bell-btn hidden" id="bellBtn" onclick="openNotifs()" title="Bildirishnomalar">🔔<span class="warn-count hidden" id="bellCount">0</span></button>
+                <div class="undo-slot row"></div>
+            </div>
+            <div style="display: flex; gap: 8px;">
+                <div class="search-wrap">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-box" id="globalSearchInput" placeholder="Nima qidiryapsiz?..." style="margin-bottom: 0;">
+                    <button class="mic-btn" id="mic-globalSearchInput" onclick="startVoiceSearch('globalSearchInput', filterMainMenu)" title="Ovozli qidiruv">🎤</button>
+                </div>
+                <button class="ai-fab-btn" onclick="openAiChat('Bosh sahifa'); aiHint();" title="AI Yordamchi">🫧</button>
+            </div>
+        </div>
+
+        <div style="flex: 1; overflow-y: auto; padding: 15px; padding-bottom: 40px; background: var(--agmk-bgM, var(--agmk-bgB)); background-size: cover; background-position: center;">
+            <div class="card-list" id="main-card-list">
+                <div class="btn-card" data-search="ishchi xodimlar" onclick="openXodimTree()">
+                    <div class="btn-card-content"><span class="btn-icon">👷</span><span class="btn-text">Ishchi xodimlar</span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+                <div class="btn-card" data-search="seh va uchastkalar" onclick="openSubUnits('seh', 'Seh va uchastkalar')">
+                    <div class="btn-card-content"><span class="btn-icon">🏭</span><span class="btn-text">Seh va uchastkalar</span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+                <div class="btn-card" data-search="vagonlar parki barcha turlar" onclick="openScreen('screen-vagonlar')">
+                    <div class="btn-card-content"><span class="btn-icon">🚃</span><span class="btn-text">Vagonlar parki (Barcha turlar)</span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+                <div class="btn-card" data-search="dispetcherlik dispetcher temir yol harakat tarkibi poyezd tarkib turib qolish harakat kuzatish" onclick="openHR()">
+                    <div class="btn-card-content"><span class="btn-icon">🚦</span><span class="btn-text">Dispetcherlik</span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+                <div class="btn-card" data-search="lokomotivlar tortuvchi tarkib elektrovoz pe2m pe2u" onclick="openLokScreen()">
+                    <div class="btn-card-content"><span class="btn-icon">🚂</span><span class="btn-text">Lokomotivlar (Tortuvchi tarkib)</span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+                <div class="btn-card" data-search="temir yol xaritasi va stansiyalar peregon sxema" onclick="openMapScreen()">
+                    <div class="btn-card-content"><span class="btn-icon">🗺️</span><span class="btn-text">Temir yo'l xaritasi va Stansiyalar</span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+                <div class="btn-card" data-search="yol qurilishi va tamirlash temir yol texnikalari drezina avtodrezina motovoz avtomotrisa yotqizuvchi kran platforma" onclick="openYolScreen()">
+                    <div class="btn-card-content"><span class="btn-icon">🛠️</span><span class="btn-text">Yo'l qurilishi va ta'mirlash</span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+                <div class="btn-card" data-search="infratuzilma tayanch va strelkalar" onclick="alert('Tez orada ishga tushadi')">
+                    <div class="btn-card-content"><span class="btn-icon">🛤️</span><span class="btn-text">Infratuzilma: Tayanch va Strelkalar</span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+                <div class="btn-card" data-search="avtotraktor parki traktor avtomobil yuklagich pogruzchik texnika" onclick="openAvtoScreen()">
+                    <div class="btn-card-content"><span class="btn-icon">🚜</span><span class="btn-text">Avtotraktor parki</span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+                <div class="btn-card" data-search="ekskavatorlar parki" onclick="alert('Tez orada ishga tushadi')">
+                    <div class="btn-card-content"><span class="btn-icon">⛏️</span><span class="btn-text">Ekskavatorlar parki</span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+                <div class="btn-card" data-search="kranlar va maxsus texnikalar" onclick="alert('Tez orada ishga tushadi')">
+                    <div class="btn-card-content"><span class="btn-icon">🏗️</span><span class="btn-text">Kranlar va maxsus texnikalar</span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+                <div class="btn-card" data-search="uskunalar va texnikalar" onclick="openSubUnits('uskuna', 'Uskunalar va texnikalar')">
+                    <div class="btn-card-content"><span class="btn-icon">🧰</span><span class="btn-text">Uskunalar va texnikalar</span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+                <div class="btn-card" id="rnMenuCard" data-search="umumiy rahbariyat nazorati zamechaniya" onclick="openRN()">
+                    <div class="btn-card-content"><span class="btn-icon" style="color:#ef4444;">🚨</span><span class="btn-text">Umumiy Rahbariyat Nazorati<span class="menu-badge hidden" id="rnBadge">0</span></span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+                <div class="btn-card" data-search="shtatlar royxati lavozimlar shtat" onclick="openShtat()">
+                    <div class="btn-card-content"><span class="btn-icon">🔒</span><span class="btn-text">Shtatlar ro'yxati</span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+                <div class="btn-card" data-search="normativ huquqiy hujjatlar akt dalolatnoma gost pte buyruq reklamatsiya" onclick="openND()">
+                    <div class="btn-card-content"><span class="btn-icon">📚</span><span class="btn-text">Normativ-huquqiy hujjatlar va aktlar</span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+                <div class="btn-card" data-search="ehtiyot qismlar zapchast material norma me'yor zayavka dumpkar 2vs-105" onclick="openSP()">
+                    <div class="btn-card-content"><span class="btn-icon">🔩</span><span class="btn-text">Ehtiyot qismlar</span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+                <div class="btn-card" data-search="parametrlar sozlamalar shtatlar royxati lavozimlar parol" onclick="openSettings()">
+                    <div class="btn-card-content"><span class="btn-icon">⚙️</span><span class="btn-text">Parametrlar<span class="menu-badge hidden" id="fbMenuBadge">0</span></span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+            </div>
+            <div id="main-search-empty" class="hidden" style="text-align:center; color:#94a3b8; padding:20px; font-size:13px;">Hech narsa topilmadi</div>
+            <!-- Muallif va shikoyat-takliflar -->
+            <div class="app-footer">
+                <div class="af-by">By: <b>A.A. Tojimurodov</b></div>
+                <div class="af-role" id="afRole">Temir yo'l harakat tarkibi I-toifali muhandisi</div>
+                <button class="af-mail" onclick="openFeedback()">✉️ Shikoyat va takliflar</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- =================================
+         2. VAGONLAR EKRANI
+    ================================== -->
+    <div id="screen-vagonlar" class="screen">
+        <div style="padding: 15px 15px 10px 15px; flex-shrink: 0; background: var(--agmk-bgH2); background-size: cover; background-position: center; z-index: 10; border-bottom: 1px solid rgba(255,255,255,0.15);">
+            <div class="inner-header">
+                <div class="back-btn" onclick="openScreen('screen-main')">‹ Orqaga</div>
+                <h2>Vagonlar Parki</h2>
+                <div style="width: 60px;"></div>
+            </div>
+
+            <!-- 5 talik statistika grid -->
+            <div class="stats-grid">
+                <div class="stat-box" onclick="setStatusFilter('Barchasi')"><div class="stat-label">Jami</div><div id="stat-jami" class="stat-num jami">0</div></div>
+                <div class="stat-box" onclick="setStatusFilter('Soz')"><div class="stat-label">Soz</div><div id="stat-soz" class="stat-num soz">0</div></div>
+                <div class="stat-box" onclick="setStatusFilter('Yaqin')"><div class="stat-label">Yaqin</div><div id="stat-yaqin" class="stat-num yaqin">0</div></div>
+                <div class="stat-box" onclick="setStatusFilter('Ta\'mir talab')"><div class="stat-label">Ta'mir talab</div><div id="stat-tamir" class="stat-num tamir">0</div></div>
+                <div class="stat-box" onclick="setStatusFilter('Tamirda')"><div class="stat-label">Tamirda</div><div id="stat-tamirda" class="stat-num tamirda">0</div></div>
+            </div>
+
+            <!-- Qidiruv va AI tugma -->
+            <div class="vg-top-row">
+                <div class="undo-slot row"></div>
+                <button class="warn-btn" id="warnBtn" onclick="openWarnings()" title="Eslatmalar">⚠️<span class="warn-count hidden" id="warnCount">0</span></button>
+            </div>
+            <div style="display: flex; gap: 8px; margin-bottom: 10px;">
+                <div class="search-wrap">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-box" id="mainSearchInput" placeholder="Vagon raqami, Inventar yoki Tartib №..." oninput="filterVagonlar()" style="margin-bottom: 0;">
+                    <button class="mic-btn" id="mic-mainSearchInput" onclick="startVoiceSearch('mainSearchInput', filterVagonlar)" title="Ovozli qidiruv">🎤</button>
+                </div>
+                <button class="ai-fab-btn" onclick="openAiChat('Vagonlar parki'); aiHint();" title="AI Yordamchi">🫧</button>
+            </div>
+
+            <!-- Vagon turlari tablari -->
+            <div class="tabs" id="vagon-tabs" style="margin-bottom: 0;">
+                <div class="tab active" onclick="setTypeFilter('Barchasi', this)">Barchasi</div>
+                <div class="tab" onclick="setTypeFilter('Dumpkar 115', this)">Dumpkar 115</div>
+                <div class="tab" onclick="setTypeFilter('Dumpkar 105', this)">Dumpkar 105</div>
+                <div class="tab" onclick="setTypeFilter('Dumpkar 60', this)">Dumpkar 60</div>
+                <div class="tab" onclick="setTypeFilter('Yopiq yuk vagoni', this)">Yopiq yuk vagoni</div>
+                <div class="tab" onclick="setTypeFilter('Poluvagon', this)">Poluvagon</div>
+                <div class="tab" onclick="setTypeFilter('Cisterna', this)">Cisterna</div>
+                <div class="tab" onclick="setTypeFilter('Platforma', this)">Platforma</div>
+                <div class="tab" onclick="setTypeFilter('Xopper', this)">Xopper</div>
+                <div class="tab" onclick="setTypeFilter('Izotermik/ Refrijeratli vagon', this)">Izotermik/ Refrijeratli vagon</div>
+                <div class="tab" onclick="setTypeFilter('Yo\'lovchi vagoni', this)">Yo'lovchi vagoni</div>
+            </div>
+            <div class="model-chips" id="vagon-model-chips"></div>
+
+            <!-- Eksport / Import tugmalari -->
+            <div class="sp-link-row"><button class="mini-btn" onclick="openSP('vag','vag')">🔩 Ehtiyot qismlar</button></div>
+            <input type="file" id="backup-input" accept=".agmkzaxira,.json,application/json,application/octet-stream" style="display:none;" onchange="importBackup(this)">
+        </div>
+
+        <div style="flex: 1; overflow-y: auto; padding: 15px; padding-bottom: 60px; background: var(--agmk-bgB); background-size: cover; background-position: center;">
+            <div class="vagon-list" id="vagon-list-container"></div>
+        </div>
+
+        <div class="fab-btn" onclick="openAddVagonModal()">+</div>
+    </div>
+
+
+    <!-- =================================
+         3. VAGON PASPORTI EKRANI
+    ================================== -->
+    <div id="screen-vagon-pasport" class="screen">
+        <div style="padding: 15px; flex: 1; overflow-y: auto; padding-bottom: 40px; background: var(--agmk-bgB); background-size: cover; background-position: center;">
+            <div class="inner-header">
+                <div class="back-btn" id="pasportBackBtn" onclick="passportBack()">‹ Vagonlar ro'yxatiga</div>
+                <h2 id="pasport-header-title">Vagon №</h2>
+                <div class="undo-slot" style="min-width: 60px;"></div>
+            </div>
+
+            <!-- Pasport va Holati -->
+            <div class="passport-container">
+                <div class="passport-title">
+                    <span id="pasportMainTitle">📋 Vagon Pasporti va Holati</span>
+                    <button class="ppi-hide" onclick="openEditModal()" style="background:none; border:none; color:#38bdf8; font-size:12px; cursor:pointer; font-weight:bold;">✏️ Tahrirlash</button>
+                </div>
+                <div class="passport-grid ppi-hide">
+                    <div>INVENTAR №: <span id="p-inventar"></span></div>
+                    <div><span id="p-model-label">VAGON MODELI</span>: <span id="p-model"></span></div>
+                    <div>ISHLAB CHIQARILGAN YILI: <span id="p-yil"></span></div>
+                    <div>SEH: <span id="p-seh"></span></div>
+                    <div>OXIRGI TA'MIR TURI: <span id="p-tamir-turi"></span></div>
+                    <div>OXIRGI TA'MIR SANASI: <span id="p-tamir-sanasi"></span></div>
+                    <div>HOLAT: <span id="p-holat" style="color: #4ade80;">Soz</span></div>
+                    <div>KEYINGI TA'MIR SANASI: <span id="p-keyingi"></span></div>
+                </div>
+                <div id="p-extra-box" class="hidden" style="border-top:1px solid rgba(255,255,255,0.1); padding-top:10px; margin:6px 0 10px 0;">
+                    <div id="p-extra-title" style="font-size:12px; font-weight:700; color:#7dd3fc; margin-bottom:8px;">📄 Kartoteka ma'lumotlari (Excel)</div>
+                    <div class="pex-grid" id="p-extra"></div>
+                    <div class="pex-src" id="p-extra-src"></div>
+                </div>
+                <div class="ppi-hide" style="display:flex; gap:8px; flex-wrap:wrap;">
+                    <button id="btn-mark-tamirda" class="mini-btn" style="background:rgba(14,165,233,0.15); border-color:#38bdf8; color:#38bdf8;" onclick="markVagonAsTamirda()">🔧 Tamirga yuborish</button>
+                    <button id="btn-restore-auto" class="mini-btn hidden" style="background:rgba(34,197,94,0.15); border-color:#4ade80; color:#4ade80;" onclick="restoreVagonFromTamirda()">✅ Tamirdan qaytarish</button>
+                    <button class="mini-btn" style="background:rgba(239,68,68,0.15); border-color:#ef4444; color:#f87171;" onclick="deleteVagon()">🗑 O'chirish</button>
+                </div>
+            </div>
+
+            <!-- Rasmlar Galereyasi -->
+            <div class="passport-container">
+                <div class="passport-title"><span id="pasportGalTitle">📸 Vagon Rasmlari Galereyasi</span></div>
+                <div class="file-upload-box" onclick="document.getElementById('vagon-file-input').click()">📂 Fayllarni tanlash</div>
+                <input type="file" id="vagon-file-input" accept="image/*" multiple style="display:none;" onchange="galleryFileSelected(this)">
+                <div id="vagon-gallery-preview"></div>
+            </div>
+
+            <!-- Yangi Ta'mirni Tarixga Kiritish -->
+            <div class="passport-container ppi-hide">
+                <div class="passport-title"><span>🛠️ Yangi Ta'mirni Tarixga Kiritish</span></div>
+                <div class="form-row">
+                    <div>
+                        <label style="font-size: 10px; color: #94a3b8;">Ta'mir turi</label>
+                        <select id="new-tamir-turi" class="custom-select">
+                            <option value="Depo ta'miri (DR)">Depo ta'miri (DR)</option>
+                            <option value="Kapital ta'mir (KR)">Kapital ta'mir (KR)</option>
+                            <option value="Joriy ta'mir (TR)">Joriy ta'mir (TR)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="font-size: 10px; color: #94a3b8;">Ta'mirlangan sana</label>
+                        <input type="date" id="new-tamir-date" class="custom-input">
+                    </div>
+                </div>
+                <button class="action-btn" onclick="addNewTamir()">+ Ta'mirni Tarixga Saqlash</button>
+            </div>
+
+            <!-- Ta'mirlar Tarixi -->
+            <div class="passport-container ppi-hide">
+                <div class="passport-title"><span>📜 Barcha O'tkazilgan Ta'mirlar Tarixi (Jurnal)</span></div>
+                <div id="tamir-history-list"></div>
+            </div>
+
+            <!-- RAHBARIYAT NAZORATI -->
+            <div class="rahbariyat-box" id="vagon-rahbar-old" style="display:none;">
+                <div class="rahbariyat-title">🚨 Rahbariyat Nazorati va Eslatmasi</div>
+                <div style="font-size: 11px; color: #cbd5e1; margin-bottom: 8px;">Kamchiliklar bo'yicha rahbariyat tomonidan rasmli ko'rsatma va zamchaniyalar kiritish:</div>
+                <input type="text" id="rahbar-izoh" class="custom-input" placeholder="Rahbariyat zamchaniyasi..." style="margin-bottom: 8px;" oninput="updateVagonRahbarIzoh(this)">
+
+                <div class="file-upload-box" style="border-color: #ef4444; color: #f87171;" onclick="document.getElementById('rahbar-file-input').click()">📸 Fayllarni tanlash</div>
+                <input type="file" id="rahbar-file-input" accept="image/*" multiple style="display:none;" onchange="rahbarFileSelected(this)">
+
+                <div id="rahbar-img-preview"></div>
+            </div>
+
+            <!-- YANGI: ZAMECHANIYALAR (Rahbariyat nazorati) -->
+            <div class="zam-box" id="zam-box">
+                <div class="zam-title" id="zamTitle">🚨 Rahbariyat nazorati — zamechaniyalar</div>
+                <div id="zamForm"></div>
+                <div id="zamList"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- =================================
+         4. 11 TA QUYI BO'LIMLAR EKRANI
+    ================================== -->
+    <div id="screen-subunits" class="screen">
+        <div style="padding: 15px 15px 10px 15px; flex-shrink: 0; background: var(--agmk-bgH1); background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.15);">
+            <div class="inner-header">
+                <div class="back-btn" onclick="openScreen('screen-main')">‹ Orqaga</div>
+                <h2 id="subunits-title">Quyi bo'limlar</h2>
+                <div class="undo-slot" style="min-width: 60px;"></div>
+            </div>
+        </div>
+        <div style="flex: 1; overflow-y: auto; padding: 15px; background: var(--agmk-bgB); background-size: cover; background-position: center;">
+            <div class="card-list" id="subunits-list-container"></div>
+        </div>
+    </div>
+
+
+    <!-- =================================
+         5. ELEMENTLAR RO'YXATI EKRANI
+    ================================== -->
+    <div id="screen-section-items" class="screen">
+        <div style="padding: 15px 15px 10px 15px; flex-shrink: 0; background: var(--agmk-bgH1); background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.15);">
+            <div class="inner-header">
+                <div class="back-btn" onclick="openSubUnits(currentSectionType, currentSectionTitle)">‹ Quyi bo'limlar</div>
+                <h2 id="items-header-title">Elementlar</h2>
+                <div style="width: 60px;"></div>
+            </div>
+            <div class="undo-slot row"></div>
+            <div class="search-wrap">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-box" id="itemSearchInput" placeholder="Qidirish..." oninput="renderSectionItems()">
+                <button class="mic-btn" id="mic-itemSearchInput" onclick="startVoiceSearch('itemSearchInput', renderSectionItems)" title="Ovozli qidiruv">🎤</button>
+            </div>
+        </div>
+        <div style="flex: 1; overflow-y: auto; padding: 15px; padding-bottom: 60px; background: var(--agmk-bgB); background-size: cover; background-position: center;">
+            <div id="section-items-container"></div>
+        </div>
+        <div class="fab-btn" onclick="openAddItemModal()">+</div>
+    </div>
+
+    <!-- YANGI ELEMENT (XODIM/SEH/USKUNA) QO'SHISH MODALI -->
+    <div id="addItemModal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-width: 400px; max-height: 90vh; overflow-y: auto;">
+            <h2 id="addItemModalTitle" style="color:#38bdf8; font-size:16px; margin-bottom:12px; text-align:center;">➕ Yangi qo'shish</h2>
+            <div class="form-group">
+                <label id="addItemNameLabel">Nomi:</label>
+                <input type="text" id="ai-name">
+            </div>
+            <div id="addItemXodimFields" class="hidden">
+                <div class="form-group"><label id="addItemInvLabel2">Tabel №:</label><input type="text" id="ai-tabel"></div>
+                <div class="form-group"><label>Lavozim (shtatlar ro'yxatidan):</label>
+                    <div class="xt-fixed hidden" id="aiPosFixed"></div>
+                    <div class="combo" id="aiCombo">
+                        <input type="text" id="aiLavozimSearch" placeholder="Lavozimni tanlang yoki qidiring..." autocomplete="off" spellcheck="false">
+                        <span class="combo-caret" onpointerdown="event.preventDefault(); comboToggle('ai')">▾</span>
+                        <div class="combo-list hidden" id="aiLavozimList" role="listbox"></div>
+                    </div>
+                    <input type="hidden" id="ai-lavozim">
+                </div>
+                <div class="form-group"><label>Tug'ilgan sana:</label><input type="date" id="ai-birthdate" class="custom-input" style="background:#0f172a; border:1px solid #334155; color:white; padding:10px; border-radius:8px; width:100%;"></div>
+                <div class="form-group"><label>Ishga kirgan sana:</label><input type="date" id="ai-startdate" class="custom-input" style="background:#0f172a; border:1px solid #334155; color:white; padding:10px; border-radius:8px; width:100%;"></div>
+                <div class="form-group"><label>📞 Asosiy telefon:</label><input type="tel" id="ai-phone" placeholder="+998 __ ___ __ __"></div>
+            </div>
+            <div id="addItemInvFields" class="hidden">
+                <div class="form-group"><label id="addItemInvLabel">Inventar/Kod:</label><input type="text" id="ai-inv"></div>
+                <div class="form-group"><label>Ishlab chiqarilgan/qurilgan yili:</label><input type="text" id="ai-yil" placeholder="Masalan: 2015"></div>
+            </div>
+            <div id="addItemModelField" class="form-group hidden">
+                <label>Model:</label><input type="text" id="ai-model">
+            </div>
+            <div style="display:flex; gap:10px; margin-top:10px;">
+                <button class="save-btn" style="background:#334155;" onclick="document.getElementById('addItemModal').classList.add('hidden')">Bekor qilish</button>
+                <button class="save-btn" onclick="saveNewItem()">Qo'shish</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- =================================
+         6. ELEMENT PASPORTI EKRANI
+    ================================== -->
+    <div id="screen-item-pasport" class="screen">
+        <div style="padding: 15px; flex: 1; overflow-y: auto; padding-bottom: 40px; background: var(--agmk-bgB); background-size: cover; background-position: center;">
+            <div class="inner-header">
+                <div class="back-btn" onclick="itemPasportBack()">‹ Ro'yxatga qaytish</div>
+                <h2 id="item-pasport-title">Pasport</h2>
+                <div class="undo-slot" style="min-width: 60px;"></div>
+            </div>
+            <button class="mini-btn" style="background:rgba(239,68,68,0.15); border-color:#ef4444; color:#f87171; width:100%; margin-bottom:12px;" onclick="deleteCurrentItem()">🗑 O'chirish</button>
+
+            <!-- Ishchi surati (faqat xodimlar uchun) -->
+            <div class="passport-container hidden" id="xodim-photo-box">
+                <div class="passport-title"><span>🪪 Ishchi Surati</span></div>
+                <div id="xodim-photo-preview"></div>
+                <div class="file-upload-box" onclick="document.getElementById('xodim-photo-input').click()">📸 Surat yuklash</div>
+                <input type="file" id="xodim-photo-input" accept="image/*" style="display:none;" onchange="xodimPhotoSelected(this)">
+            </div>
+
+            <div class="passport-container">
+                <div class="passport-title">
+                    <span>📋 Ma'lumotlar</span>
+                    <button class="edit-mini hidden" id="xodim-edit-btn" onclick="openXodimEdit()">✏️ Tahrirlash</button>
+                </div>
+                <div class="passport-grid" id="item-passport-grid"></div>
+            </div>
+
+            <div class="passport-container" id="item-gallery-box">
+                <div class="passport-title"><span>📸 Rasmlar Galereyasi</span></div>
+                <div class="file-upload-box" onclick="document.getElementById('item-file-input').click()">📂 Fayllarni tanlash</div>
+                <input type="file" id="item-file-input" accept="image/*" multiple style="display:none;" onchange="itemGalleryFileSelected(this)">
+                <div id="item-gallery-preview"></div>
+            </div>
+
+            <!-- Xodimning ichki kartasi (qo'shimcha bo'limlar) -->
+            <div id="xodim-extra-container"></div>
+
+            <div class="passport-container" id="tamir-section-box">
+                <div class="passport-title"><span>🛠️ Yangi Tarix / Ta'mir Qo'shish</span></div>
+                <div class="form-row">
+                    <div>
+                        <label style="font-size: 10px; color: #94a3b8;">Turi</label>
+                        <select id="new-item-tamir-turi" class="custom-select">
+                            <option value="Joriy ta'mir (TR)">Joriy ta'mir (TR)</option>
+                            <option value="Kapital ta'mir (KR)">Kapital ta'mir (KR)</option>
+                            <option value="Profilaktika">Profilaktika</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="font-size: 10px; color: #94a3b8;">Sana</label>
+                        <input type="date" id="new-item-tamir-date" class="custom-input">
+                    </div>
+                </div>
+                <button class="action-btn" onclick="addNewItemTamir()">+ Tarixga Saqlash</button>
+            </div>
+
+            <div class="passport-container" id="tamir-history-box">
+                <div class="passport-title"><span>📜 Tarix Jurnali</span></div>
+                <div id="item-tamir-history-list"></div>
+            </div>
+
+            <div class="rahbariyat-box" id="rahbariyat-nazorat-box" style="display:none;">
+                <div class="rahbariyat-title">🚨 Rahbariyat Nazorati va Eslatmasi</div>
+                <div style="font-size: 11px; color: #cbd5e1; margin-bottom: 8px;">Rahbariyat ko'rsatmalari va zamchaniyalari:</div>
+                <input type="text" id="item-rahbar-izoh" class="custom-input" placeholder="Izoh..." style="margin-bottom: 8px;" oninput="updateItemRahbarIzoh(this)">
+
+                <div class="file-upload-box" style="border-color: #ef4444; color: #f87171;" onclick="document.getElementById('item-rahbar-file-input').click()">📸 Fayllarni tanlash</div>
+                <input type="file" id="item-rahbar-file-input" accept="image/*" multiple style="display:none;" onchange="itemRahbarFileSelected(this)">
+
+                <div id="item-rahbar-img-preview"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- =================================
+         JAVASCRIPT LOGIKASI
+    ================================== -->
+
+    <!-- =================================
+         YANGI: PAROL MODALI (Shtatlar ro'yxati)
+    ================================== -->
+    <div id="pwModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h2 id="pwTitle" style="color:#38bdf8; font-size:17px; margin-bottom:6px; text-align:center;">🔒 Shtatlar ro'yxati</h2>
+            <p id="pwHint" style="font-size:12px; color:#cbd5e1; margin-bottom:16px; text-align:center; line-height:1.5;"></p>
+            <div class="form-group" id="pwGroup1"><label id="pwLabel1">Parol:</label><input type="password" id="pwInput1" autocomplete="off"></div>
+            <div class="form-group" id="pwGroup2"><label id="pwLabel2">Parolni takrorlang:</label><input type="password" id="pwInput2" autocomplete="off"></div>
+            <div class="form-group" id="pwGroup3"><label id="pwLabel3">Yangi parolni takrorlang:</label><input type="password" id="pwInput3" autocomplete="off"></div>
+            <div id="pwError" class="pw-error"></div>
+            <div style="display:flex; gap:10px;">
+                <button class="save-btn" style="background:#334155;" onclick="closePwModal()">Bekor qilish</button>
+                <button class="save-btn" id="pwSubmitBtn" onclick="submitPw()">Kirish</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =================================
+         YANGI: LAVOZIM QO'SHISH MODALI (+)
+    ================================== -->
+    <div id="shtatAddModal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-width:400px;">
+            <h2 style="color:#38bdf8; font-size:17px; margin-bottom:6px; text-align:center;">➕ Lavozim qo'shish</h2>
+            <p style="font-size:12px; color:#cbd5e1; margin-bottom:12px; text-align:center; line-height:1.5;">Bitta lavozim yozing. Bir nechtasini birdaniga qo'shish uchun har birini yangi qatordan yozing yoki Excel'dan ustunni nusxalab qo'ying.</p>
+            <textarea id="shtatAddText" class="custom-input" placeholder="Masalan: Teplovoz mashinisti" style="font-size:14px; min-height:130px;"></textarea>
+            <div style="display:flex; gap:10px; margin-top:12px;">
+                <button class="save-btn" style="background:#334155;" onclick="document.getElementById('shtatAddModal').classList.add('hidden')">Bekor qilish</button>
+                <button class="save-btn" onclick="saveShtatAdd()">Qo'shish</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =================================
+         YANGI: PARAMETRLAR EKRANI
+    ================================== -->
+    <div id="screen-settings" class="screen">
+        <div class="set-head" style="padding: 15px 15px 10px 15px; flex-shrink: 0; background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.15);">
+            <div class="inner-header">
+                <div class="back-btn" onclick="openScreen('screen-main')">‹ Orqaga</div>
+                <h2>Parametrlar</h2>
+                <div style="width: 60px;"></div>
+            </div>
+        </div>
+        <div class="set-body" style="flex: 1; overflow-y: auto; padding: 15px; padding-bottom: 40px; background-size: cover; background-position: center;">
+            <div class="card-list">
+                <div class="btn-card" onclick="openShtat()">
+                    <div class="btn-card-content"><span class="btn-icon">🔒</span><span class="btn-text">Shtatlar ro'yxati<span class="set-sub" id="set-shtat-sub"></span></span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+                <div class="btn-card" onclick="changeShtatPw()">
+                    <div class="btn-card-content"><span class="btn-icon">🔑</span><span class="btn-text"><span id="set-pw-title">Shtatlar parolini o'zgartirish</span><span class="set-sub" id="set-pw-sub"></span></span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+                <div class="btn-card" onclick="openAccPw()">
+                    <div class="btn-card-content"><span class="btn-icon">🔐</span><span class="btn-text">Hisob parolini o'zgartirish<span class="set-sub" id="set-user-sub"></span></span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+                <div class="btn-card" onclick="openPinSetup()">
+                    <div class="btn-card-content"><span class="btn-icon">🔢</span><span class="btn-text">PIN-kod bilan kirish<span class="set-sub" id="set-pin-sub"></span></span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+                <div class="btn-card set-nonadmin" onclick="openTabelChange()">
+                    <div class="btn-card-content"><span class="btn-icon">🔁</span><span class="btn-text">Tabel raqamini o'zgartirish<span class="set-sub">Parol va tug'ilgan sana bilan tasdiqlanadi</span></span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+                <div class="btn-card" onclick="themePick()">
+                    <div class="btn-card-content"><span class="btn-icon">🎨</span><span class="btn-text">Dizayn mavzusi<span class="set-sub" id="set-theme-sub"></span></span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+                <div class="btn-card" onclick="i18nPick()">
+                    <div class="btn-card-content"><span class="btn-icon">🌐</span><span class="btn-text">Til<span class="set-sub" id="set-lang-sub"></span></span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+                <div class="btn-card" onclick="openAiCfg()">
+                    <div class="btn-card-content"><span class="btn-icon"><img class="ai-img" data-img="sphPurple" alt="AI"></span><span class="btn-text">Sun'iy intellekt (AI) ulanishi<span class="set-sub" id="set-ai-sub"></span></span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+                <div class="btn-card set-admin" onclick="openSecLog()">
+                    <div class="btn-card-content"><span class="btn-icon">🛡</span><span class="btn-text">Xavfsizlik jurnali<span class="menu-badge hidden" id="secBadge">0</span><span class="set-sub" id="set-sec-sub"></span></span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+                <div class="btn-card" onclick="micDiag()">
+                    <div class="btn-card-content"><span class="btn-icon">🎤</span><span class="btn-text">Mikrofonni tekshirish<span class="set-sub">Ovozli qidiruv nima uchun ishlamasligini aniqlash</span></span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+                <div class="inf-sec">📂 Ma'lumotlar: eksport va zaxira</div>
+                <div class="btn-card" onclick="exportCSV()">
+                    <div class="btn-card-content"><span class="btn-icon">📊</span><span class="btn-text">Vagonlar — Excel (CSV)<span class="set-sub">Barcha vagonlar ro'yxatini Excel faylga yuklab olish</span></span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+                <div class="btn-card" onclick="exportBackup()">
+                    <div class="btn-card-content"><span class="btn-icon">💾</span><span class="btn-text">Toʻliq zaxira nusxa<span class="set-sub">Hammasi: baza, aktlar, hisobotlar, MTTB, sozlamalar, rasmlar — parol bilan shifrlanadi</span></span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+                <div class="btn-card set-admin" onclick="importBackupTrigger()">
+                    <div class="btn-card-content"><span class="btn-icon">📥</span><span class="btn-text">Zaxiradan tiklash<span class="set-sub">Faqat administrator: toʻliq zaxira (.agmkzaxira) yoki eski JSON zaxira</span></span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+                <div class="btn-card set-admin" onclick="exportBundleFile()">
+                    <div class="btn-card-content"><span class="btn-icon">📦</span><span class="btn-text">Tarqatish uchun fayl<span class="set-sub">Xodimlar ro'yxati joylangan faylni yuklab olish</span></span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+                <div class="btn-card set-admin" onclick="openPwLog()">
+                    <div class="btn-card-content"><span class="btn-icon">📜</span><span class="btn-text">Parollar jurnali<span class="set-sub">Kim qachon ro'yxatdan o'tgan va parol tiklagan</span></span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+                <div class="btn-card set-admin" onclick="openFbInbox()">
+                    <div class="btn-card-content"><span class="btn-icon">📥</span><span class="btn-text">Shikoyat va takliflar<span class="menu-badge hidden" id="fbSetBadge">0</span><span class="set-sub" id="set-fb-sub"></span></span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+                <div class="btn-card set-admin" onclick="openContacts()">
+                    <div class="btn-card-content"><span class="btn-icon">📇</span><span class="btn-text">Aloqa ma'lumotlari<span class="set-sub" id="set-ct-sub"></span></span></div>
+                    <span class="btn-arrow">›</span>
+                </div>
+            </div>
+            <p class="set-note">Shtatlar ro'yxatidagi lavozimlar tizimga kirishda lavozim tanlash ro'yxatida chiqadi. Ro'yxatni faqat parolni biladigan xodim o'zgartira oladi.</p>
+        </div>
+    </div>
+
+    <!-- =================================
+         YANGI: SHTATLAR RO'YXATI EKRANI
+    ================================== -->
+    <div id="screen-shtat" class="screen">
+        <div class="set-head" style="padding: 15px 15px 10px 15px; flex-shrink: 0; background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.15);">
+            <div class="inner-header">
+                <div class="back-btn" onclick="openScreen(shtatReturnScreen)">‹ Orqaga</div>
+                <h2>Shtatlar ro'yxati</h2>
+                <div style="width: 60px;"></div>
+            </div>
+            <div class="search-wrap">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-box" id="shtatSearchInput" placeholder="Lavozimni qidirish..." oninput="renderShtatList()">
+                <button class="mic-btn" id="mic-shtatSearchInput" onclick="startVoiceSearch('shtatSearchInput', renderShtatList)" title="Ovozli qidiruv">🎤</button>
+            </div>
+            <div id="shtatMeta" class="shtat-meta"></div>
+        </div>
+        <div class="set-body" style="flex: 1; overflow-y: auto; padding: 15px; padding-bottom: 90px; background-size: cover; background-position: center;">
+            <div id="shtatListContainer"></div>
+        </div>
+        <div class="fab-btn" onclick="openShtatAdd()">+</div>
+    </div>
+
+
+    <!-- =================================
+         YANGI: QULF OYNASI (kirish / ro'yxatdan o'tish / parolni tiklash)
+    ================================== -->
+    <div id="lockScreen" class="lock-screen">
+        <div class="lock-bg" style="background-image: url('data:image/jpeg;base64,@@ASSET:assets/img_93f12c9d06.jpg@@');"></div>
+        <div class="lock-shade"></div>
+        <div class="lock-card"><div class="lock-agmk"><div class="agmk-emb"></div><span>“Olmaliq KMK” AJ · STTB</span></div>
+            <div class="lock-brand">
+                <img id="lockLogo" alt="STTB">
+                <h1>AGMK-STTB PTO</h1>
+                <p id="lockSubtitle">Tizimga kirish</p>
+            </div>
+
+            <!-- Kirish -->
+            <div id="lockViewLogin">
+                <div class="form-group"><label>Tabel raqami:</label><input type="text" id="lkTabel" inputmode="numeric" autocomplete="off" placeholder="Tabel raqamingizni kiriting"></div>
+                <div class="form-group"><label>Parol:</label><input type="password" id="lkPw" autocomplete="off"></div>
+                <div id="lkErr" class="lock-err"></div>
+                <button class="save-btn" onclick="lockLogin()">Kirish</button>
+                <div class="lock-links">
+                    <button class="lock-link" onclick="showLockView('register')">Ro'yxatdan o'tish</button>
+                    <button class="lock-link" onclick="showLockView('reset')">Parolni unutdingizmi?</button>
+                </div>
+            </div>
+
+
+            <!-- PIN-kod bilan kirish -->
+            <div id="lockViewPin" class="hidden">
+                <div class="pin-name" id="pinName"></div>
+                <div class="pin-title">PIN-kodni kiriting</div>
+                <div class="pin-dots" id="pinDots"><span></span><span></span><span></span><span></span></div>
+                <div id="pinErr" class="lock-err"></div>
+                <div class="pin-pad">
+                    <button class="pin-key" onclick="pinPress('1')">1</button><button class="pin-key" onclick="pinPress('2')">2</button><button class="pin-key" onclick="pinPress('3')">3</button>
+                    <button class="pin-key" onclick="pinPress('4')">4</button><button class="pin-key" onclick="pinPress('5')">5</button><button class="pin-key" onclick="pinPress('6')">6</button>
+                    <button class="pin-key" onclick="pinPress('7')">7</button><button class="pin-key" onclick="pinPress('8')">8</button><button class="pin-key" onclick="pinPress('9')">9</button>
+                    <button class="pin-key blank" tabindex="-1"></button><button class="pin-key" onclick="pinPress('0')">0</button><button class="pin-key back" onclick="pinBack()" title="O'chirish">⌫</button>
+                </div>
+                <div class="pin-top pin-bottom">
+                    <button class="lock-link" onclick="pinOtherAccount()">↪ Boshqa hisob</button>
+                    <button class="lock-link" onclick="pinForgot()">PIN-kodni unutdingizmi?</button>
+                </div>
+            </div>
+
+            <!-- Ro'yxatdan o'tish -->
+            <div id="lockViewRegister" class="hidden">
+                <div class="form-group"><label>Tabel raqami:</label><input type="text" id="rgTabel" inputmode="numeric" autocomplete="off" oninput="previewRegister()"></div>
+                <div id="rgPreview" class="lock-preview hidden"></div>
+                <div class="form-group"><label>Yangi parol (kamida 4 belgi):</label><input type="password" id="rgPw" autocomplete="off"></div>
+                <div class="form-group"><label>Parolni takrorlang:</label><input type="password" id="rgPw2" autocomplete="off"></div>
+                <div id="rgErr" class="lock-err"></div>
+                <button class="save-btn" onclick="registerAccount()">Ro'yxatdan o'tish</button>
+                <div class="lock-links"><button class="lock-link" onclick="showLockView('login')">‹ Kirish oynasiga qaytish</button></div>
+            </div>
+
+            <!-- Parolni tiklash -->
+            <div id="lockViewReset" class="hidden">
+                <div class="form-group"><label>Tabel raqami:</label><input type="text" id="rsTabel" inputmode="numeric" autocomplete="off"></div>
+                <div class="form-group"><label>Tug'ilgan sana:</label><input type="date" id="rsBirth"></div>
+                <div id="rsNewBox" class="hidden">
+                    <div class="form-group"><label>Yangi parol (kamida 4 belgi):</label><input type="password" id="rsPw" autocomplete="off"></div>
+                    <div class="form-group"><label>Yangi parolni takrorlang:</label><input type="password" id="rsPw2" autocomplete="off"></div>
+                </div>
+                <div id="rsErr" class="lock-err"></div>
+                <button class="save-btn" id="rsBtn" onclick="resetStep()">Tekshirish</button>
+                <div class="lock-links"><button class="lock-link" onclick="showLockView('login')">‹ Kirish oynasiga qaytish</button></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- YANGI: HISOB MENYUSI -->
+    <div id="accountModal" class="modal-overlay hidden" onclick="if(event.target===this)this.classList.add('hidden')">
+        <div class="modal-content">
+            <div class="acc-head">
+                <div class="acc-avatar">👤</div>
+                <div class="acc-name" id="accName"></div>
+                <div class="acc-meta" id="accMeta"></div>
+                <div class="acc-admin hidden" id="accAdmin">Administrator</div>
+            </div>
+            <button class="save-btn" onclick="document.getElementById('accountModal').classList.add('hidden'); openSettings()">⚙️ Parametrlar</button>
+            <button class="save-btn" style="background:rgba(239,68,68,0.15); border:1px solid #ef4444; color:#f87171; margin-top:10px;" onclick="logout()">🚪 Chiqish</button>
+            <button class="save-btn" style="background:#334155; margin-top:10px;" onclick="document.getElementById('accountModal').classList.add('hidden')">Yopish</button>
+        </div>
+    </div>
+
+    <!-- YANGI: HISOB PAROLINI O'ZGARTIRISH -->
+    <div id="accPwModal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-height:92vh; overflow-y:auto;">
+            <h2 style="color:#38bdf8; font-size:17px; margin-bottom:6px; text-align:center;">🔐 Yangi parol o'rnatish</h2>
+            <p style="font-size:12px; color:#cbd5e1; margin-bottom:14px; text-align:center; line-height:1.5;">Xavfsizlik uchun tabel raqamingiz, tug'ilgan sanangiz va eski parolingiz so'raladi.</p>
+            <div class="form-group"><label>Tabel raqami:</label><input type="text" id="apTabel" inputmode="numeric" autocomplete="off"></div>
+            <div class="form-group"><label>Tug'ilgan sana:</label><input type="date" id="apBirth" class="custom-input" style="font-size:14px; padding:11px 12px;"></div>
+            <div class="form-group"><label>Eski parol:</label><input type="password" id="apOld" autocomplete="off"></div>
+            <div class="form-group"><label>Yangi parol (kamida 4 belgi):</label><input type="password" id="apNew" autocomplete="off"></div>
+            <div class="form-group"><label>Yangi parolni takrorlang:</label><input type="password" id="apNew2" autocomplete="off"></div>
+            <div id="apErr" class="pw-error"></div>
+            <div style="display:flex; gap:10px;">
+                <button class="save-btn" style="background:#334155;" onclick="document.getElementById('accPwModal').classList.add('hidden')">Bekor qilish</button>
+                <button class="save-btn" onclick="saveAccPw()">Saqlash</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- YANGI: XODIM MA'LUMOTLARINI TAHRIRLASH -->
+    <div id="xodimEditModal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-width:400px; max-height:92vh; overflow-y:auto;">
+            <h2 style="color:#38bdf8; font-size:16px; margin-bottom:12px; text-align:center;">✏️ Ma'lumotlarni tahrirlash</h2>
+            <div class="form-group"><label>F.I.O:</label><input type="text" id="xeName"></div>
+            <div style="display:flex; gap:10px;">
+                <div class="form-group" style="flex:1.4;"><label>Tabel №:</label><input type="text" id="xeTabel" inputmode="numeric"></div>
+                <div class="form-group" style="flex:1;"><label>Razryad:</label><div class="combo" id="rzCombo">
+                        <input type="text" id="rzInput" inputmode="numeric" placeholder="—" autocomplete="off">
+                        <span class="combo-caret" onpointerdown="event.preventDefault(); rzToggle()">▾</span>
+                        <div class="combo-list hidden" id="rzList" role="listbox"></div>
+                    </div><select id="xeRazryad" class="hidden"><option value="">—</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option></select></div>
+            </div>
+            <div class="form-group"><label>Lavozim (shtatdagi o'rni):</label>
+                <div class="combo" id="xpCombo">
+                    <input type="text" id="xpSearch" placeholder="Raqam, lavozim yoki bo'lim bo'yicha qidiring..." autocomplete="off" spellcheck="false">
+                    <span class="combo-caret" onpointerdown="event.preventDefault(); xpToggle()">▾</span>
+                    <div class="combo-list hidden" id="xpList" role="listbox"></div>
+                </div>
+                <div id="xpPath" class="wl-sub" style="margin-top:5px;"></div>
+                <input type="hidden" id="xePosNo">
+            </div>
+            <div class="form-group hidden"><label>Lavozim (shtatlar ro'yxatidan):</label>
+                <div class="combo" id="xeCombo">
+                    <input type="text" id="xeLavozimSearch" placeholder="Lavozimni tanlang yoki qidiring..." autocomplete="off" spellcheck="false">
+                    <span class="combo-caret" onpointerdown="event.preventDefault(); comboToggle('xe')">▾</span>
+                    <div class="combo-list hidden" id="xeLavozimList" role="listbox"></div>
+                </div>
+                <input type="hidden" id="xeLavozim">
+            </div>
+            <div class="form-group hidden"><label>Ish joyi (seh):</label><select id="xeSeh"></select></div>
+            <div class="form-group hidden"><label>Bo'lim (ixtiyoriy):</label><input type="text" id="xeBolim" placeholder="Masalan: ICHTB"></div>
+            <div class="form-group"><label>Tug'ilgan sana:</label><input type="date" id="xeBirth" class="custom-input" style="font-size:14px; padding:11px 12px;"></div>
+            <div class="form-group" style="margin-bottom:15px;"><label>Ishga kirgan sana:</label><input type="date" id="xeKirgan" class="custom-input" style="font-size:14px; padding:11px 12px;"></div>
+            <div class="form-group"><label>📞 Asosiy telefon:</label><input type="tel" id="xePhone" placeholder="+998 __ ___ __ __"></div>
+            <div class="form-group" style="margin-bottom:15px;"><label>📱 Zaxira raqamlar:</label><div id="xePhones2"></div><button class="ph2-add" onclick="addPh2Row()">+ Raqam qo'shish</button></div>
+            <div style="display:flex; gap:10px;">
+                <button class="save-btn" style="background:#334155;" onclick="document.getElementById('xodimEditModal').classList.add('hidden')">Bekor qilish</button>
+                <button class="save-btn" onclick="saveXodimEdit()">Saqlash</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- YANGI: PAROLLAR JURNALI (administrator) -->
+    <div id="pwLogModal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-width:400px; display:flex; flex-direction:column; max-height:80vh;">
+            <h2 style="color:#38bdf8; font-size:16px; margin-bottom:10px; text-align:center;">📜 Parollar jurnali</h2>
+            <div id="pwLogList" style="flex:1; overflow-y:auto; margin-bottom:10px;"></div>
+            <button class="save-btn" style="background:#334155;" onclick="document.getElementById('pwLogModal').classList.add('hidden')">Yopish</button>
+        </div>
+    </div>
+
+
+    <!-- YANGI: PIN-KOD SOZLAMASI -->
+    <div id="pinSetupModal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-height:92vh; overflow-y:auto;">
+            <h2 id="psTitle" style="color:#38bdf8; font-size:17px; margin-bottom:6px; text-align:center;">🔢 PIN-kod bilan kirish</h2>
+            <p id="psHint" style="font-size:12px; color:#cbd5e1; margin-bottom:14px; text-align:center; line-height:1.5;"></p>
+            <div class="form-group"><label>Hisob paroli:</label><input type="password" id="psPw" autocomplete="off"></div>
+            <div id="psPinBox">
+                <div class="form-group"><label>Yangi PIN (4 ta raqam):</label><input type="password" id="psPin" inputmode="numeric" maxlength="4" autocomplete="off"></div>
+                <div class="form-group"><label>PIN ni takrorlang:</label><input type="password" id="psPin2" inputmode="numeric" maxlength="4" autocomplete="off"></div>
+            </div>
+            <div id="psErr" class="pw-error"></div>
+            <div style="display:flex; gap:10px;">
+                <button class="save-btn" style="background:#334155;" onclick="document.getElementById('pinSetupModal').classList.add('hidden')">Bekor qilish</button>
+                <button class="save-btn" onclick="savePinSetup()">Saqlash</button>
+            </div>
+            <button class="save-btn hidden" id="psOffBtn" style="background:rgba(239,68,68,0.15); border:1px solid #ef4444; color:#f87171; margin-top:10px;" onclick="removePin()">PIN-kodni o'chirish</button>
+        </div>
+    </div>
+
+    <input type="file" id="att-input-img" accept="image/*,.heic,.heif" multiple style="display:none;" onchange="attFilesChosen(this, 'img')">
+    <input type="file" id="att-input-pdf" accept="application/pdf,.pdf" multiple style="display:none;" onchange="attFilesChosen(this, 'pdf')">
+
+
+    <!-- YANGI: SHIKOYAT VA TAKLIF YUBORISH -->
+    <div id="feedbackModal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-width:420px; max-height:92vh; overflow-y:auto;">
+            <h2 style="color:#38bdf8; font-size:17px; margin-bottom:12px; text-align:center;">✉️ Shikoyat va takliflar</h2>
+            <div class="fb-types">
+                <button class="fb-type on" id="fbTypeSh" onclick="setFbType('Shikoyat')">🔴 Shikoyat</button>
+                <button class="fb-type" id="fbTypeTk" onclick="setFbType('Taklif')">💡 Taklif</button>
+            </div>
+            <textarea id="fbText" class="custom-input" placeholder="Xabaringizni yozing..." style="min-height:120px; font-size:14px;"></textarea>
+            <div class="att-bar" style="margin-top:8px;"><button class="att-btn" onclick="document.getElementById('fbImgInput').click()">📷 Rasm biriktirish</button></div>
+            <input type="file" id="fbImgInput" accept="image/*,.heic,.heif" multiple style="display:none;" onchange="fbFilesChosen(this)">
+            <div id="fbBusy" class="att-busy hidden">⏳ Rasm tayyorlanmoqda...</div>
+            <div id="fbFiles" class="att-list"></div>
+            <div class="fb-from" id="fbFrom"></div>
+            <button class="save-btn" onclick="sendFeedbackInApp()">✍️ Ilova orqali yuborish</button>
+            <div class="fb-row">
+                <button class="save-btn" id="fbMailBtn" style="background:#334155;" onclick="sendFeedbackMail()">📧 Pochta</button>
+                <button class="save-btn" id="fbTgBtn" style="background:#229ED9;" onclick="sendFeedbackTelegram()">✈️ Telegram</button>
+            </div>
+            <button class="save-btn" style="background:transparent; border:1px solid #334155; margin-top:10px;" onclick="document.getElementById('feedbackModal').classList.add('hidden')">Yopish</button>
+        </div>
+    </div>
+
+    <!-- YANGI: SHIKOYAT VA TAKLIFLAR (administrator) -->
+    <div id="fbInboxModal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-width:440px; display:flex; flex-direction:column; max-height:88vh;">
+            <h2 style="color:#38bdf8; font-size:16px; margin-bottom:10px; text-align:center;">📥 Shikoyat va takliflar</h2>
+            <div id="fbInboxList" style="flex:1; overflow-y:auto; margin-bottom:10px;"></div>
+            <button class="save-btn" style="background:#334155;" onclick="closeFbInbox()">Yopish</button>
+        </div>
+    </div>
+
+    <!-- YANGI: ALOQA MA'LUMOTLARI (administrator) -->
+    <div id="contactsModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h2 style="color:#38bdf8; font-size:17px; margin-bottom:6px; text-align:center;">📇 Aloqa ma'lumotlari</h2>
+            <p style="font-size:12px; color:#cbd5e1; margin-bottom:14px; text-align:center; line-height:1.5;">Xodimlar shikoyat va takliflarni shu manzillarga yuboradi. Bo'sh qoldirilgan tugma ko'rinmaydi.</p>
+            <div class="form-group"><label>Elektron pochta:</label><input type="text" id="ctEmail" inputmode="email" autocomplete="off" placeholder="masalan: ism@pochta.uz"></div>
+            <div class="form-group"><label>Telegram username:</label><input type="text" id="ctTg" autocomplete="off" placeholder="masalan: @username"></div>
+            <div id="ctErr" class="pw-error"></div>
+            <div style="display:flex; gap:10px;">
+                <button class="save-btn" style="background:#334155;" onclick="document.getElementById('contactsModal').classList.add('hidden')">Bekor qilish</button>
+                <button class="save-btn" onclick="saveContactsForm()">Saqlash</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- YANGI: ESLATMALAR (xatlar) -->
+    <div id="warnModal" class="modal-overlay hidden" onclick="if(event.target===this)this.classList.add('hidden')">
+        <div class="modal-content" style="max-width:440px; display:flex; flex-direction:column; max-height:86vh;">
+            <h2 style="color:#facc15; font-size:17px; margin-bottom:10px; text-align:center;">⚠️ Eslatmalar</h2>
+            <div id="warnBody" style="flex:1; overflow-y:auto; -webkit-overflow-scrolling:touch; margin-bottom:10px; min-height:80px;"></div>
+            <button class="save-btn" style="background:#334155;" onclick="document.getElementById('warnModal').classList.add('hidden')">Yopish</button>
+        </div>
+    </div>
+
+    <!-- YANGI: TABEL RAQAMINI O'ZGARTIRISH -->
+    <div id="tabelChangeModal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-height:92vh; overflow-y:auto;">
+            <h2 style="color:#38bdf8; font-size:17px; margin-bottom:6px; text-align:center;">🔁 Tabel raqamini o'zgartirish</h2>
+            <p style="font-size:12px; color:#cbd5e1; margin-bottom:14px; text-align:center; line-height:1.5;">Hisobingiz, PIN-kodingiz va barcha yozuvlaringiz yangi tabel raqamiga o'tadi.</p>
+            <div class="form-group"><label>Joriy tabel raqami:</label><input type="text" id="tcOld" disabled></div>
+            <div class="form-group"><label>Yangi tabel raqami:</label><input type="text" id="tcNew" inputmode="numeric" autocomplete="off"></div>
+            <div class="form-group"><label>Tug'ilgan sana:</label><input type="date" id="tcBirth" class="custom-input" style="font-size:14px; padding:11px 12px;"></div>
+            <div class="form-group"><label>Hisob paroli:</label><input type="password" id="tcPw" autocomplete="off"></div>
+            <div id="tcErr" class="pw-error"></div>
+            <div style="display:flex; gap:10px;">
+                <button class="save-btn" style="background:#334155;" onclick="document.getElementById('tabelChangeModal').classList.add('hidden')">Bekor qilish</button>
+                <button class="save-btn" onclick="saveTabelChange()">Saqlash</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- =================================
+         YANGI: ISHCHI XODIMLAR (shtat bo'yicha: bo'linma › bo'lim › lavozim › xodim)
+    ================================== -->
+    <div id="screen-xt" class="screen">
+        <div class="set-head" style="padding: 15px 15px 10px 15px; flex-shrink: 0; background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.15);">
+            <div class="inner-header">
+                <div class="back-btn" onclick="xtBack()">‹ Orqaga</div>
+                <h2 id="xtTitle">Ishchi xodimlar</h2>
+                <div class="undo-slot" style="min-width: 60px;"></div>
+            </div>
+            <div class="search-wrap">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-box" id="xtSearch" placeholder="Xodim: F.I.O, tabel, telefon yoki lavozim..." oninput="xtRender()">
+                <button class="mic-btn" id="mic-xtSearch" onclick="startVoiceSearch('xtSearch', xtRender)" title="Ovozli qidiruv">🎤</button>
+            </div>
+            <div id="xtCrumbs" class="xt-crumbs"></div>
+        </div>
+        <div class="set-body" id="xtBody" style="flex: 1; overflow-y: auto; padding: 15px; padding-bottom: 90px; background-size: cover; background-position: center;">
+            <div id="xtList"></div>
+        </div>
+        <div class="fab-btn hidden" id="xtFab" onclick="xtAddXodim()">+</div>
+    </div>
+
+    <!-- YANGI: SHTAT LAVOZIMINI QO'SHISH / TAHRIRLASH -->
+    <div id="shtPosModal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-width:420px; max-height:92vh; overflow-y:auto;">
+            <h2 id="spTitle" style="color:#38bdf8; font-size:17px; margin-bottom:12px; text-align:center;">➕ Lavozim qo'shish</h2>
+            <div class="form-group"><label>Bo'linma:</label><select id="spUnit" onchange="spFillGroups()"></select></div>
+            <div class="form-group"><label>Bo'lim / uchastka:</label><select id="spGroup" onchange="spGroupChanged()"></select></div>
+            <div class="form-group hidden" id="spNewGroupBox"><label>Yangi bo'lim / uchastka nomi:</label><input type="text" id="spNewGroup"></div>
+            <div class="form-group"><label id="spNameLabel">Lavozim nomi (bir nechtasi bo'lsa — har biri yangi qatordan):</label><textarea id="spName" class="custom-input" style="min-height:90px; font-size:14px;"></textarea></div>
+            <div style="display:flex; gap:10px;">
+                <div class="form-group" style="flex:1;"><label>Birliklar soni:</label><input type="text" id="spCnt" inputmode="numeric" value="1"></div>
+                <div class="form-group" style="flex:1;"><label>Nomenklatura:</label><select id="spCat"><option value="rah.">rah.</option><option value="mutax.">mutax.</option><option value="texn.">texn.</option></select></div>
+            </div>
+            <div id="spErr" class="pw-error"></div>
+            <div style="display:flex; gap:10px;">
+                <button class="save-btn" style="background:#334155;" onclick="document.getElementById('shtPosModal').classList.add('hidden')">Bekor qilish</button>
+                <button class="save-btn" onclick="spSave()">Saqlash</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- =================================
+         YANGI: UMUMIY RAHBARIYAT NAZORATI
+    ================================== -->
+    <div id="screen-rn" class="screen">
+        <div class="set-head" style="padding: 15px 15px 10px 15px; flex-shrink: 0; background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.15);">
+            <div class="inner-header">
+                <div class="back-btn" onclick="openScreen('screen-main')">‹ Orqaga</div>
+                <h2>Rahbariyat nazorati</h2>
+                <div class="undo-slot" style="min-width: 60px;"></div>
+            </div>
+            <div class="rn-stats" id="rnStats"></div>
+        </div>
+        <div class="set-body" style="flex: 1; overflow-y: auto; padding: 15px; padding-bottom: 40px; background-size: cover; background-position: center;">
+            <div id="rnList"></div>
+        </div>
+    </div>
+
+    <!-- YANGI: BARTARAF QILISH -->
+    <div id="fixModal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-width:420px; max-height:92vh; overflow-y:auto;">
+            <h2 id="fxTitle" style="color:#facc15; font-size:17px; margin-bottom:6px; text-align:center;">🛠 Kamchilikni bartaraf qilish</h2>
+            <p id="fxHint" style="font-size:12px; color:#cbd5e1; margin-bottom:12px; text-align:center; line-height:1.5;"></p>
+            <div class="att-bar"><button class="att-btn" onclick="zamPick('fx','cam')">📷 Kamera</button><button class="att-btn" onclick="zamPick('fx','file')">📁 Fayl</button></div>
+            <div id="fxBusy" class="att-busy hidden">⏳ Rasm tayyorlanmoqda...</div>
+            <div id="fxFiles" class="att-list"></div>
+            <textarea id="fxText" class="custom-input" placeholder="Izoh (ixtiyoriy): nima qilindi..." style="min-height:70px; font-size:14px; margin-top:8px;"></textarea>
+            <div class="fb-from" id="fxFrom"></div>
+            <div style="display:flex; gap:10px;">
+                <button class="save-btn" style="background:#334155;" onclick="document.getElementById('fixModal').classList.add('hidden')">Bekor qilish</button>
+                <button class="save-btn" style="background:#ca8a04;" onclick="submitFix()">Yuborish</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- YANGI: BILDIRISHNOMALAR -->
+    <div id="notifListModal" class="modal-overlay hidden" onclick="if(event.target===this)this.classList.add('hidden')">
+        <div class="modal-content" style="max-width:440px; display:flex; flex-direction:column; max-height:86vh;">
+            <h2 style="color:#facc15; font-size:17px; margin-bottom:10px; text-align:center;">🔔 Bildirishnomalar</h2>
+            <div id="ntList" style="flex:1; overflow-y:auto; margin-bottom:10px; min-height:60px;"></div>
+            <div style="display:flex; gap:10px;">
+                <button class="save-btn" style="background:#1e293b; border:1px solid #334155;" onclick="markAllNotifsRead()">Hammasi o'qildi</button>
+                <button class="save-btn" style="background:#334155;" onclick="document.getElementById('notifListModal').classList.add('hidden')">Yopish</button>
+            </div>
+        </div>
+    </div>
+
+    <input type="file" id="zam-cam" accept="image/*" capture="environment" style="display:none;" onchange="zamFiles(this)">
+    <input type="file" id="zam-file" accept="image/*,.heic,.heif" multiple style="display:none;" onchange="zamFiles(this)">
+    <input type="file" id="zam-audio" accept="audio/*" capture style="display:none;" onchange="zamAudioFile(this)">
+
+
+    <!-- =================================
+         YANGI: LOKOMOTIVLAR (tortuvchi agregatlar)
+    ================================== -->
+    <div id="screen-lok" class="screen">
+        <div class="set-head" style="padding: 15px 15px 10px 15px; flex-shrink: 0; background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.15);">
+            <div class="inner-header">
+                <div class="back-btn" onclick="openScreen('screen-main')">‹ Orqaga</div>
+                <h2>Lokomotivlar</h2>
+                <div style="width: 60px;"></div>
+            </div>
+            <div class="stats-grid" id="lokStats"></div>
+            <div class="vg-top-row">
+                <div class="undo-slot row"></div>
+                <button class="warn-btn" id="lokWarnBtn" onclick="openLokWarn()" title="Eslatmalar">⚠️<span class="warn-count hidden" id="lokWarnCount">0</span></button>
+            </div>
+            <div class="search-wrap">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-box" id="lokSearch" placeholder="Zavod №, inventar №, seriya yoki yil..." oninput="renderLok()">
+                <button class="mic-btn" id="mic-lokSearch" onclick="startVoiceSearch('lokSearch', renderLok)" title="Ovozli qidiruv">🎤</button>
+            </div>
+            <div class="tabs" id="lokTabs" style="margin: 8px 0 0 0;"></div>
+            <div class="sp-link-row"><button class="mini-btn" onclick="openSP('lok','lok')">🔩 Ehtiyot qismlar</button></div>
+        </div>
+        <div class="set-body" style="flex: 1; overflow-y: auto; padding: 15px; padding-bottom: 60px; background-size: cover; background-position: center;">
+            <div id="lokList"></div>
+        </div>
+        <div class="fab-btn" onclick="openAddLok()" title="Yangi lokomotiv">+</div>
+    </div>
+
+    <!-- =================================
+         YANGI: AVTOTRAKTOR PARKI (avtotraktor, maxsus texnika, vilkali yuklagichlar)
+    ================================== -->
+    <div id="screen-avto" class="screen">
+        <div class="set-head" style="padding: 15px 15px 10px 15px; flex-shrink: 0; background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.15);">
+            <div class="inner-header">
+                <div class="back-btn" onclick="openScreen('screen-main')">‹ Orqaga</div>
+                <h2>Avtotraktor parki</h2>
+                <div class="undo-slot" style="min-width: 60px;"></div>
+            </div>
+            <div class="stats-grid" id="avtoStats" style="margin: 10px 0 8px 0;"></div>
+            <div class="search-wrap">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-box" id="avtoSearch" placeholder="Davlat raqami, inventar, marka yoki yil..." oninput="renderAvto()">
+                <button class="mic-btn" id="mic-avtoSearch" onclick="startVoiceSearch('avtoSearch', renderAvto)" title="Ovozli qidiruv">🎤</button>
+            </div>
+            <div class="tabs" id="avtoTabs" style="margin: 8px 0 0 0;"></div>
+            <div class="sp-link-row"><button class="mini-btn" onclick="openSP('avto','avto')">🔩 Ehtiyot qismlar</button></div>
+        </div>
+        <div class="set-body" style="flex: 1; overflow-y: auto; padding: 15px; padding-bottom: 60px; background-size: cover; background-position: center;">
+            <div id="avtoList"></div>
+        </div>
+    </div>
+
+    <!-- =================================
+         YANGI: YO'L QURILISHI VA TA'MIRLASH — maxsus o'ziyurar temir yo'l texnikalari (3-TYS deposi)
+    ================================== -->
+    <div id="screen-yol" class="screen">
+        <div class="set-head" style="padding: 15px 15px 10px 15px; flex-shrink: 0; background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.15);">
+            <div class="inner-header">
+                <div class="back-btn" onclick="openScreen('screen-main')">‹ Orqaga</div>
+                <h2>Yo'l texnikalari</h2>
+                <div class="undo-slot" style="min-width: 60px;"></div>
+            </div>
+            <div class="stats-grid" id="yolStats" style="margin: 10px 0 8px 0;"></div>
+            <div class="search-wrap">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-box" id="yolSearch" placeholder="Marka, zavod №, inventar yoki yil..." oninput="renderYol()">
+                <button class="mic-btn" id="mic-yolSearch" onclick="startVoiceSearch('yolSearch', renderYol)" title="Ovozli qidiruv">🎤</button>
+            </div>
+            <div class="tabs" id="yolTabs" style="margin: 8px 0 0 0;"></div>
+            <div class="sp-link-row"><button class="mini-btn" onclick="openSP('yol','yol')">🔩 Ehtiyot qismlar</button></div>
+        </div>
+        <div class="set-body" style="flex: 1; overflow-y: auto; padding: 15px; padding-bottom: 60px; background-size: cover; background-position: center;">
+            <div id="yolList"></div>
+        </div>
+    </div>
+
+    <!-- =================================
+         YANGI: TEMIR YO'L XARITASI (sxema) — "Технический паспорт подъездного пути" (2023)
+    ================================== -->
+    <div id="screen-map" class="screen">
+        <div class="set-head" style="padding: 15px 15px 10px 15px; flex-shrink: 0; background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.15);">
+            <div class="inner-header">
+                <div class="back-btn" onclick="openScreen('screen-main')">‹ Orqaga</div>
+                <h2>Temir yo'l xaritasi</h2>
+                <div class="undo-slot" style="min-width: 60px;"></div>
+            </div>
+            <div class="search-wrap">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-box" id="mapSearch" placeholder="Stansiya yoki peregon nomi..." oninput="renderMapList(); mapHighlight();">
+                <button class="mic-btn" id="mic-mapSearch" onclick="startVoiceSearch('mapSearch', () => { renderMapList(); mapHighlight(); })" title="Ovozli qidiruv">🎤</button>
+            </div>
+        </div>
+        <div class="set-body" style="flex: 1; overflow-y: auto; padding: 12px; padding-bottom: 60px; background-size: cover; background-position: center;">
+            <div class="map-wrap" id="mapWrap">
+                <div class="map-panes stack" id="mapPanes">
+                    <div class="map-pane" id="paneHyb"><div class="lf" id="lfHyb"></div><div class="lf-msg" id="lfHybMsg"></div><div class="pane-tag">🌍 Gibrid</div></div>
+                    <div class="map-pane" id="paneGps"><div class="lf" id="lfGps"></div><div class="lf-msg" id="lfGpsMsg"></div><div class="pane-tag">🛰️ GPS xarita</div></div>
+                    <div class="map-pane" id="paneSx"><svg id="mapSvg" xmlns="http://www.w3.org/2000/svg"></svg><div class="pane-tag">🗺️ Sxema</div></div>
+                </div>
+                <div class="map-pill" id="mapPill" onclick="toggleMapPill()"></div>
+                <button class="map-fab lyr" id="lyrBtn" onclick="toggleLayerPanel()" title="Qatlamlar"><svg class="lyr-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"><path d="M12 3 2.5 8 12 13l9.5-5Z"/><path d="m2.5 12.5 9.5 5 9.5-5"/><path d="m2.5 17 9.5 5 9.5-5"/></svg></button>
+                <button class="map-fab info" onclick="toggleLegend()" title="Belgilar izohi">ⓘ</button>
+                <div class="map-aibar hidden" id="mapAiBar"></div>
+                <div class="obx-chip hidden" id="obxChip"></div>
+                <div class="map-card hidden" id="mapCard"></div>
+                <div class="lyr-panel hidden" id="lyrPanel"></div>
+                <div class="map-ctrl">
+                    <button onclick="mapZoomAll(1.3)">＋</button>
+                    <button onclick="mapZoomAll(1/1.3)">－</button>
+                    <button onclick="mapResetAll()">⟲</button>
+                    <button onclick="mapLocate()" title="Men qayerdaman / eng yaqin stansiya">📍</button>
+                    <button id="obxBtn" onclick="toggleObxod()" title="Aylanib chiqish (obxod) rejimi">🚶</button>
+                </div>
+                <div class="map-legend" id="mapLegend">
+                    <span><i style="background:#38bdf8"></i>Markaziy uchastka</span>
+                    <span><i style="background:#f59e0b"></i>Qalmoqqir uchastkasi</span>
+                    <span><i class="sq"></i>Kirish yo'li / depo</span>
+                    <span><i class="dash"></i>Ulanishi aniqlanmagan</span>
+                </div>
+            </div>
+            <div class="map-hint">Barmoq bilan suring, ikki barmoq bilan kattalashtiring. Stansiya yoki peregonni bossangiz — uning bo'limlari ochiladi. <svg class="lyr-ico-s" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"><path d="M12 3 2.5 8 12 13l9.5-5Z"/><path d="m2.5 12.5 9.5 5 9.5-5"/><path d="m2.5 17 9.5 5 9.5-5"/></svg>— qatlamlar: Sxema / GPS / Gibrid.</div>
+            <div id="mapList"></div>
+        </div>
+    </div>
+
+    <!-- =================================
+         YANGI: TEMIR YO'L — uchastka / obyekt / mavzu bo'limlari (Seh va uchastkalar uslubida)
+    ================================== -->
+    <div id="screen-infra-list" class="screen">
+        <div class="set-head" style="padding: 15px 15px 10px 15px; flex-shrink: 0; background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.15);">
+            <div class="inner-header">
+                <div class="back-btn" onclick="openMapScreen()">‹ Xarita</div>
+                <h2 id="infListTitle">Uchastka</h2>
+                <div class="undo-slot" style="min-width: 60px;"></div>
+            </div>
+            <div class="search-wrap">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-box" id="infListSearch" placeholder="Nomi bo'yicha qidirish..." oninput="renderInfraList()">
+                <button class="mic-btn" id="mic-infListSearch" onclick="startVoiceSearch('infListSearch', renderInfraList)" title="Ovozli qidiruv">🎤</button>
+            </div>
+            <div class="tabs" id="infListTabs" style="margin: 8px 0 0 0;"></div>
+        </div>
+        <div class="set-body" style="flex: 1; overflow-y: auto; padding: 15px; padding-bottom: 60px; background-size: cover; background-position: center;">
+            <div id="infList" class="card-list"></div>
+        </div>
+    </div>
+    <div id="screen-infra-obj" class="screen">
+        <div class="set-head" style="padding: 15px 15px 10px 15px; flex-shrink: 0; background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.15);">
+            <div class="inner-header">
+                <div class="back-btn" id="infObjBack" onclick="infraObjBack()">‹ Orqaga</div>
+                <h2 id="infObjTitle">Obyekt</h2>
+                <div class="undo-slot" style="min-width: 60px;"></div>
+            </div>
+        </div>
+        <div class="set-body" style="flex: 1; overflow-y: auto; padding: 15px; padding-bottom: 60px; background-size: cover; background-position: center;">
+            <div id="infObjBody"></div>
+        </div>
+    </div>
+    <div id="screen-infra-topic" class="screen">
+        <div class="set-head" style="padding: 15px 15px 10px 15px; flex-shrink: 0; background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.15);">
+            <div class="inner-header">
+                <div class="back-btn" onclick="openInfraObj(INFNAV.obj)">‹ Orqaga</div>
+                <h2 id="infTopTitle">Mavzu</h2>
+                <div class="undo-slot" style="min-width: 60px;"></div>
+            </div>
+        </div>
+        <div class="set-body" style="flex: 1; overflow-y: auto; padding: 15px; padding-bottom: 60px; background-size: cover; background-position: center;">
+            <div id="infTopBody"></div>
+        </div>
+    </div>
+
+    <!-- =================================
+         YANGI: TEMIR YO'L HARAKAT TARKIBI — tarkiblar, vagon/lokomotiv/texnika joylashuvi va holati
+    ================================== -->
+    <div id="screen-hr" class="screen">
+        <div class="set-head" style="padding: 15px 15px 10px 15px; flex-shrink: 0; background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.15);">
+            <div class="inner-header">
+                <div class="back-btn" onclick="openScreen('screen-main')">‹ Orqaga</div>
+                <h2>🚦 Dispetcherlik</h2>
+                <div class="undo-slot" style="min-width: 60px;"></div>
+            </div>
+            <div class="hr-sum" id="hrSum"></div>
+        </div>
+        <div class="set-body" style="flex: 1; overflow-y: auto; padding: 15px; padding-bottom: 60px; background-size: cover; background-position: center;">
+            <div id="hrHome" class="card-list"></div>
+        </div>
+    </div>
+    <div id="screen-hr-list" class="screen">
+        <div class="set-head" style="padding: 15px 15px 10px 15px; flex-shrink: 0; background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.15);">
+            <div class="inner-header">
+                <div class="back-btn" onclick="hrBack()">‹ Orqaga</div>
+                <h2 id="hrListTitle">Ro'yxat</h2>
+                <div class="undo-slot" style="min-width: 60px;"></div>
+            </div>
+            <div class="search-wrap">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-box" id="hrSearch" placeholder="Raqam, nomi yoki joyi..." oninput="HR.page = 1; renderHrList()">
+                <button class="mic-btn" id="mic-hrSearch" onclick="startVoiceSearch('hrSearch', renderHrList)" title="Ovozli qidiruv">🎤</button>
+            </div>
+            <div class="tabs" id="hrTabs" style="margin: 8px 0 0 0;"></div>
+        </div>
+        <div class="set-body" style="flex: 1; overflow-y: auto; padding: 15px; padding-bottom: 80px; background-size: cover; background-position: center;">
+            <div id="hrList"></div>
+        </div>
+    </div>
+    <div id="hrModal" class="modal-overlay hidden">
+        <div class="modal-content hr-modal-c">
+            <div id="hrModalBody"></div>
+        </div>
+    </div>
+
+    <!-- =================================
+         YANGI: NORMATIV-HUQUQIY HUJJATLAR va AI AKT (DALOLATNOMA) TUZISH
+    ================================== -->
+    <div id="screen-nd" class="screen">
+        <div class="set-head" style="padding: 15px 15px 10px 15px; flex-shrink: 0; background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.15);">
+            <div class="inner-header">
+                <div class="back-btn" id="ndBack" onclick="ndGoBack()">‹ Orqaga</div>
+                <h2 id="ndTitle">Normativ hujjatlar</h2>
+                <div class="undo-slot" style="min-width: 60px;"></div>
+            </div>
+            <div class="search-wrap" id="ndSearchWrap">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-box" id="ndSearch" placeholder="Hujjat, punkt yoki akt bo'yicha qidirish..." oninput="ndRender()">
+                <button class="mic-btn" id="mic-ndSearch" onclick="startVoiceSearch('ndSearch', ndRender)" title="Ovozli qidiruv">🎤</button>
+            </div>
+        </div>
+        <div class="set-body" style="flex: 1; overflow-y: auto; padding: 15px; padding-bottom: 70px; background-size: cover; background-position: center;">
+            <div id="ndBody"></div>
+        </div>
+    </div>
+    <div id="ndPrint"></div>
+
+    <!-- =================================
+         YANGI: EHTIYOT QISMLAR (materiallar va ehtiyot qismlar sarfi me'yorlari)
+    ================================== -->
+    <div id="screen-sp" class="screen">
+        <div class="set-head" style="padding: 15px 15px 10px 15px; flex-shrink: 0; background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.15);">
+            <div class="inner-header">
+                <div class="back-btn" onclick="spBack()">‹ Orqaga</div>
+                <h2 id="spTitle">Ehtiyot qismlar</h2>
+                <div class="undo-slot" style="min-width: 60px;"></div>
+            </div>
+            <div class="search-wrap">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-box" id="spSearch" placeholder="Nomi, o'lchami (M20, Ø50, δ14)..." oninput="SP.page = 1; spRender()">
+                <button class="mic-btn" id="mic-spSearch" onclick="startVoiceSearch('spSearch', spRender)" title="Ovozli qidiruv">🎤</button>
+            </div>
+            <div class="tabs" id="spTabs" style="margin: 8px 0 0 0;"></div>
+        </div>
+        <div class="set-body" style="flex: 1; overflow-y: auto; padding: 15px; padding-bottom: 70px; background-size: cover; background-position: center;">
+            <div id="spBody"></div>
+        </div>
+    </div>
+    <!-- Umumiy: to'q uslubdagi tanlash oynalari (tizimning oq oynalari o'rniga) -->
+    <div id="pkSel" class="modal-overlay hidden pk-ov" onclick="if(event.target===this) pkClose()"><div class="pk-box" id="pkSelBox"></div></div>
+    <div id="pkDate" class="modal-overlay hidden pk-ov" onclick="if(event.target===this) pkClose()"><div class="pk-box" id="pkDateBox"></div></div>
+    <div id="pkPerson" class="modal-overlay hidden pk-ov" onclick="if(event.target===this) ppCancel()"><div class="pk-box" id="pkPersonBox"></div></div>
+
+    <!-- 24-bosqich: AI belgisi (bir marta chiziladi, hamma joyda ishlatiladi) va doimiy AI tugmasi -->
+    <svg id="aiSprite" width="0" height="0" style="position:absolute; width:0; height:0; overflow:hidden" aria-hidden="true">
+        <defs>
+            <linearGradient id="aiGradA" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#38bdf8"/><stop offset="0.55" stop-color="#818cf8"/><stop offset="1" stop-color="#c084fc"/></linearGradient>
+            <radialGradient id="aiGradEye" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#ffffff"/><stop offset="0.45" stop-color="#7dd3fc"/><stop offset="1" stop-color="#38bdf8" stop-opacity="0"/></radialGradient>
+        </defs>
+        <symbol id="aiIcoSym" viewBox="0 0 64 64">
+            <!-- bosh (profil) -->
+            <path d="M19 60V49C11 45 7.5 37.5 7.5 29 7.5 14.5 18.5 4.5 32 4.5S55 13.5 55 25.5l3.6 7.4c.7 1.5-.2 2.9-1.8 2.9H55v5.6c0 3-2.2 5.1-5.2 5.1H43V60" fill="none" stroke="url(#aiGradA)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- elektron sxema yo'llari -->
+            <g fill="none" stroke="url(#aiGradA)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+                <path d="M13 24h6l3-3"/><path d="M12.5 33H20"/><path d="M15 41l4-4h3"/><path d="M24 11v5"/><path d="M31 9v7"/><path d="M38 11.5V16"/>
+                <path d="M26 39v6l-3 3"/><path d="M33 39v10"/><path d="M40 39v3h4"/><path d="M42 23h4"/>
+            </g>
+            <g fill="#7dd3fc"><circle cx="13" cy="24" r="1.5"/><circle cx="12.5" cy="33" r="1.5"/><circle cx="15" cy="41" r="1.5"/><circle cx="24" cy="11" r="1.5"/><circle cx="31" cy="9" r="1.5"/><circle cx="38" cy="11.5" r="1.5"/><circle cx="23" cy="48" r="1.5"/><circle cx="33" cy="49" r="1.5"/><circle cx="44" cy="42" r="1.5"/></g>
+            <!-- AI chipi -->
+            <rect x="20.5" y="16.5" width="21" height="22" rx="4" fill="#0b1228" stroke="url(#aiGradA)" stroke-width="2"/>
+            <text x="31" y="32.3" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="11.5" font-weight="800" fill="#e0f2fe" letter-spacing="0.3">AI</text>
+            <!-- ko'z nuri -->
+            <circle cx="48.5" cy="24" r="6.5" fill="url(#aiGradEye)"><animate attributeName="opacity" values="1;0.35;1" dur="2s" repeatCount="indefinite"/></circle>
+            <circle cx="48.5" cy="24" r="1.8" fill="#ffffff"/>
+        </symbol>
+    </svg>
+    <button id="aiGlobal" class="ai-glob" onclick="aiGlobalOpen()" title="AI Yordamchi" aria-label="AI Yordamchi"><span class="ai-glob-ring"></span><svg class="ai-ico"><use href="#aiIcoSym"/></svg></button>
+    <!-- 25-bosqich: AI ulanishi sozlamasi -->
+    <div id="aiCfgModal" class="modal-overlay hidden"><div class="modal-content" id="aiCfgBody" style="max-width:420px; max-height:88vh; overflow-y:auto;"></div></div>
+    <svg id="aiSprite2" width="0" height="0" style="position:absolute; width:0; height:0; overflow:hidden" aria-hidden="true">
+        <defs><radialGradient id="aiSphBg" cx="0.42" cy="0.38" r="0.62"><stop offset="0" stop-color="#312e81"/><stop offset="0.7" stop-color="#0b1026"/><stop offset="1" stop-color="#060a1a"/></radialGradient></defs>
+        <symbol id="aiSphSym" viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="url(#aiSphBg)"/><line x1="42.5" y1="36.7" x2="29.0" y2="31.7" stroke="#7dd3fc" stroke-opacity="0.17" stroke-width="0.9"/><line x1="29.0" y1="31.7" x2="35.7" y2="21.1" stroke="#7dd3fc" stroke-opacity="0.17" stroke-width="0.9"/><line x1="20.5" y1="39.7" x2="29.0" y2="31.7" stroke="#7dd3fc" stroke-opacity="0.17" stroke-width="0.9"/><line x1="29.0" y1="31.7" x2="19.2" y2="23.8" stroke="#7dd3fc" stroke-opacity="0.18" stroke-width="0.9"/><line x1="34.1" y1="45.7" x2="42.5" y2="36.7" stroke="#7dd3fc" stroke-opacity="0.19" stroke-width="0.9"/><line x1="42.5" y1="36.7" x2="47.2" y2="25.8" stroke="#7dd3fc" stroke-opacity="0.20" stroke-width="0.9"/><line x1="47.2" y1="25.8" x2="35.7" y2="21.1" stroke="#7dd3fc" stroke-opacity="0.20" stroke-width="0.9"/><line x1="35.7" y1="21.1" x2="29.5" y2="12.4" stroke="#7dd3fc" stroke-opacity="0.22" stroke-width="0.9"/><line x1="20.5" y1="39.7" x2="11.0" y2="30.8" stroke="#7dd3fc" stroke-opacity="0.24" stroke-width="0.9"/><line x1="26.6" y1="52.3" x2="34.1" y2="45.7" stroke="#7dd3fc" stroke-opacity="0.24" stroke-width="0.9"/><line x1="45.8" y1="48.5" x2="34.1" y2="45.7" stroke="#7dd3fc" stroke-opacity="0.24" stroke-width="0.9"/><line x1="11.0" y1="30.8" x2="19.2" y2="23.8" stroke="#7dd3fc" stroke-opacity="0.24" stroke-width="0.9"/><line x1="14.6" y1="45.6" x2="20.5" y2="39.7" stroke="#7dd3fc" stroke-opacity="0.25" stroke-width="0.9"/><line x1="47.2" y1="25.8" x2="43.3" y2="13.8" stroke="#7dd3fc" stroke-opacity="0.25" stroke-width="0.9"/><line x1="19.2" y1="23.8" x2="18.4" y2="14.5" stroke="#7dd3fc" stroke-opacity="0.25" stroke-width="0.9"/><line x1="18.4" y1="14.5" x2="29.5" y2="12.4" stroke="#7dd3fc" stroke-opacity="0.28" stroke-width="0.9"/><line x1="55.4" y1="27.2" x2="47.2" y2="25.8" stroke="#7dd3fc" stroke-opacity="0.28" stroke-width="0.9"/><line x1="26.6" y1="52.3" x2="14.6" y2="45.6" stroke="#7dd3fc" stroke-opacity="0.29" stroke-width="0.9"/><line x1="45.8" y1="48.5" x2="53.1" y2="38.5" stroke="#7dd3fc" stroke-opacity="0.29" stroke-width="0.9"/><line x1="29.5" y1="12.4" x2="32.0" y2="8.8" stroke="#7dd3fc" stroke-opacity="0.29" stroke-width="0.9"/><line x1="43.3" y1="13.8" x2="32.0" y2="8.8" stroke="#7dd3fc" stroke-opacity="0.30" stroke-width="0.9"/><line x1="36.7" y1="55.6" x2="26.6" y2="52.3" stroke="#7dd3fc" stroke-opacity="0.31" stroke-width="0.9"/><line x1="36.7" y1="55.6" x2="45.8" y2="48.5" stroke="#7dd3fc" stroke-opacity="0.32" stroke-width="0.9"/><line x1="53.1" y1="38.5" x2="55.4" y2="27.2" stroke="#7dd3fc" stroke-opacity="0.32" stroke-width="0.9"/><line x1="11.0" y1="30.8" x2="9.9" y2="20.8" stroke="#7dd3fc" stroke-opacity="0.33" stroke-width="0.9"/><line x1="7.5" y1="36.2" x2="11.0" y2="30.8" stroke="#7dd3fc" stroke-opacity="0.33" stroke-width="0.9"/><line x1="50.9" y1="16.1" x2="43.3" y2="13.8" stroke="#7dd3fc" stroke-opacity="0.33" stroke-width="0.9"/><line x1="9.9" y1="20.8" x2="18.4" y2="14.5" stroke="#7dd3fc" stroke-opacity="0.34" stroke-width="0.9"/><line x1="14.6" y1="45.6" x2="7.5" y2="36.2" stroke="#7dd3fc" stroke-opacity="0.34" stroke-width="0.9"/><line x1="50.0" y1="49.4" x2="45.8" y2="48.5" stroke="#7dd3fc" stroke-opacity="0.35" stroke-width="0.9"/><line x1="15.3" y1="50.6" x2="14.6" y2="45.6" stroke="#7dd3fc" stroke-opacity="0.36" stroke-width="0.9"/><line x1="55.4" y1="27.2" x2="50.9" y2="16.1" stroke="#7dd3fc" stroke-opacity="0.36" stroke-width="0.9"/><line x1="55.9" y1="38.7" x2="53.1" y2="38.5" stroke="#7dd3fc" stroke-opacity="0.37" stroke-width="0.9"/><line x1="28.0" y1="7.3" x2="32.0" y2="8.8" stroke="#7dd3fc" stroke-opacity="0.38" stroke-width="0.9"/><line x1="26.1" y1="56.3" x2="36.7" y2="55.6" stroke="#7dd3fc" stroke-opacity="0.39" stroke-width="0.9"/><line x1="9.9" y1="20.8" x2="17.1" y2="12.2" stroke="#7dd3fc" stroke-opacity="0.42" stroke-width="0.9"/><line x1="55.4" y1="27.3" x2="55.4" y2="27.2" stroke="#7dd3fc" stroke-opacity="0.42" stroke-width="0.9"/><line x1="26.1" y1="56.3" x2="15.3" y2="50.6" stroke="#7dd3fc" stroke-opacity="0.43" stroke-width="0.9"/><line x1="50.0" y1="49.4" x2="55.9" y2="38.7" stroke="#7dd3fc" stroke-opacity="0.44" stroke-width="0.9"/><line x1="17.1" y1="12.2" x2="28.0" y2="7.3" stroke="#7dd3fc" stroke-opacity="0.44" stroke-width="0.9"/><line x1="9.0" y1="25.9" x2="9.9" y2="20.8" stroke="#7dd3fc" stroke-opacity="0.45" stroke-width="0.9"/><line x1="10.2" y1="41.4" x2="7.5" y2="36.2" stroke="#7dd3fc" stroke-opacity="0.45" stroke-width="0.9"/><line x1="39.8" y1="8.9" x2="28.0" y2="7.3" stroke="#7dd3fc" stroke-opacity="0.46" stroke-width="0.9"/><line x1="49.3" y1="16.8" x2="50.9" y2="16.1" stroke="#7dd3fc" stroke-opacity="0.46" stroke-width="0.9"/><line x1="15.3" y1="50.6" x2="10.2" y2="41.4" stroke="#7dd3fc" stroke-opacity="0.47" stroke-width="0.9"/><line x1="32.0" y1="55.2" x2="26.1" y2="56.3" stroke="#7dd3fc" stroke-opacity="0.48" stroke-width="0.9"/><line x1="55.9" y1="38.7" x2="55.4" y2="27.3" stroke="#7dd3fc" stroke-opacity="0.48" stroke-width="0.9"/><line x1="44.2" y1="51.1" x2="50.0" y2="49.4" stroke="#7dd3fc" stroke-opacity="0.48" stroke-width="0.9"/><line x1="49.3" y1="16.8" x2="39.8" y2="8.9" stroke="#7dd3fc" stroke-opacity="0.51" stroke-width="0.9"/><line x1="55.4" y1="27.3" x2="49.3" y2="16.8" stroke="#7dd3fc" stroke-opacity="0.52" stroke-width="0.9"/><line x1="18.4" y1="17.1" x2="17.1" y2="12.2" stroke="#7dd3fc" stroke-opacity="0.52" stroke-width="0.9"/><line x1="50.1" y1="39.6" x2="55.9" y2="38.7" stroke="#7dd3fc" stroke-opacity="0.52" stroke-width="0.9"/><line x1="31.0" y1="11.4" x2="39.8" y2="8.9" stroke="#7dd3fc" stroke-opacity="0.53" stroke-width="0.9"/><line x1="32.0" y1="55.2" x2="44.2" y2="51.1" stroke="#7dd3fc" stroke-opacity="0.53" stroke-width="0.9"/><line x1="19.7" y1="48.4" x2="10.2" y2="41.4" stroke="#7dd3fc" stroke-opacity="0.55" stroke-width="0.9"/><line x1="9.0" y1="25.9" x2="18.4" y2="17.1" stroke="#7dd3fc" stroke-opacity="0.55" stroke-width="0.9"/><line x1="32.0" y1="55.2" x2="31.1" y2="51.5" stroke="#7dd3fc" stroke-opacity="0.56" stroke-width="0.9"/><line x1="14.1" y1="31.6" x2="9.0" y2="25.9" stroke="#7dd3fc" stroke-opacity="0.56" stroke-width="0.9"/><line x1="10.2" y1="41.4" x2="14.1" y2="31.6" stroke="#7dd3fc" stroke-opacity="0.56" stroke-width="0.9"/><line x1="44.2" y1="51.1" x2="50.1" y2="39.6" stroke="#7dd3fc" stroke-opacity="0.57" stroke-width="0.9"/><line x1="18.4" y1="17.1" x2="31.0" y2="11.4" stroke="#7dd3fc" stroke-opacity="0.58" stroke-width="0.9"/><line x1="39.3" y1="18.7" x2="49.3" y2="16.8" stroke="#7dd3fc" stroke-opacity="0.59" stroke-width="0.9"/><line x1="31.1" y1="51.5" x2="19.7" y2="48.4" stroke="#7dd3fc" stroke-opacity="0.59" stroke-width="0.9"/><line x1="39.3" y1="18.7" x2="31.0" y2="11.4" stroke="#7dd3fc" stroke-opacity="0.61" stroke-width="0.9"/><line x1="50.1" y1="39.6" x2="47.0" y2="28.3" stroke="#7dd3fc" stroke-opacity="0.62" stroke-width="0.9"/><line x1="19.7" y1="48.4" x2="22.8" y2="39.3" stroke="#7dd3fc" stroke-opacity="0.62" stroke-width="0.9"/><line x1="39.2" y1="43.3" x2="50.1" y2="39.6" stroke="#7dd3fc" stroke-opacity="0.63" stroke-width="0.9"/><line x1="31.1" y1="51.5" x2="39.2" y2="43.3" stroke="#7dd3fc" stroke-opacity="0.63" stroke-width="0.9"/><line x1="25.5" y1="23.6" x2="18.4" y2="17.1" stroke="#7dd3fc" stroke-opacity="0.63" stroke-width="0.9"/><line x1="47.0" y1="28.3" x2="39.3" y2="18.7" stroke="#7dd3fc" stroke-opacity="0.64" stroke-width="0.9"/><line x1="22.8" y1="39.3" x2="14.1" y2="31.6" stroke="#7dd3fc" stroke-opacity="0.64" stroke-width="0.9"/><line x1="14.1" y1="31.6" x2="25.5" y2="23.6" stroke="#7dd3fc" stroke-opacity="0.65" stroke-width="0.9"/><line x1="34.0" y1="32.2" x2="47.0" y2="28.3" stroke="#7dd3fc" stroke-opacity="0.67" stroke-width="0.9"/><line x1="39.2" y1="43.3" x2="34.0" y2="32.2" stroke="#7dd3fc" stroke-opacity="0.68" stroke-width="0.9"/><line x1="22.8" y1="39.3" x2="34.0" y2="32.2" stroke="#7dd3fc" stroke-opacity="0.68" stroke-width="0.9"/><line x1="34.0" y1="32.2" x2="25.5" y2="23.6" stroke="#7dd3fc" stroke-opacity="0.69" stroke-width="0.9"/><circle cx="29.0" cy="31.7" r="0.81" fill="#bae6fd" fill-opacity="0.35"/><circle cx="42.5" cy="36.7" r="0.88" fill="#bae6fd" fill-opacity="0.39"/><circle cx="35.7" cy="21.1" r="0.88" fill="#bae6fd" fill-opacity="0.39"/><circle cx="20.5" cy="39.7" r="0.93" fill="#bae6fd" fill-opacity="0.40"/><circle cx="34.1" cy="45.7" r="0.93" fill="#bae6fd" fill-opacity="0.40"/><circle cx="19.2" cy="23.8" r="0.96" fill="#bae6fd" fill-opacity="0.42"/><circle cx="47.2" cy="25.8" r="0.99" fill="#bae6fd" fill-opacity="0.43"/><circle cx="29.5" cy="12.4" r="1.09" fill="#bae6fd" fill-opacity="0.48"/><circle cx="11.0" cy="30.8" r="1.14" fill="#bae6fd" fill-opacity="0.50"/><circle cx="26.6" cy="52.3" r="1.15" fill="#bae6fd" fill-opacity="0.50"/><circle cx="43.3" cy="13.8" r="1.16" fill="#f0abfc" fill-opacity="0.51"/><circle cx="45.8" cy="48.5" r="1.17" fill="#bae6fd" fill-opacity="0.51"/><circle cx="53.1" cy="38.5" r="1.20" fill="#bae6fd" fill-opacity="0.52"/><circle cx="14.6" cy="45.6" r="1.20" fill="#bae6fd" fill-opacity="0.52"/><circle cx="18.4" cy="14.5" r="1.20" fill="#bae6fd" fill-opacity="0.52"/><circle cx="32.0" cy="8.8" r="1.27" fill="#bae6fd" fill-opacity="0.55"/><circle cx="55.4" cy="27.2" r="1.33" fill="#bae6fd" fill-opacity="0.58"/><circle cx="36.7" cy="55.6" r="1.35" fill="#bae6fd" fill-opacity="0.59"/><circle cx="50.9" cy="16.1" r="1.44" fill="#f0abfc" fill-opacity="0.63"/><circle cx="9.9" cy="20.8" r="1.45" fill="#bae6fd" fill-opacity="0.63"/><circle cx="7.5" cy="36.2" r="1.46" fill="#bae6fd" fill-opacity="0.64"/><circle cx="50.0" cy="49.4" r="1.55" fill="#bae6fd" fill-opacity="0.67"/><circle cx="15.3" cy="50.6" r="1.55" fill="#f0abfc" fill-opacity="0.67"/><circle cx="28.0" cy="7.3" r="1.56" fill="#bae6fd" fill-opacity="0.68"/><circle cx="26.1" cy="56.3" r="1.57" fill="#f0abfc" fill-opacity="0.68"/><circle cx="55.9" cy="38.7" r="1.63" fill="#bae6fd" fill-opacity="0.71"/><circle cx="17.1" cy="12.2" r="1.65" fill="#bae6fd" fill-opacity="0.72"/><circle cx="39.8" cy="8.9" r="1.71" fill="#bae6fd" fill-opacity="0.75"/><circle cx="55.4" cy="27.3" r="1.77" fill="#bae6fd" fill-opacity="0.77"/><circle cx="9.0" cy="25.9" r="1.78" fill="#bae6fd" fill-opacity="0.78"/><circle cx="10.2" cy="41.4" r="1.79" fill="#f0abfc" fill-opacity="0.78"/><circle cx="32.0" cy="55.2" r="1.83" fill="#bae6fd" fill-opacity="0.80"/><circle cx="49.3" cy="16.8" r="1.84" fill="#f0abfc" fill-opacity="0.80"/><circle cx="44.2" cy="51.1" r="1.87" fill="#bae6fd" fill-opacity="0.81"/><circle cx="31.0" cy="11.4" r="1.97" fill="#bae6fd" fill-opacity="0.86"/><circle cx="19.7" cy="48.4" r="1.98" fill="#bae6fd" fill-opacity="0.86"/><circle cx="18.4" cy="17.1" r="1.99" fill="#bae6fd" fill-opacity="0.87"/><circle cx="50.1" cy="39.6" r="2.01" fill="#bae6fd" fill-opacity="0.88"/><circle cx="31.1" cy="51.5" r="2.02" fill="#bae6fd" fill-opacity="0.88"/><circle cx="14.1" cy="31.6" r="2.07" fill="#f0abfc" fill-opacity="0.90"/><circle cx="47.0" cy="28.3" r="2.14" fill="#bae6fd" fill-opacity="0.93"/><circle cx="39.3" cy="18.7" r="2.15" fill="#f0abfc" fill-opacity="0.93"/><circle cx="39.2" cy="43.3" r="2.18" fill="#bae6fd" fill-opacity="0.95"/><circle cx="22.8" cy="39.3" r="2.21" fill="#bae6fd" fill-opacity="0.96"/><circle cx="25.5" cy="23.6" r="2.23" fill="#f0abfc" fill-opacity="0.97"/><circle cx="34.0" cy="32.2" r="2.30" fill="#bae6fd" fill-opacity="1.00"/><circle cx="32" cy="32" r="25" fill="none" stroke="#38bdf8" stroke-opacity="0.8" stroke-width="1.4"/><text x="32" y="39.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="800" fill="#ffffff" stroke="#0b1026" stroke-width="3" paint-order="stroke" letter-spacing="0.5">AI</text></symbol>
+    </svg>
+    <!-- 26-bosqich: Xavfsizlik jurnali, lokomotiv ogohlantirishlari va yangi lokomotiv qo'shish -->
+    <div id="secLogModal" class="modal-overlay hidden"><div class="modal-content" id="secLogBody" style="max-width:440px; max-height:88vh; overflow-y:auto;"></div></div>
+    <div id="lokWarnModal" class="modal-overlay hidden"><div class="modal-content" id="lokWarnBody" style="max-width:440px; max-height:88vh; overflow-y:auto;"></div></div>
+    <div id="addLokModal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-width: 400px; max-height: 90vh; overflow-y: auto;">
+            <h2 style="color:#38bdf8; font-size:16px; margin-bottom:12px; text-align:center;">➕ Yangi lokomotiv qo'shish</h2>
+            <div class="form-group"><label>Seriyasi:</label><select id="alType" class="custom-select" style="background:#0f172a; border:1px solid #334155; color:white; padding:10px; border-radius:8px; width:100%;"></select></div>
+            <div class="form-group"><label>Zavod (bort) №:</label><input type="text" id="alNum" autocomplete="off"></div>
+            <div class="form-group"><label>Inventar №:</label><input type="text" id="alInv" autocomplete="off"></div>
+            <div class="form-group"><label>Qurilgan yili:</label><input type="number" id="alYil" inputmode="numeric" autocomplete="off"></div>
+            <div class="form-group"><label>Foydalanishga kiritilgan yili:</label><input type="number" id="alVvod" inputmode="numeric" autocomplete="off"></div>
+            <div class="form-group"><label>Seh / uchastka:</label><input type="text" id="alSeh" autocomplete="off"></div>
+            <div class="form-group"><label>Oxirgi ta'mir turi:</label><input type="text" id="alTur" placeholder="masalan: ТО-3, ТР-1, КР-2" autocomplete="off"></div>
+            <div class="form-group"><label>Oxirgi ta'mir sanasi:</label><input type="date" id="alSana"></div>
+            <div class="form-group"><label>Keyingi ta'mir sanasi:</label><input type="date" id="alKey"></div>
+            <div class="form-group"><label>Holati:</label><select id="alHol" class="custom-select" style="background:#0f172a; border:1px solid #334155; color:white; padding:10px; border-radius:8px; width:100%;"><option value="Auto">Sanalar bo'yicha avtomatik</option><option value="Tamirda">Hozirda ta'mirda</option></select></div>
+            <div style="display:flex; gap:10px;"><button class="save-btn" style="background:#475569" onclick="$id('addLokModal').classList.add('hidden')">Bekor qilish</button><button class="save-btn" onclick="addNewLok()">Saqlash</button></div>
+        </div>
+    </div>
+    <!-- =================================
+         YANGI (27-bosqich): PROFIL sahifasi (hisob, avatar, parametrlar)
+    ================================== -->
+    <div id="screen-profile" class="screen">
+        <div class="set-head" style="padding: 15px 15px 10px 15px; flex-shrink: 0; background-size: cover; background-position: center; border-bottom: 1px solid rgba(255,255,255,0.15);">
+            <div class="inner-header">
+                <div class="back-btn" onclick="openScreen('screen-main')">‹ Orqaga</div>
+                <h2>Profil</h2>
+                <div style="width: 60px;"></div>
+            </div>
+        </div>
+        <div class="set-body" style="flex: 1; overflow-y: auto; padding: 15px; padding-bottom: 70px; background-size: cover; background-position: center;">
+            <div id="profBody"></div>
+            <input type="file" id="profPhotoInput" accept="image/*" style="display:none;" onchange="profPhotoSelected(this)">
+        </div>
+    </div>
+    <!-- Mikrofon ishlayotgandagi oyna: neon doira va ovozga qarab tebranadigan to'lqinlar -->
+    <div id="micOv" class="hidden" aria-hidden="true">
+        <canvas id="micOvCv"></canvas>
+        <div class="mo-center"><img id="micOvImg" alt=""></div>
+        <div class="mo-txt" id="micOvTxt">Gapiring...</div>
+        <button class="mo-stop" onclick="micOvStop()">⏹ To'xtatish</button>
+    </div>
+    <!-- YANGI: DASTUR USLUBIDAGI DIALOG (oq tizim oynalari o'rniga) -->
+    <div id="uiDialog" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="uid-title" id="uidTitle"></div>
+            <div class="uid-msg" id="uidMsg"></div>
+            <input type="text" id="uidInput" class="hidden" autocomplete="off">
+            <div class="uid-btns" id="uidBtns"></div>
+        </div>
+    </div>
+
+    

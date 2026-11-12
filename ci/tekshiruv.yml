@@ -1,0 +1,83 @@
+# GitHub Actions uchun. Faollashtirish: GitHubda «Add file → Create new file», nomi .github/workflows/tekshiruv.yml, shu fayl matnini qoʻying.
+# (Claude ilovasining GitHub ruxsatida «workflows» yoʻq — shuning uchun bu fayl bu yerda turadi.)
+# AGMK-STTB — har push va PR da avtomatik tekshiruv. Sirlar, kalitlar va korxona maʼlumotlari ishlatilmaydi:
+# sinovlar faqat soxta maʼlumot bilan, server va internetga ulanmasdan ishlaydi.
+name: Tekshiruv
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  ilova:
+    name: Ilova (turlar, yigʻish, brauzer sinovlari)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          
+      - name: Bogʻliqliklar
+        working-directory: frontend
+        run: npm install --no-audit --no-fund
+      - name: Turlar tekshiruvi (qadamli)
+        working-directory: frontend
+        run: node check.mjs
+      - name: Yigʻish
+        working-directory: frontend
+        run: node build.mjs
+      - name: Playwright (Chromium)
+        run: |
+          npm install --no-save --prefix /tmp/pw playwright@1.56.0
+          /tmp/pw/node_modules/.bin/playwright install --with-deps chromium
+      - name: Brauzer sinovlari (serversiz)
+        working-directory: backend/tests/e2e
+        env:
+          NODE_PATH: /tmp/pw/node_modules
+        run: |
+          APP="$GITHUB_WORKSPACE/frontend/dist/agmk-sttb-pto.html"
+          mkdir -p /tmp/e2e
+          for t in scan_e2e v40_scan_e2e v3193_e2e v3194_e2e; do echo "== $t"; node $t.js "$APP" /tmp/e2e; done
+  server:
+    name: Server (unit sinovlar)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Bogʻliqliklar
+        run: pip install -r backend/requirements-dev.txt
+      - name: Unit sinovlar
+        working-directory: backend
+        env:
+          PYTHONPATH: .
+        run: for f in tests/unit/test_*.py; do python -m unittest -v "$f"; done
+  baza:
+    name: Baza (nazorat jurnali, bogʻlanishlar, oʻqish roli)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_PASSWORD: sinov
+        ports: ['5432:5432']
+        options: --health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Bogʻliqliklar
+        run: pip install -r backend/requirements-dev.txt
+      - name: Nazorat sinovi (soxta maʼlumot)
+        working-directory: backend
+        env:
+          PYTHONPATH: .
+          PG_TEST_DSN: postgresql://postgres:sinov@localhost:5432/postgres
+        run: python -m unittest -v tests/db/test_nazorat.py

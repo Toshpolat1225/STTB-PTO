@@ -1,0 +1,1692 @@
+{
+"v": 1,
+"src": "Shtatlar jadvali, 2026-yil 1-maydan joriy",
+"units": [
+{
+"id": "u1",
+"name": "Boshqaruv apparati",
+"key": "Boshqarma",
+"short": "Boshqaruv apparati"
+},
+{
+"id": "u2",
+"name": "Qolmaqir konidan texnologik tashuvlar 1 - sonli temir yo'l sexi",
+"key": "TYS-1/ЖДЦ-1",
+"short": "1-TYS"
+},
+{
+"id": "u3",
+"name": "Tashqi transport va texnologik tashuvlar 2 - sonli temir yo'l sexi",
+"key": "TYS-2/ЖДЦ-2",
+"short": "2-TYS"
+},
+{
+"id": "u4",
+"name": "Harakatlanuvchi sostavlarni ta'mirlash bo'yicha 3 - sonli temir yo'l sexi",
+"key": "TYS-3/ЖДЦ-3",
+"short": "3-TYS"
+},
+{
+"id": "u5",
+"name": "Temir yo'llarni ta'mirlash bo'yicha 4 - sonli temir yo'l sexi",
+"key": "TYS-4/ЖДЦ-4",
+"short": "4-TYS"
+},
+{
+"id": "u6",
+"name": "Noruda qurilish materiallari karyeri",
+"key": "NQMK/КНСМ",
+"short": "NQMK"
+},
+{
+"id": "u7",
+"name": "Signalizatsiya, markazlashtirish, blokirovkalash va aloqa xizmati",
+"key": "SMBvaAX / СЦБ",
+"short": "SMBvaAX"
+},
+{
+"id": "u8",
+"name": "Energiya ta'minoti xizmati",
+"key": "ET/ЭС",
+"short": "ET"
+},
+{
+"id": "u9",
+"name": "Ko'tarma-transport uskunalari xizmati",
+"key": "KTUX/СПТО",
+"short": "KTUX"
+},
+{
+"id": "u10",
+"name": "Vagonlar xizmati",
+"key": "VH/ВС",
+"short": "VH"
+},
+{
+"id": "u11",
+"name": "Ma'muriy-xo'jalik qismi",
+"key": "MXQ/АХЧ",
+"short": "MXQ"
+},
+{
+"id": "u12",
+"name": "Ichki qo'riqlash xizmati",
+"key": "IQX/СВО",
+"short": "IQX"
+},
+{
+"id": "u13",
+"name": "Texnologik jarayonlar avtomatlashtirilgan boshqaruv tizimlari xizmati",
+"key": "TJABTX/АСУТП",
+"short": "TJABTX"
+}
+],
+"groups": [
+{
+"id": "u1g1",
+"u": "u1",
+"name": "Ishlab chiqarishni muvofiqlashtirish va logistika xizmati"
+},
+{
+"id": "u1g2",
+"u": "u1",
+"name": "Bosh mexanik bo'limi"
+},
+{
+"id": "u1g3",
+"u": "u1",
+"name": "Ishlab chiqarish-texnik bo'limi"
+},
+{
+"id": "u1g4",
+"u": "u1",
+"name": "Transport va yoqilg'i-moylash materiallari nazorati bo'limi"
+},
+{
+"id": "u1g5",
+"u": "u1",
+"name": "Moddiy-texnik ta'minoti bo'limi"
+},
+{
+"id": "u1g6",
+"u": "u1",
+"name": "Harakat xavfsizligi, mehnat muhofazasi va texnika xavfsizligi bo'limi"
+},
+{
+"id": "u1g7",
+"u": "u1",
+"name": "Kapital qurilish bo'limi"
+},
+{
+"id": "u1g8",
+"u": "u1",
+"name": "Kadrlar bo'limi"
+},
+{
+"id": "u1g9",
+"u": "u1",
+"name": "Mehnatni tashkil etish va ish haqi bo'limi"
+},
+{
+"id": "u1g10",
+"u": "u1",
+"name": "Iqtisodiy rejalashtirish bo'limi"
+},
+{
+"id": "u1g11",
+"u": "u1",
+"name": "Buxgalteriya"
+},
+{
+"id": "u2g1",
+"u": "u2",
+"name": "Harakatlanuvchi sostav ekspluatatsiyasi uchatkasi"
+},
+{
+"id": "u2g2",
+"u": "u2",
+"name": "Poyezdlar harakati uchastkasi"
+},
+{
+"id": "u2g3",
+"u": "u2",
+"name": "Harakatlanuvchi sostavni ta'mirlash deposi"
+},
+{
+"id": "u2g4",
+"u": "u2",
+"name": "Lokomotivlarni ta'mirlash uchastkasi"
+},
+{
+"id": "u2g5",
+"u": "u2",
+"name": "Lokomotivlarga texnik xizmat ko'rsatish punkti"
+},
+{
+"id": "u2g6",
+"u": "u2",
+"name": "Vagonlarni ta'mirlash parki"
+},
+{
+"id": "u2g7",
+"u": "u2",
+"name": "Vagonlarga texnik xizmat ko'rsatish punkti"
+},
+{
+"id": "u2g8",
+"u": "u2",
+"name": "Tayyorlov uchastkasi"
+},
+{
+"id": "u3g1",
+"u": "u3",
+"name": "Yuk ishlari uchastkasi"
+},
+{
+"id": "u3g2",
+"u": "u3",
+"name": "Harakatlanuvchi sostav ekspluatatsiyasi uchastkasi"
+},
+{
+"id": "u3g3",
+"u": "u3",
+"name": "Poyezdlar xarakati uchastkasi"
+},
+{
+"id": "u3g4",
+"u": "u3",
+"name": "Harakatlanuvchi sostavni ta'mirlash uchastkasi"
+},
+{
+"id": "u3g5",
+"u": "u3",
+"name": "Lokomotivlarga texnik xizmat ko'rsatish punkti"
+},
+{
+"id": "u3g6",
+"u": "u3",
+"name": "Vagonlarni ta'mirlash parki"
+},
+{
+"id": "u3g7",
+"u": "u3",
+"name": "Vagonlarga texnik xizmat ko'rsatish punkti"
+},
+{
+"id": "u4g1",
+"u": "u4",
+"name": "Lokomotivlarni ta'mirlash deposi"
+},
+{
+"id": "u4g2",
+"u": "u4",
+"name": "Tayyorlov uchastkasi"
+},
+{
+"id": "u4g3",
+"u": "u4",
+"name": "Ixtirochilik-ilmiy amaliy uchastkasi"
+},
+{
+"id": "u4g4",
+"u": "u4",
+"name": "Tortish agregatlarini kapital ta'mirlash uchastkasi"
+},
+{
+"id": "u4g5",
+"u": "u4",
+"name": "Tortuv agregatlarini 3-darajali ta'mirlash uchastkasi"
+},
+{
+"id": "u4g6",
+"u": "u4",
+"name": "Elektrotexnika, elektrmashinalarni va elektr uskunalarni ta'mirlash uchastkasi"
+},
+{
+"id": "u4g7",
+"u": "u4",
+"name": "Tortish agregatlarini 1- va 2- darajali ta'mirlash uchastkasi"
+},
+{
+"id": "u4g8",
+"u": "u4",
+"name": "Teplovozlarni ta'mirlash uchastkasi"
+},
+{
+"id": "u4g9",
+"u": "u4",
+"name": "Temir yo'l va avtotraktor texnikalari deposi"
+},
+{
+"id": "u5g1",
+"u": "u5",
+"name": "Temir yo'l zvenolarini yig'ish bazasi"
+},
+{
+"id": "u5g2",
+"u": "u5",
+"name": "Qolmaqir uchastkasi"
+},
+{
+"id": "u5g3",
+"u": "u5",
+"name": "2-TYS tashqi transporti uchastkasi"
+},
+{
+"id": "u5g4",
+"u": "u5",
+"name": "Xo'jalik uchastkasi"
+},
+{
+"id": "u5g5",
+"u": "u5",
+"name": "Sun'iy inshootlarga texnik xizmat ko'rsatish va ta'mirlash uchastkasi"
+},
+{
+"id": "u8g1",
+"u": "u8",
+"name": "Kontakt tarmog'iga texnik xizmat ko'rsatish va ta'mirlash uchastkasi"
+},
+{
+"id": "u10g1",
+"u": "u10",
+"name": "Vagonlarni ta'mirlash uchastkasi"
+},
+{
+"id": "u10g2",
+"u": "u10",
+"name": "Mexanika uchastkasi"
+},
+{
+"id": "u10g3",
+"u": "u10",
+"name": "G'ildirak uchastkasi"
+}
+],
+"pos": [
+{
+"no": 1,
+"name": "Boshqarma boshlig'i",
+"cnt": 1,
+"cat": "rah.",
+"u": "u1",
+"g": null
+},
+{
+"no": 2,
+"name": "Bosh muhandis",
+"cnt": 1,
+"cat": "rah.",
+"u": "u1",
+"g": null
+},
+{
+"no": 3,
+"name": "Umumiy masalalar bo'yicha boshliq o'rinbosari",
+"cnt": 1,
+"cat": "rah.",
+"u": "u1",
+"g": null
+},
+{
+"no": 4,
+"name": "Kapital qurilish, bino va inshootlarni saqlash bo'yicha boshliq o'rinbosari",
+"cnt": 1,
+"cat": "rah.",
+"u": "u1",
+"g": null
+},
+{
+"no": 5,
+"name": "STTB Yoshlar ittifoqi raisi - yoshlar masalalari bo'yicha boshliq yordamchisi",
+"cnt": 1,
+"cat": "rah.",
+"u": "u1",
+"g": null
+},
+{
+"no": 6,
+"name": "Ishlab chiqarish va tashqi logistika bo'yicha boshliq o'rinbosari",
+"cnt": 1,
+"cat": "rah.",
+"u": "u1",
+"g": null
+},
+{
+"no": 7,
+"name": "Tovar-moddiy boyliklarini saqlash bo'yicha boshliq o'rinbosari",
+"cnt": 1,
+"cat": "rah.",
+"u": "u1",
+"g": null
+},
+{
+"no": 8,
+"name": "Harakat xavfsizligi, mehnat muhofazasi va texnika xavfsizligi bo'yicha bosh muhandis o'rinbosari",
+"cnt": 1,
+"cat": "rah.",
+"u": "u1",
+"g": null
+},
+{
+"no": 9,
+"name": "I-toifali yuriskonsult",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u1",
+"g": null
+},
+{
+"no": 10,
+"name": "Xizmat boshlig'i",
+"cnt": 1,
+"cat": "rah.",
+"u": "u1",
+"g": "u1g1"
+},
+{
+"no": 11,
+"name": "Xizmat boshlig'i o'rinbosari",
+"cnt": 1,
+"cat": "rah.",
+"u": "u1",
+"g": "u1g1"
+},
+{
+"no": 12,
+"name": "Smena boshlig'i",
+"cnt": 4,
+"cat": "rah.",
+"u": "u1",
+"g": "u1g1"
+},
+{
+"no": 13,
+"name": "Bosh mexanik",
+"cnt": 1,
+"cat": "rah.",
+"u": "u1",
+"g": "u1g2"
+},
+{
+"no": 14,
+"name": "Bosh mexanik o'rinbosari",
+"cnt": 1,
+"cat": "rah.",
+"u": "u1",
+"g": "u1g2"
+},
+{
+"no": 15,
+"name": "Mahalliylashtirish bo'yicha I-toifali muhandis-mexanik",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u1",
+"g": "u1g2"
+},
+{
+"no": 16,
+"name": "Yuk ko'tarish mexanizmlari, texnologik uskunalarni va qurilmalarni ta'mirlash va xizmat ko'rsatish bo'yicha I-toifali muhandis",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u1",
+"g": "u1g2"
+},
+{
+"no": 17,
+"name": "Yetakchi muhandis-konstruktor",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u1",
+"g": "u1g2"
+},
+{
+"no": 18,
+"name": "Bo'lim boshlig'i",
+"cnt": 1,
+"cat": "rah.",
+"u": "u1",
+"g": "u1g3"
+},
+{
+"no": 19,
+"name": "Vagon parkini saqlash bo'yicha yetakchi muhandis",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u1",
+"g": "u1g3"
+},
+{
+"no": 20,
+"name": "Lokomotivlar I-toifali muhandisi (tortuv agregatlar)",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u1",
+"g": "u1g3"
+},
+{
+"no": 21,
+"name": "Lokomotivlar I-toifali muhandisi (teplovozlar)",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u1",
+"g": "u1g3"
+},
+{
+"no": 22,
+"name": "Temir yo'l harakat tarkibi I-toifali muhandisi",
+"cnt": 2,
+"cat": "mutax.",
+"u": "u1",
+"g": "u1g3"
+},
+{
+"no": 23,
+"name": "Avtotransport vositalari bo'yicha I-toifali muhandis",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u1",
+"g": "u1g3"
+},
+{
+"no": 24,
+"name": "Temir yo'l qurilishi bo'yicha I-toifali muhandis",
+"cnt": 2,
+"cat": "mutax.",
+"u": "u1",
+"g": "u1g3"
+},
+{
+"no": 25,
+"name": "Elektr energetika tizimlari I-toifali muhandisi (kontakt tarmog'i)",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u1",
+"g": "u1g3"
+},
+{
+"no": 26,
+"name": "Transport I-toifali muhandisi (temir yo'l texnikalar)",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u1",
+"g": "u1g3"
+},
+{
+"no": 27,
+"name": "Avtomatlashtirish bo'yicha I-toifali muhandis (signallashtirish, markazlashtirish va bloklash qurilmalariqurilmalari va aloqa)",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u1",
+"g": "u1g3"
+},
+{
+"no": 28,
+"name": "Ish yuritish bo'yicha I-toifali inspektor",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u1",
+"g": "u1g3"
+},
+{
+"no": 29,
+"name": "Metrologiya va sertifikatsiya bo'yicha I-toifali muhandis",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u1",
+"g": "u1g3"
+},
+{
+"no": 30,
+"name": "Bo'lim boshlig'i",
+"cnt": 1,
+"cat": "rah.",
+"u": "u1",
+"g": "u1g4"
+},
+{
+"no": 31,
+"name": "Yoqilg'i-moylash materiallari yetakchi muhandisi",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u1",
+"g": "u1g4"
+},
+{
+"no": 32,
+"name": "GPS bo'yicha katta elektromexanik",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u1",
+"g": "u1g4"
+},
+{
+"no": 33,
+"name": "Bo'lim boshlig'i",
+"cnt": 1,
+"cat": "rah.",
+"u": "u1",
+"g": "u1g5"
+},
+{
+"no": 34,
+"name": "Jihozlar va materiallarni komplektlash bo'yicha I-toifali muhandis-mexanik",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u1",
+"g": "u1g5"
+},
+{
+"no": 35,
+"name": "Bo'lim boshlig'i",
+"cnt": 1,
+"cat": "rah.",
+"u": "u1",
+"g": "u1g6"
+},
+{
+"no": 36,
+"name": "Mehnat muhofazasi, avtomobil harakat xavfsizligi va texnika xavfsizligi yetakchi muhandisi",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u1",
+"g": "u1g6"
+},
+{
+"no": 37,
+"name": "Sanoat xavfsizligi yetakchi muhandis",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u1",
+"g": "u1g6"
+},
+{
+"no": 38,
+"name": "Mehnat muhofazasi, texnika xavfsizligi va harakat xavfsizligi katta revizori",
+"cnt": 3,
+"cat": "mutax.",
+"u": "u1",
+"g": "u1g6"
+},
+{
+"no": 39,
+"name": "Sanoat uskunalari va asboblari bo'yicha I-toifali muhandis",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u1",
+"g": "u1g6"
+},
+{
+"no": 40,
+"name": "Atrof-muhitni muhofaza qilish bo'yicha I-toifali muhandis",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u1",
+"g": "u1g6"
+},
+{
+"no": 41,
+"name": "Bo'lim boshlig'i",
+"cnt": 1,
+"cat": "rah.",
+"u": "u1",
+"g": "u1g7"
+},
+{
+"no": 42,
+"name": "Loyiha-smeta ishlari bo'yicha yetakchi muhandis",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u1",
+"g": "u1g7"
+},
+{
+"no": 43,
+"name": "Avtomatlashtirish bo'yicha yetakchi muhandis (signallashtirish, markazlashtirish va bloklash qurilmalariqurilmalari va aloqa)",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u1",
+"g": "u1g7"
+},
+{
+"no": 44,
+"name": "Elektr energetika tizimlari yetakchi muhandisi (kontakt tarmog'i)",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u1",
+"g": "u1g7"
+},
+{
+"no": 45,
+"name": "Yo'l-qurilish ishlarini nazorat qilish bo'yicha yetakchi muhandis (Temir yo'lda)",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u1",
+"g": "u1g7"
+},
+{
+"no": 46,
+"name": "Bino va inshootlari qurilishi bo'yicha yetakchi muhandis",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u1",
+"g": "u1g7"
+},
+{
+"no": 47,
+"name": "Yetakchi muhandis-texnolog",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u1",
+"g": "u1g7"
+},
+{
+"no": 48,
+"name": "Bo'lim boshlig'i",
+"cnt": 1,
+"cat": "rah.",
+"u": "u1",
+"g": "u1g8"
+},
+{
+"no": 49,
+"name": "Kadrlar bo'yicha texnik-inspektor",
+"cnt": 1,
+"cat": "texn.",
+"u": "u1",
+"g": "u1g8"
+},
+{
+"no": 50,
+"name": "Bo'lim boshlig'i",
+"cnt": 1,
+"cat": "rah.",
+"u": "u1",
+"g": "u1g9"
+},
+{
+"no": 51,
+"name": "Mehnatni tashkil qilish va me'yorlashtirish yetakchi muhandisi",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u1",
+"g": "u1g9"
+},
+{
+"no": 52,
+"name": "Bo'lim boshlig'i",
+"cnt": 1,
+"cat": "rah.",
+"u": "u1",
+"g": "u1g10"
+},
+{
+"no": 53,
+"name": "Rejalashtirish bo'yicha yetakchi iqtisodchi",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u1",
+"g": "u1g10"
+},
+{
+"no": 54,
+"name": "Rejalashtirish bo'yicha I-toifali iqtisodchi",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u1",
+"g": "u1g10"
+},
+{
+"no": 55,
+"name": "Bosh buxgalter",
+"cnt": 1,
+"cat": "rah.",
+"u": "u1",
+"g": "u1g11"
+},
+{
+"no": 56,
+"name": "Yetakchi buxgalter",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u1",
+"g": "u1g11"
+},
+{
+"no": 57,
+"name": "Sex boshlig'i",
+"cnt": 1,
+"cat": "rah.",
+"u": "u2",
+"g": null
+},
+{
+"no": 58,
+"name": "Elektr energetika tizimida nazorat va xavfsizligi yetakchi muhandisi",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u2",
+"g": null
+},
+{
+"no": 59,
+"name": "Mehnat bo'yicha I-toifali iqtisodchi",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u2",
+"g": null
+},
+{
+"no": 60,
+"name": "I-toifali buxgalter",
+"cnt": 2,
+"cat": "mutax.",
+"u": "u2",
+"g": null
+},
+{
+"no": 61,
+"name": "Lokomotiv (poyezd) brigadalari katta naryadchisi",
+"cnt": 1,
+"cat": "texn.",
+"u": "u2",
+"g": null
+},
+{
+"no": 62,
+"name": "Harakatlanuvchi sostav ekspluatatsiyasi bo'yicha sex boshlig'i o'rinbosari",
+"cnt": 1,
+"cat": "rah.",
+"u": "u2",
+"g": "u2g1"
+},
+{
+"no": 63,
+"name": "Lokomotiv brigadasi uchun yo'riqchi mashinisti",
+"cnt": 6,
+"cat": "mutax.",
+"u": "u2",
+"g": "u2g1"
+},
+{
+"no": 64,
+"name": "Harakat bo'yicha sex boshlig'i o'rinbosari",
+"cnt": 1,
+"cat": "rah.",
+"u": "u2",
+"g": "u2g2"
+},
+{
+"no": 65,
+"name": "Stansiya boshlig'i (temir yo'lda)",
+"cnt": 3,
+"cat": "rah.",
+"u": "u2",
+"g": "u2g2"
+},
+{
+"no": 66,
+"name": "Temir yo'l lokomotiv dispetcheri",
+"cnt": 4,
+"cat": "texn.",
+"u": "u2",
+"g": "u2g2"
+},
+{
+"no": 67,
+"name": "Temir yo'l stansiyasi bo'yicha navbatchi",
+"cnt": 24,
+"cat": "texn.",
+"u": "u2",
+"g": "u2g2"
+},
+{
+"no": 68,
+"name": "Harakatlanuvchi sostavni ta'mirlash bo'yicha sex boshlig'i o'rinbosari",
+"cnt": 1,
+"cat": "rah.",
+"u": "u2",
+"g": "u2g3"
+},
+{
+"no": 69,
+"name": "Harakatlanuvchi sostav deposi boshlig'i",
+"cnt": 1,
+"cat": "rah.",
+"u": "u2",
+"g": "u2g3"
+},
+{
+"no": 70,
+"name": "Uchastka ustasi",
+"cnt": 4,
+"cat": "rah.",
+"u": "u2",
+"g": "u2g4"
+},
+{
+"no": 71,
+"name": "Uchastka ustasi",
+"cnt": 2,
+"cat": "rah.",
+"u": "u2",
+"g": "u2g5"
+},
+{
+"no": 72,
+"name": "Uchastka ustasi",
+"cnt": 2,
+"cat": "rah.",
+"u": "u2",
+"g": "u2g6"
+},
+{
+"no": 73,
+"name": "Uchastka ustasi",
+"cnt": 4,
+"cat": "rah.",
+"u": "u2",
+"g": "u2g7"
+},
+{
+"no": 74,
+"name": "Uchastka ustasi",
+"cnt": 2,
+"cat": "rah.",
+"u": "u2",
+"g": "u2g8"
+},
+{
+"no": 75,
+"name": "Sex boshlig'i",
+"cnt": 1,
+"cat": "rah.",
+"u": "u3",
+"g": null
+},
+{
+"no": 76,
+"name": "Harakat xavfsizligi, mehnat muhofazasi va texnika xavfsizligi katta revizori (shaxobcha yo'llari bo'yicha)",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u3",
+"g": null
+},
+{
+"no": 77,
+"name": "Mehnat bo'yicha I-toifali iqtisodchi",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u3",
+"g": null
+},
+{
+"no": 78,
+"name": "I-toifali buxgalter",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u3",
+"g": null
+},
+{
+"no": 79,
+"name": "Lokomotiv (poyezd) brigadalari katta naryadchisi",
+"cnt": 1,
+"cat": "texn.",
+"u": "u3",
+"g": null
+},
+{
+"no": 80,
+"name": "Tashqi logistika bo'yicha sex boshlig'i o'rinbosari",
+"cnt": 1,
+"cat": "rah.",
+"u": "u3",
+"g": null
+},
+{
+"no": 81,
+"name": "Tovar taftishchisi",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u3",
+"g": null
+},
+{
+"no": 82,
+"name": "Logistika bo'yicha I-toifali professional-mutaxassis",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u3",
+"g": null
+},
+{
+"no": 83,
+"name": "Yuk ishlari bo'yicha sex boshlig'i o'rinbosari",
+"cnt": 1,
+"cat": "rah.",
+"u": "u3",
+"g": "u3g1"
+},
+{
+"no": 84,
+"name": "Tovar (yuk) katta kassiri",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u3",
+"g": "u3g1"
+},
+{
+"no": 85,
+"name": "Harakatlanuvchi sostav ekspluatatsiyasi bo'yicha sex boshlig'i o'rinbosari",
+"cnt": 1,
+"cat": "rah.",
+"u": "u3",
+"g": "u3g2"
+},
+{
+"no": 86,
+"name": "Lokomotiv brigadasi uchun yo'riqchi mashinisti",
+"cnt": 6,
+"cat": "mutax.",
+"u": "u3",
+"g": "u3g2"
+},
+{
+"no": 87,
+"name": "Harakat bo'yicha sex boshlig'i o'rinbosari",
+"cnt": 1,
+"cat": "rah.",
+"u": "u3",
+"g": "u3g3"
+},
+{
+"no": 88,
+"name": "Stansiya boshlig'i (temir yo'lda)",
+"cnt": 4,
+"cat": "rah.",
+"u": "u3",
+"g": "u3g3"
+},
+{
+"no": 89,
+"name": "Temir yo'l lokomotiv dispetcheri",
+"cnt": 4,
+"cat": "texn.",
+"u": "u3",
+"g": "u3g3"
+},
+{
+"no": 90,
+"name": "Temir yo'l stansiyasi bo'yicha navbatchi (Svinsovaya)",
+"cnt": 4,
+"cat": "texn.",
+"u": "u3",
+"g": "u3g3"
+},
+{
+"no": 91,
+"name": "Temir yo'l stansiyasi bo'yicha navbatchi",
+"cnt": 24,
+"cat": "texn.",
+"u": "u3",
+"g": "u3g3"
+},
+{
+"no": 92,
+"name": "Harakatlanuvchi sostavlarni ta'mirlash bo'yicha sex boshlig'i o'rinbosari",
+"cnt": 1,
+"cat": "rah.",
+"u": "u3",
+"g": "u3g4"
+},
+{
+"no": 93,
+"name": "Uchastka ustasi",
+"cnt": 2,
+"cat": "rah.",
+"u": "u3",
+"g": "u3g5"
+},
+{
+"no": 94,
+"name": "Uchastka ustasi",
+"cnt": 2,
+"cat": "rah.",
+"u": "u3",
+"g": "u3g6"
+},
+{
+"no": 95,
+"name": "Uchastka ustasi",
+"cnt": 2,
+"cat": "rah.",
+"u": "u3",
+"g": "u3g7"
+},
+{
+"no": 96,
+"name": "Sex boshlig'i",
+"cnt": 1,
+"cat": "rah.",
+"u": "u4",
+"g": null
+},
+{
+"no": 97,
+"name": "Lokomotivlarni modernizatsiya qilish bo'yicha sex boshlig'i o'rinbosari",
+"cnt": 1,
+"cat": "rah.",
+"u": "u4",
+"g": null
+},
+{
+"no": 98,
+"name": "Mehnat bo'yicha I-toifali iqtisodchi",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u4",
+"g": null
+},
+{
+"no": 99,
+"name": "I-toifali buxgalter",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u4",
+"g": null
+},
+{
+"no": 100,
+"name": "Lokomotivlarni ta'mirlash bo'yicha sex boshlig'i o'rinbosari",
+"cnt": 1,
+"cat": "rah.",
+"u": "u4",
+"g": "u4g1"
+},
+{
+"no": 101,
+"name": "Uchastka ustasi",
+"cnt": 2,
+"cat": "rah.",
+"u": "u4",
+"g": "u4g2"
+},
+{
+"no": 102,
+"name": "Uchastka ustasi",
+"cnt": 1,
+"cat": "rah.",
+"u": "u4",
+"g": "u4g3"
+},
+{
+"no": 103,
+"name": "Uchastka ustasi",
+"cnt": 1,
+"cat": "rah.",
+"u": "u4",
+"g": "u4g4"
+},
+{
+"no": 104,
+"name": "Uchastka ustasi",
+"cnt": 2,
+"cat": "rah.",
+"u": "u4",
+"g": "u4g5"
+},
+{
+"no": 105,
+"name": "Uchastka ustasi",
+"cnt": 2,
+"cat": "rah.",
+"u": "u4",
+"g": "u4g6"
+},
+{
+"no": 106,
+"name": "Uchastka ustasi",
+"cnt": 2,
+"cat": "rah.",
+"u": "u4",
+"g": "u4g7"
+},
+{
+"no": 107,
+"name": "Uchastka ustasi",
+"cnt": 2,
+"cat": "rah.",
+"u": "u4",
+"g": "u4g8"
+},
+{
+"no": 108,
+"name": "Temir yo'l va avtotraktor texnikalari bo'yicha sex boshlig'i o'rinbosari",
+"cnt": 1,
+"cat": "rah.",
+"u": "u4",
+"g": "u4g9"
+},
+{
+"no": 109,
+"name": "Mexanik",
+"cnt": 2,
+"cat": "mutax.",
+"u": "u4",
+"g": "u4g9"
+},
+{
+"no": 110,
+"name": "Sex boshlig'i",
+"cnt": 1,
+"cat": "rah.",
+"u": "u5",
+"g": null
+},
+{
+"no": 111,
+"name": "Yetakchi marksheyder",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u5",
+"g": null
+},
+{
+"no": 112,
+"name": "I-toifali marksheyder",
+"cnt": 2,
+"cat": "mutax.",
+"u": "u5",
+"g": null
+},
+{
+"no": 113,
+"name": "Mehnat bo'yicha I-toifali iqtisodchi",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u5",
+"g": null
+},
+{
+"no": 114,
+"name": "I-toifali buxgalter",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u5",
+"g": null
+},
+{
+"no": 115,
+"name": "Temir yo'lni kapital ta'mirlash bo'yicha sex boshlig'i o'rinbosari",
+"cnt": 1,
+"cat": "rah.",
+"u": "u5",
+"g": "u5g1"
+},
+{
+"no": 116,
+"name": "Katta yo'l ustasi",
+"cnt": 1,
+"cat": "rah.",
+"u": "u5",
+"g": "u5g1"
+},
+{
+"no": 117,
+"name": "Usta",
+"cnt": 2,
+"cat": "rah.",
+"u": "u5",
+"g": "u5g1"
+},
+{
+"no": 118,
+"name": "Yo'l mashinalari va mexanizmlarini ekspluatatsiyasi bo'yicha usta",
+"cnt": 1,
+"cat": "rah.",
+"u": "u5",
+"g": "u5g1"
+},
+{
+"no": 119,
+"name": "Temir yo'lni joriy saqlash va ta'mirlash bo'yicha sex boshlig'i o'rinbosari (Qolmaqir uchastkasi)",
+"cnt": 1,
+"cat": "rah.",
+"u": "u5",
+"g": "u5g2"
+},
+{
+"no": 120,
+"name": "Katta yo'l ustasi",
+"cnt": 1,
+"cat": "rah.",
+"u": "u5",
+"g": "u5g2"
+},
+{
+"no": 121,
+"name": "Yo'l ustasi",
+"cnt": 7,
+"cat": "rah.",
+"u": "u5",
+"g": "u5g2"
+},
+{
+"no": 122,
+"name": "Yo'l ustasi, razrezlar, karerlar va otvallarda band bo'lgan (9 okolotka)",
+"cnt": 1,
+"cat": "rah.",
+"u": "u5",
+"g": "u5g2"
+},
+{
+"no": 123,
+"name": "Yo'l mashinalari va mexanizmlarini ekspluatatsiyasi bo'yicha usta",
+"cnt": 1,
+"cat": "rah.",
+"u": "u5",
+"g": "u5g2"
+},
+{
+"no": 124,
+"name": "Temir yo'lni joriy saqlash va ta'mirlash bo'yicha sex boshlig'i o'rinbosari (2-TYS tashqi transporti uchastkasi)",
+"cnt": 1,
+"cat": "rah.",
+"u": "u5",
+"g": "u5g3"
+},
+{
+"no": 125,
+"name": "Katta yo'l ustasi",
+"cnt": 1,
+"cat": "rah.",
+"u": "u5",
+"g": "u5g3"
+},
+{
+"no": 126,
+"name": "Yo'l ustasi",
+"cnt": 5,
+"cat": "rah.",
+"u": "u5",
+"g": "u5g3"
+},
+{
+"no": 127,
+"name": "Yo'l mashinalari va mexanizmlarini ekspluatatsiyasi bo'yicha usta",
+"cnt": 1,
+"cat": "rah.",
+"u": "u5",
+"g": "u5g3"
+},
+{
+"no": 128,
+"name": "Usta",
+"cnt": 1,
+"cat": "rah.",
+"u": "u5",
+"g": "u5g4"
+},
+{
+"no": 129,
+"name": "Usta",
+"cnt": 1,
+"cat": "rah.",
+"u": "u5",
+"g": "u5g5"
+},
+{
+"no": 130,
+"name": "Karyer boshlig'i",
+"cnt": 1,
+"cat": "rah.",
+"u": "u6",
+"g": null
+},
+{
+"no": 131,
+"name": "Bosh muhandis",
+"cnt": 1,
+"cat": "rah.",
+"u": "u6",
+"g": null
+},
+{
+"no": 132,
+"name": "Mexanik",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u6",
+"g": null
+},
+{
+"no": 133,
+"name": "Energetik",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u6",
+"g": null
+},
+{
+"no": 134,
+"name": "Smena ustasi",
+"cnt": 4,
+"cat": "rah.",
+"u": "u6",
+"g": null
+},
+{
+"no": 135,
+"name": "Xizmat boshlig'i",
+"cnt": 1,
+"cat": "rah.",
+"u": "u7",
+"g": null
+},
+{
+"no": 136,
+"name": "Xizmat boshlig'i o'rinbosari",
+"cnt": 1,
+"cat": "rah.",
+"u": "u7",
+"g": null
+},
+{
+"no": 137,
+"name": "Avtomatlashtirish va tizimlarni integratsiya qilish bo'yicha yetakchi muhandis",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u7",
+"g": null
+},
+{
+"no": 138,
+"name": "Katta elektromexanik (Svinsovaya, Mednaya, Qolmaqir temir yo'l stansiyalari)",
+"cnt": 2,
+"cat": "mutax.",
+"u": "u7",
+"g": null
+},
+{
+"no": 139,
+"name": "Radioaloqa katta elektromexanigi",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u7",
+"g": null
+},
+{
+"no": 140,
+"name": "Katta elektromexanik",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u7",
+"g": null
+},
+{
+"no": 141,
+"name": "Elektromexanik",
+"cnt": 6,
+"cat": "mutax.",
+"u": "u7",
+"g": null
+},
+{
+"no": 142,
+"name": "Simli aloqa elektromexanigi",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u7",
+"g": null
+},
+{
+"no": 143,
+"name": "Bosh energetik-xizmat boshlig'i",
+"cnt": 1,
+"cat": "rah.",
+"u": "u8",
+"g": null
+},
+{
+"no": 144,
+"name": "Elektruzatish liniyalarini, elektr qurilmalarini va elektr jihozlarini ta'mirlash bo'yicha xizmat boshlig'i",
+"cnt": 1,
+"cat": "rah.",
+"u": "u8",
+"g": null
+},
+{
+"no": 145,
+"name": "Muhandislik kommunikatsiyalarini saqlash va ta'mirlash bo'yicha xizmat boshlig'i o'rinbosari",
+"cnt": 1,
+"cat": "rah.",
+"u": "u8",
+"g": null
+},
+{
+"no": 146,
+"name": "Mehnat bo'yicha I-toifali iqtisodchi",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u8",
+"g": null
+},
+{
+"no": 147,
+"name": "Elektruzatish liniyalarini, elektr qurilmalarini va elektr jihozlarini ta'mirlash bo'yicha katta usta",
+"cnt": 1,
+"cat": "rah.",
+"u": "u8",
+"g": null
+},
+{
+"no": 148,
+"name": "Muhandislik kommunikatsiyalari va elektr jihozlarini saqlash va ta'mirlash bo'yicha katta usta",
+"cnt": 4,
+"cat": "rah.",
+"u": "u8",
+"g": null
+},
+{
+"no": 149,
+"name": "Yetakchi buxgalter",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u8",
+"g": null
+},
+{
+"no": 150,
+"name": "Sanoat energetikasi elektr jihozlarini ta'mirlash bo'yicha I-toifali muhandis",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u8",
+"g": null
+},
+{
+"no": 151,
+"name": "Kontakt tarmog'iga texnik xizmat ko'rsatish va ta'mirlash bo'yicha xizmat boshlig'i o'rinbosari",
+"cnt": 1,
+"cat": "rah.",
+"u": "u8",
+"g": "u8g1"
+},
+{
+"no": 152,
+"name": "Kontakt tarmog'iga texnik xizmat ko'rsatish va ta'mirlash bo'yicha uchastka boshlig'i",
+"cnt": 1,
+"cat": "rah.",
+"u": "u8",
+"g": "u8g1"
+},
+{
+"no": 153,
+"name": "Elektromexanik",
+"cnt": 6,
+"cat": "mutax.",
+"u": "u8",
+"g": "u8g1"
+},
+{
+"no": 154,
+"name": "Xizmat boshlig'i",
+"cnt": 1,
+"cat": "rah.",
+"u": "u9",
+"g": null
+},
+{
+"no": 155,
+"name": "Xizmat boshlig'i o'rinbosari",
+"cnt": 1,
+"cat": "rah.",
+"u": "u9",
+"g": null
+},
+{
+"no": 156,
+"name": "Elektromexanik",
+"cnt": 6,
+"cat": "mutax.",
+"u": "u9",
+"g": null
+},
+{
+"no": 157,
+"name": "Xizmat boshlig'i",
+"cnt": 1,
+"cat": "rah.",
+"u": "u10",
+"g": null
+},
+{
+"no": 158,
+"name": "Xizmat boshlig'i o'rinbosari",
+"cnt": 1,
+"cat": "rah.",
+"u": "u10",
+"g": null
+},
+{
+"no": 159,
+"name": "I-toifali buxgalter",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u10",
+"g": null
+},
+{
+"no": 160,
+"name": "Mehnat bo'yicha I-toifali iqtisodchi",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u10",
+"g": null
+},
+{
+"no": 161,
+"name": "Uchastka ustasi",
+"cnt": 2,
+"cat": "rah.",
+"u": "u10",
+"g": "u10g1"
+},
+{
+"no": 162,
+"name": "Uchastka ustasi",
+"cnt": 2,
+"cat": "rah.",
+"u": "u10",
+"g": "u10g2"
+},
+{
+"no": 163,
+"name": "Uchastka ustasi",
+"cnt": 2,
+"cat": "rah.",
+"u": "u10",
+"g": "u10g3"
+},
+{
+"no": 164,
+"name": "Qurilish va montaj ishlari ustasi",
+"cnt": 1,
+"cat": "rah.",
+"u": "u11",
+"g": null
+},
+{
+"no": 165,
+"name": "Uchastka ustasi",
+"cnt": 1,
+"cat": "rah.",
+"u": "u11",
+"g": null
+},
+{
+"no": 166,
+"name": "Ichki qo'riqlash xizmat boshlig'i",
+"cnt": 1,
+"cat": "rah.",
+"u": "u12",
+"g": null
+},
+{
+"no": 167,
+"name": "Smena katta qo'riqchisi",
+"cnt": 2,
+"cat": "rah.",
+"u": "u12",
+"g": null
+},
+{
+"no": 168,
+"name": "Fuqaro mudofaasi, yong'in xavfsizligi va favqulotda holatlar bo'yicha muhandis",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u12",
+"g": null
+},
+{
+"no": 169,
+"name": "Qo'riqlash va tartibot bo'yicha inspektor",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u12",
+"g": null
+},
+{
+"no": 170,
+"name": "Xizmat boshlig'i",
+"cnt": 1,
+"cat": "rah.",
+"u": "u13",
+"g": null
+},
+{
+"no": 171,
+"name": "Raqamli hisoblash tizimlari yetakchi muhandisi",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u13",
+"g": null
+},
+{
+"no": 172,
+"name": "Yetakchi muhandis-dasturlovchi",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u13",
+"g": null
+},
+{
+"no": 173,
+"name": "Muhandis-dasturlovchi",
+"cnt": 1,
+"cat": "mutax.",
+"u": "u13",
+"g": null
+}
+]
+}

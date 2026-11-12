@@ -1,0 +1,20 @@
+{
+  "name": "agmk-sttb-frontend",
+  "version": "5.5.0",
+  "agmkVersion": "5.5",
+  "private": true,
+  "description": "AGMK-STTB PTO — ilova (frontend). TypeScript manbalardan bitta mustaqil HTML yigʻiladi.",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "build:raw": "node build.mjs --raw",
+    "check": "node check.mjs",
+    "test": "node check.mjs && node build.mjs"
+  },
+  "devDependencies": {
+    "typescript": "6.0.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,82 @@
+# AGMK-STTB PTO — korxona serverida ishga tushirish:
+#   1) cp .env.example .env  va qiymatlarni toʻldiring (barcha kalitlar shu yerda: baza paroli, JWT, ilova kaliti)
+#   2) docker compose up -d --build
+#   (Windows noutbukda: ISHGA_TUSHIRISH.bat — .env ni oʻzi yaratadi)
+# Tashqariga faqat 8443 (HTTPS) ochiladi. Boshqaruv paneli — faqat server kompyuterining oʻzidan: http://127.0.0.1:8080
+name: agmk-sttb
+
+# Docker jurnallari cheksiz oʻsmasin: har konteynerda 5 ta × 10 MB
+x-log: &log
+  driver: json-file
+  options: { max-size: "10m", max-file: "5" }
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    logging: *log
+    environment:
+      POSTGRES_DB: agmk
+      POSTGRES_USER: agmk
+      POSTGRES_PASSWORD: ${AGMK_DB_PASSWORD:?AGMK_DB_PASSWORD .env da boʻlishi kerak}
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=C.UTF-8"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks: [internal]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U agmk -d agmk"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+      args:
+        OCR: "${AGMK_OCR:-1}"
+        AGMK_ADMIN: "${AGMK_ADMIN:-}"
+    # Oflayn paketda AGMK_IMAGE_TAG=<versiya> (yigʻilmaydi, tayyor obraz). Muallif kompyuterida — local (har safar yigʻiladi)
+    image: agmk-sttb/backend:${AGMK_IMAGE_TAG:-local}
+    restart: unless-stopped
+    logging: *log
+    depends_on:
+      db: { condition: service_healthy }
+    env_file: .env
+    environment:
+      AGMK_DB_URL: postgresql://agmk@db:5432/agmk
+      AGMK_HOST: 0.0.0.0
+      AGMK_API_PORT: "8000"
+      AGMK_ADMIN_PORT: "8080"
+      TZ: Asia/Tashkent                    # K-36: zaxira fayl nomidagi vaqt — Toshkent vaqti
+    volumes:
+      - app_secrets:/secrets               # zaxira: .env da AGMK_JWT_SECRET / AGMK_ANON_KEY boʻlmasa — shu yerda yaratiladi
+      - certs:/certs                       # server.crt, server.key (shlyuz bilan umumiy)
+      - ${AGMK_COMPANY_PATH:-./company}:/company:ro   # xodimlar.json, paketlar/, imzo_yuklash/ — korxona fayllari
+      - ${AGMK_BACKUP_PATH:-./backups}:/backups       # kunlik zaxira nusxalar (pg_dump)
+    ports:
+      - "127.0.0.1:${AGMK_ADMIN_HOST_PORT:-8080}:8080"   # boshqaruv paneli — faqat shu kompyuterdan
+    networks: [internal, edge]
+
+  gateway:
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    logging: *log
+    depends_on:
+      backend: { condition: service_healthy }
+    volumes:
+      - ./gateway/nginx.conf:/etc/nginx/nginx.conf:ro
+      - certs:/certs:ro
+    ports:
+      - "${AGMK_PUBLIC_PORT:-8443}:8443"   # telefonlar va brauzer
+    networks: [edge]
+
+networks:
+  internal:
+    internal: true                         # baza tashqi tarmoqqa chiqmaydi
+  edge: {}
+
+volumes:
+  pgdata:
+  app_secrets:
+  certs:
