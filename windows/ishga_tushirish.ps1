@@ -125,6 +125,6 @@ try {
 Say ""
 Say "==== TAYYOR ====" 'Green'
 Say "Boshqaruv paneli ochilyapti: http://127.0.0.1:8080  (QR kod shu yerda)" 'Green'
-Say "Telefonda: 'AGMK-STTB PTO' ilovasini oching -> 'Serverga ulanish' -> paneldagi QR ni skanerlang." 'Green'
+Say "Telefonda: 'AGMK STTB-AIT' ilovasini oching -> 'Serverga ulanish' -> paneldagi QR ni skanerlang." 'Green'
 Start-Process 'http://127.0.0.1:8080'
 Read-Host "Yopish uchun Enter (server ishlashda davom etadi)"
