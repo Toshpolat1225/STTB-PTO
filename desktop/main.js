@@ -36,7 +36,7 @@ app.whenReady().then(() => {
   ses.webRequest.onBeforeRequest((d, cb) => cb({ cancel: !allowed(d.url) }));
   ses.setPermissionRequestHandler((wc, perm, cb) => cb(['media', 'clipboard-sanitized-write', 'fullscreen', 'notifications'].includes(perm)));
   const win = new BrowserWindow({
-    width: 1280, height: 860, minWidth: 380, minHeight: 560, title: 'AGMK-STTB PTO', backgroundColor: '#0f172a', autoHideMenuBar: true, show: false,
+    width: 1280, height: 860, minWidth: 380, minHeight: 560, title: 'AGMK STTB-AIT', backgroundColor: '#0f172a', autoHideMenuBar: true, show: false,
     icon: path.join(__dirname, 'icon.png'),
     webPreferences: { contextIsolation: true, nodeIntegration: false, sandbox: true, spellcheck: false },
   });
