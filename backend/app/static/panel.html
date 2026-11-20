@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AGMK-STTB Server</title>
+<title>AGMK STTB-AIT — Server</title>
 <style>
   :root { --bg:#0b1220; --card:#131c2e; --line:#26324a; --txt:#e8eef8; --mut:#93a3bd; --acc:#38bdf8; --ok:#22c55e; --warn:#f59e0b; --bad:#ef4444; }
   * { box-sizing: border-box; }
@@ -55,7 +55,7 @@
 <body>
 <header>
   <span class="dot" id="dot"></span>
-  <h1>AGMK-STTB PTO — Server</h1>
+  <h1>AGMK STTB-AIT — Server</h1>
   <small id="hdr">yuklanmoqda...</small>
 </header>
 <main>
@@ -63,7 +63,8 @@
     <h2>1. Telefonni ulash</h2>
     <p class="lead">Telefon shu noutbuk bilan <b>bir Wi-Fi tarmog'ida</b> bo'lishi kerak. Ilovada: <b>kirish oynasi → «📡 Serverga ulanish»</b> tugmasini bosing va quyidagi QR kodni rasmga oling.</p>
     <div class="qrs" id="qrs"></div>
-    <div style="margin-top:14px;padding:12px;border:1px solid var(--line);border-radius:10px">
+    <!-- 6.2: yopiq kontur — tashqi manzil oʻchirilgan -->
+    <div hidden style="display:none;margin-top:14px;padding:12px;border:1px solid var(--line);border-radius:10px">
       <b>🌐 Tashqi manzil (statik IP)</b> <small style="color:var(--mut)">— provayder bergan doimiy IP. Yozilsa, QR kodga qoʻshiladi: telefon ishxonada Wi-Fi orqali, tashqarida shu manzil orqali oʻzi ulanadi. Routerda 8443-port shu kompyuterga yoʻnaltirilgan boʻlishi kerak.</small>
       <div style="display:flex;gap:8px;margin-top:8px"><input id="extIn" placeholder="masalan 213.230.45.67" style="flex:1;padding:8px;border-radius:8px;border:1px solid var(--line);background:#0b1220;color:#fff"><button onclick="extSave()">💾 Saqlash</button></div>
       <small id="extCur" style="color:var(--mut)"></small>

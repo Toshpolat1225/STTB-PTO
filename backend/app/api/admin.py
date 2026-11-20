@@ -33,6 +33,7 @@ CSP = "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' '
 
 # ------------------------------------------------------------------ tashqi manzil va ulanish maʼlumoti
 async def ext_get() -> str:
+    return ''  # 6.2: yopiq kontur — tashqi manzil oʻchirilgan (faqat ichki tarmoq)
     r = await db.one("SELECT value FROM settings WHERE key = 'ext'")
     e = (r['value'] or {}).get('e', '') if r else ''
     return e if re.fullmatch(r'https://[A-Za-z0-9.-]+(:\d+)?', e or '') else ''
@@ -277,7 +278,9 @@ async def handle(req: Request) -> Response:
         return err(405, 'POST')
     b = body_obj(await read_body(req, 10_000))
     tabel = clean_tabel(b.get('tabel'))
-    if p == '/admin/ext':  # tashqi manzil: «213.230.45.67» yoki «https://213.230.45.67:8443»; boʻsh — oʻchiriladi
+    if p == '/admin/ext':  # 6.2: yopiq kontur — tashqi manzil funksiyasi oʻchirilgan
+        return err(403, 'Yopiq kontur: tashqi manzil oʻchirilgan, server faqat ichki tarmoqda ishlaydi')
+    if p == '/admin/ext-old':  # tashqi manzil: «213.230.45.67» yoki «https://213.230.45.67:8443»; boʻsh — oʻchiriladi
         e = str(b.get('e') or '').strip()
         if e and not re.match(r'^https?://', e):
             e = 'https://' + e
@@ -397,9 +400,9 @@ async def app(scope, receive, send_):
         resp = await handle(req)
     except (TooBig, BadJson) as e:
         resp = err(500, 'Server xatosi: ' + str(e))
-    except Exception as e:  # noqa: BLE001
+    except Exception:  # noqa: BLE001
         log.exception('XATO (panel): %s', req.url.path)
-        resp = err(500, 'Server xatosi: ' + str(e))
+        resp = err(500, 'Server xatosi — server jurnalini koʻring')
     await resp(scope, receive, send_)
 
 

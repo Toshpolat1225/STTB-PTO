@@ -227,12 +227,30 @@ async def files_post(req: Request, u: dict) -> Response:
     return send(201, {'id': fid, 'name': name, 'mime': mime, 'size': len(buf)})
 
 
+SAFE_INLINE = re.compile(r'^(image/(png|jpeg|gif|webp|bmp)|application/pdf|audio/[a-z0-9.+-]+|video/[a-z0-9.+-]+)$')
+
+
+def file_headers(mime: str | None, name: str | None) -> dict:
+    """6.2: yuklangan fayl ilova ichida «sahifa» boʻlib ishga tushmasin. Rasm, PDF, audio/video — koʻrsatiladi;
+    qolganlari (HTML, SVG, skript va h.k.) — faqat yuklab olinadi, turi application/octet-stream."""
+    m = (mime or '').strip().lower()
+    h = {'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff',
+         'Content-Security-Policy': "default-src 'none'; img-src 'self' data:; media-src 'self'; style-src 'unsafe-inline'; sandbox"}
+    if SAFE_INLINE.match(m):
+        h['Content-Type'] = m
+    else:
+        from urllib.parse import quote
+        h['Content-Type'] = 'application/octet-stream'
+        h['Content-Disposition'] = "attachment; filename*=UTF-8''" + quote(str(name or 'fayl')[:200])
+    return h
+
+
 async def files_get(req: Request, u: dict, fid: str) -> Response:
     f = await db.one('SELECT * FROM files WHERE id = %s', fid)
     if not f or (f['owner'] != u['tabel'] and f['to_tabel'] != u['tabel'] and f['to_tabel'] not in FILE_GROUPS):
         return err(404, 'Topilmadi')
     data = dec_buf(f['data'])
-    return Response(data, status_code=200, headers={'Content-Type': f['mime'] or 'application/octet-stream', 'Cache-Control': 'no-store'})
+    return Response(data, status_code=200, headers=file_headers(f['mime'], f['name']))
 
 
 # ------------------------------------------------------------------ paketlar (maxfiy; APK ichida emas)

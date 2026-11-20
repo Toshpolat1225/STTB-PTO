@@ -11,7 +11,6 @@ from pathlib import Path
 
 from app.api import auth as A
 from app.api import data as D
-from app.api import attendance as DV
 from app import realtime as L
 from app.api import my as M
 from app.api import people as P
@@ -33,7 +32,7 @@ CORS = {
 APP_HEADERS = {'Cache-Control': 'no-cache', 'X-Frame-Options': 'DENY', 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'no-referrer',
                'Permissions-Policy': 'camera=(self), microphone=(self), geolocation=(self)'}
 STATIC = Path(__file__).resolve().parents[1] / 'static'
-MANIFEST = ('{"name":"AGMK-STTB PTO","short_name":"AGMK-STTB","start_url":"/","scope":"/","display":"standalone",'
+MANIFEST = ('{"name":"AGMK STTB-AIT — Avtomatlashtirilgan Intellektual Tizim","short_name":"AGMK STTB-AIT","start_url":"/","scope":"/","display":"standalone",'
             '"background_color":"#0b0f19","theme_color":"#0b0f19","lang":"uz",'
             '"icons":[{"src":"/icon-192.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},'
             '{"src":"/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}]}')
@@ -112,18 +111,6 @@ ROUTES = {
     ('POST', '/api/kiy/v1/ack'): M.kiy_ack,
     ('POST', '/api/kiy/v1/person'): M.kiy_person_set,
     ('GET', '/api/kiy/v1/due'): M.kiy_due,
-    # 5.5: SVO — davomat (turniket)
-    ('GET', '/api/dav/v1/cfg'): DV.dav_cfg,
-    ('GET', '/api/dav/v1/day'): DV.dav_day,
-    ('GET', '/api/dav/v1/p'): DV.dav_person,
-    ('GET', '/api/dav/v1/tabel'): DV.dav_tabel,
-    ('GET', '/api/dav/v1/reasons'): DV.dav_reasons,
-    ('GET', '/api/dav/v1/objects'): DV.dav_objects,
-    ('POST', '/api/dav/v1/import'): DV.dav_import,
-    ('POST', '/api/dav/v1/assign'): DV.dav_assign,
-    ('POST', '/api/dav/v1/reason'): DV.dav_reason,
-    ('POST', '/api/dav/v1/reason/cancel'): DV.dav_reason_cancel,
-    ('POST', '/api/dav/v1/pattern'): DV.dav_pattern,
 }
 
 
@@ -194,9 +181,9 @@ async def app(scope, receive, send_):
             resp = await dispatch(req)
         except (TooBig, BadJson) as e:
             resp = err(500, 'Server xatosi: ' + str(e))
-        except Exception as e:  # noqa: BLE001
+        except Exception:  # noqa: BLE001 — 6.2: tafsilot faqat server jurnaliga, foydalanuvchiga umumiy xabar
             log.exception('XATO: %s %s', req.method, req.url.path)
-            resp = err(500, 'Server xatosi: ' + str(e))
+            resp = err(500, 'Server xatosi — administratorga murojaat qiling')
     for k, v in CORS.items():
         resp.headers[k] = v
     await resp(scope, receive, send_)

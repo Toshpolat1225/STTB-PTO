@@ -28,8 +28,37 @@ PD_KEYS = ['birthDate', 'yil', 'oilaviy', 'oilaAzolari', 'spravka', 'workHistory
 POS_ROLES = ['rahbar', 'hr', 'tex', 'okl', 'rl1', 'rl3']  # jonli xaritada hammani koʻradiganlar
 
 
+YON_PREFIX = 'kv:agmk_yon_'  # 6.2: yoʻnalishlar boʻlimi maʼlumotlari («Dalolatnoma va hujjatlar tayyorlash»)
+YON_ROLES = ['ichtb', 'rahbar']  # oʻqish/yozish — faqat ICHTB xodimlari, rahbariyat va administrator
+
+
 def kv_acl(i: str) -> list[str] | None:
-    return KV_ACL.get(str(i))
+    s = str(i)
+    if s.startswith(YON_PREFIX):
+        return YON_ROLES
+    return KV_ACL.get(s)
+
+
+ICHTB_RE = re.compile(r'ishlab\s*chiqarish.{0,3}texnik|\bичтб\b|\bichtb\b|\bпто\b', re.I)
+
+
+async def is_ichtb(tabel: str) -> bool:
+    """6.2: xodim ICHTB (Ishlab chiqarish-texnik boʻlimi) tarkibidami — shtat tuzilmasidagi oʻrni boʻyicha (server tomonida)."""
+    try:
+        from app.services import org
+        P = await org.people()
+        x = P.get(str(tabel))
+        if not x:
+            return False
+        T = getattr(org.C, 'tree', None) or {}
+        names = []
+        if x.get('grp'):
+            names += [g.get('name') or '' for g in T.get('groups') or [] if g.get('id') == x['grp']]
+        if x.get('unit'):
+            names += [(u.get('name') or '') + ' ' + (u.get('short') or '') for u in T.get('units') or [] if u.get('id') == x['unit']]
+        return any(ICHTB_RE.search(n or '') for n in names)
+    except Exception:  # noqa: BLE001
+        return False
 
 
 KV_OWN_RE = re.compile(r'^kv:agmk_u_(\d{1,12})_[a-z0-9_]{1,40}$')  # 6.2: shaxsiy kalitlar — faqat egasi (boshqalarga, admin ham, yuborilmaydi)
@@ -93,7 +122,9 @@ async def can_role(u: dict, roles: list[str]) -> bool:
     if u['role'] == 'admin':
         return True
     have = (await app_roles(u['tabel'])) + roster_roles(u['tabel'])
-    return any(x in roles for x in have)
+    if any(x in roles for x in have):
+        return True
+    return 'ichtb' in roles and await is_ichtb(u['tabel'])
 
 
 async def sees_all_positions(u: dict) -> bool:
