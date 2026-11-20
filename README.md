@@ -1,12 +1,12 @@
-# AGMK-STTB PTO
+# AGMK STTB-AIT — Avtomatlashtirilgan Intellektual Tizim
+
+(oldingi nomi: AGMK-STTB PTO)
 
 «Olmaliq KMK» AJ Sanoat temir yoʻl transporti boshqarmasi (STTB) ishlab chiqarish-texnik boʻlimi (PTO) uchun ichki ilova: vagonlar va texnika pasportlari, taʼmir grafigi, dalolatnomalar, hisobot (Forma-30) tekshiruvi, MTTB va qabul qilingan ehtiyot qismlar, xodimlar, davomat, ichki elektron imzo.
 
 - **Ilova:** TypeScript → bitta mustaqil HTML (telefon APK, kompyuter dasturi va brauzer uchun bir xil fayl).
 - **Server:** Python 3.12 (Starlette + uvicorn), PostgreSQL 16, nginx shlyuz, Docker Compose.
 - **Yopiq kontur:** ilova va server internetga murojaat qilmaydi — faqat korxona ichki tarmogʻi (`docs/YOPIQ_KONTUR_IT.md`).
-
-Muallif: Tojimurodov A. (PTO). Versiya: `frontend/src/features/core/ver.ts`.
 
 ## Tuzilma
 
@@ -82,6 +82,6 @@ Repoda **yoʻq** va boʻlmasligi shart: `.env`, kalitlar va sertifikatlar, APK i
 | `docs/BAZA.md` | maʼlumotlar bazasi jadvallari |
 | `docs/OʻRNATISH.md`, `docs/OFLAYN_ORNATISH.md` | oʻrnatish, yangilash, zaxira |
 | `docs/YOPIQ_KONTUR_IT.md` | yopiq konturni IT mustaqil tekshirishi |
-| `docs/HISOBOT_TEKSHIRUV.md`, `docs/DAVOMAT_5.5.md`, `docs/NAZORAT.md` | boʻlimlar boʻyicha qoidalar |
+| `docs/HISOBOT_TEKSHIRUV.md`, `docs/NAZORAT.md` | boʻlimlar boʻyicha qoidalar |
 | `docs/VERSIYALAR.md` | versiyalar tarixi |
 | `docs/IT_SAVOLLAR.md` | IT bilan kelishiladigan savollar |
