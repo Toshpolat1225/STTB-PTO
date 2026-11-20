@@ -1,4 +1,6 @@
-# AGMK-STTB PTO — yopiq kontur: IT uchun tekshiruv koʻrsatmasi (6.1, build 138)
+# AGMK STTB-AIT (Avtomatlashtirilgan Intellektual Tizim; oldingi nomi AGMK-STTB PTO) — yopiq kontur: IT uchun tekshiruv koʻrsatmasi (6.1, build 138)
+
+> **Nom haqida:** «intellektual» deganda ilovaning oʻz ichidagi algoritmlari (hisobotlarni 1C bilan solishtirish, xatolarni topish, taʼmir rejasini tuzish, eslatmalar) nazarda tutiladi. Tashqi sunʼiy intellekt xizmatlari va internet ishlatilmaydi; maʼlumot korxona tarmogʻidan tashqariga chiqmaydi.
 
 Maqsad: maʼlumot korxonadan tashqariga chiqmasligini **ishonch bilan emas, oʻz qoʻlingiz bilan tekshirish**.
 Quyidagi har bir bandni ilova muallifisiz, mustaqil bajarish mumkin.

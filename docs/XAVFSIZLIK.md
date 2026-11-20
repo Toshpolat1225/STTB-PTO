@@ -61,3 +61,19 @@ Kirish, parol oʻzgarishi, imzolash, shaxsiy maʼlumotni koʻrish, administrator
 | 5 | Shaxsiy maʼlumot darajasi (hisobot tekshiruvlari) akkaunt boʻyicha sinxronlanmaydi | hozir faqat qurilmada | serverda egasi boʻyicha saqlash |
 | 6 | Imzolangan hujjat matni oflaynda ochilmaydi (roʻyxat ochiladi) | hujjat har safar serverdan olinadi | oflayn faqat-oʻqish nusxasi |
 | 7 | Backend bitta nusxada ishlaydi | jonli joylashuv faqat xotirada | ataylab (maxfiylik talabi) |
+| 8 | Tahrirlash huquqi bor xodim umumiy (ACL siz) yozuvlarni oʻzgartira oladi | yozuvlar boʻlimlarga hali toʻliq ajratilmagan | har oʻzgarish `history` jadvalida va auditda (kim, qachon) — qaytarish mumkin; yoʻnalishlar boʻyicha yozish huquqi — keyingi yangilanish |
+
+## 8. 6.2 (build 146, 16.11.2026) — yakuniy tekshiruv va tuzatishlar
+
+| Yoʻnalish | Holat |
+|---|---|
+| Avtorizatsiya | Har bir soʻrov **serverda** tekshiriladi: kirish tokeni (HMAC, muddatli) → rol → maxfiy yozuvlar ACL. Interfeysdagi yashirish — qoʻshimcha, asosiy himoya emas |
+| Parollar | scrypt (N=16384), tuz bilan; 5 xato urinishdan keyin 15 s → 5 daq qulf; yangi hisob — administrator tasdiqlaguncha `pending` |
+| Shaxsiy maʼlumot | oklad, manzil, tugʻilgan sana va h.k. — faqat kadrlar, rahbariyat va egasining oʻziga (serverda kesiladi) |
+| Fayllar | bazada shifrlangan; faqat egasi va qabul qiluvchi. **6.2:** rasm/PDF/audio/video dan boshqa fayllar faqat yuklab olinadi (`application/octet-stream`, `Content-Disposition: attachment`, `nosniff`, `CSP: sandbox`) — yuklangan HTML/SVG/skript ilova ichida ishga tushmaydi |
+| Xato xabarlari | **6.2:** server xatosi tafsiloti foydalanuvchiga qaytmaydi — faqat server jurnaliga |
+| Tarmoq | **6.2:** «tashqi manzil» (statik IP orqali internetdan ulanish) funksiyasi oʻchirildi — server faqat ichki tarmoqda. Server tashqariga soʻrov yubormaydi; ilova yigʻuvchisi tashqi murojaatlarni topsa versiya chiqmaydi |
+| Tashqi AI | **6.2:** butunlay oʻchirilgan (`v62yopiq.ts`): `aiCloudReady()` — har doim yoʻq, `aiCloudCall()` — «Yopiq kontur» xatosi; sozlama tugmasi yashirilgan. «Intellektual» funksiyalar — ilovaning oʻz algoritmlari |
+| Keraksiz kod | **6.2:** SVO davomat (server: `/api/dav/v1/*`, `attendance.py`; ilova: 3 modul) olib tashlandi — arxiv: `arxiv/svo-davomat` tarmogʻi. Jadvallar (`dav_*`) bazada qoladi |
+| «Supabase» nomli modul | nomi tarixiy: ilova oʻz serveri bilan Supabase-uslubidagi REST protokolida sinxronlanadi; tashqi Supabase xizmatiga ulanish yoʻq |
+| Yoʻnalishlar boʻlimi | **6.2:** `kv:agmk_yon_*` yozuvlari serverda faqat ICHTB xodimlari (shtat tuzilmasidagi oʻrni boʻyicha), rahbariyat va administratorga |

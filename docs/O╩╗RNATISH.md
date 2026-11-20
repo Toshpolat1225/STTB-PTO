@@ -71,9 +71,24 @@ docker compose logs -f backend       # «AGMK-STTB server 2.0.0 · … ta xodim 
 
 ## 5. Yangilash
 
+**Asosiy qoida (6.2 dan):** server hech qachon GitHub'dan oʻzi yangilanmaydi. Tartib:
+
+1. Muallif tuzatishni GitHub'da kiritadi → barcha testlar oʻtadi → yangi versiya ZIP paketi tayyorlanadi.
+2. Paket **fleshkada** IT ga beriladi (Telegram/pochta orqali emas).
+3. IT avval **zaxira** oladi (panel → «Hozir zaxira olish» yoki pastdagi buyruq), keyin oʻrnatadi.
+4. Muammo boʻlsa — oldingi versiyaga qaytariladi (oldingi obraz tegi + zaxiradan tiklash, 4-boʻlim).
+
+Muhim tuzatishlar — 1–2 kunda; mayda tuzatishlar — oyiga bir marta toʻplab.
+
 ```bash
-git pull
-docker compose up -d --build
+docker compose exec -T db pg_dump -U agmk -d agmk -Fc > backups/oldin_$(date +%F_%H-%M).dump   # 1) zaxira
+docker compose up -d --build                                                                   # 2) yangi versiya
+```
+
+**6.2 ga oʻtishda (bir marta):** SVO davomat kodi olib tashlandi, jadvallar bazada qoladi. Ularning alohida arxiv nusxasi:
+
+```bash
+docker compose exec -T db pg_dump -U agmk -d agmk -Fc -t dav_event -t dav_pattern -t dav_assign -t dav_reason > backups/svo_davomat_arxiv_2026-11-16.dump
 ```
 
 Baza sxemasi oʻzi yangilanadi (`backend/app/migrations`).
