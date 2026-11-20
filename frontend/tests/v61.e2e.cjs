@@ -40,8 +40,7 @@ let F = 0; const ok = (c, m) => { console.log((c ? 'OK   ' : 'FAIL ') + m); if (
   // 15: Struktura .st-n
   r = await p.evaluate(async () => { openStruct(); await new Promise(r => setTimeout(r, 1200)); const bad = [...document.querySelectorAll('#stCv *')].filter(e => !e.closest('.st-box') && !e.closest('.st-leg') && (getComputedStyle(e).backgroundColor !== 'rgba(0, 0, 0, 0)' || parseFloat(getComputedStyle(e).borderTopWidth) > 0) && e.classList.contains('st-n')); return bad.length; });
   ok(r === 0, '15: Struktura tugunlarida shaffof qoramtir fon/ramka yoʻq (' + r + ')');
-  r = await p.evaluate(() => { const d = document.createElement('span'); d.className = 'st-n'; document.body.appendChild(d); const bg = getComputedStyle(d).backgroundColor; d.remove(); return bg; });
-  ok(r !== 'rgba(0, 0, 0, 0)', '15: SVO davomatdagi «n» holat belgisi avvalgidek (' + r + ')');
+  // 15: SVO «n» belgisi — 6.2 da SVO olib tashlandi
   // 11: GPS demo tezligi
   r = await p.evaluate(() => { const L0 = LVD.items, c0 = LVD.clock; LVD.items = []; LVD.clock = 0; const out = {}; for (const k of [0, 0.5, 1, 3]) { g61SetSpd(k); LVD.clock = 0; lvDemoStep(10); out[k] = LVD.clock; } LVD.clock = 0; lvDemoStep(30); out.w = LVD.clock; LVD.items = L0; LVD.clock = c0; g61SetSpd(1); return out; });
   ok(r[0] === 0 && r[0.5] === 500 && r[1] === 1000 && r[3] === 3000 && r.w === 30000, '11a: demo tezligi ⏸/0,5×/1×/3× (1× — haqiqiy), oldindan hisob oʻzgarmadi ' + JSON.stringify(r));

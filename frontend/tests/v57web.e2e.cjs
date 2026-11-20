@@ -20,10 +20,8 @@ const login = () => { currentUser = { tabel: ADMIN_TABEL, name: 'Soxta Test', ro
   await p.evaluate(() => { document.querySelector('#h9Menu button[data-i="3"]').click(); }); await p.waitForTimeout(800);
   const t3 = await p.evaluate(() => ({ v: WB.view, st: localStorage.getItem('agmk_view'), vp: document.querySelector('meta[name=viewport]').content, w: window.innerWidth }));
   ok(t3.v === 'web' && t3.st === 'web' && /width=1280/.test(t3.vp) && /user-scalable=yes/.test(t3.vp), 'telefon: Web → sahifa 1280 px, kattalashtirish mumkin (' + t3.w + ')');
-  const t4 = await p.evaluate(async () => { await dvOpen(); dvDemoOn(); await new Promise(r => setTimeout(r, 700)); const L = h9MoreItems(document.querySelector('.screen.active')); return L.map(x => x.t); });
-  ok(t4.some(x => /Namunadan chiqish/.test(x)) && t4.some(x => /Mobil koʻrinishga/.test(x)), 'SVO ⋮: «Namunadan chiqish» va «Mobil koʻrinishga oʻtish»');
-  const t5 = await p.evaluate(async () => { const L = h9MoreItems(document.querySelector('.screen.active')); L.find(x => /Namunadan/.test(x.t)).fn(); await new Promise(r => setTimeout(r, 500)); return { demo: DV.demo, L: h9MoreItems(document.querySelector('.screen.active')).map(x => x.t) }; });
-  ok(!t5.demo && t5.L.some(x => /Namuna rejimi/.test(x)), 'SVO: namunadan chiqildi, ⋮ da yana «Namuna rejimi»');
+  // 6.2: SVO davomat yakuniy koddan olib tashlandi — uning ⋮ tekshiruvlari ham olib tashlandi
+  { const nd = await p.evaluate(() => typeof window.dvOpen === 'undefined' && !document.getElementById('screen-dav')); ok(nd, 'SVO davomat ilovada yoʻq'); }
   // qayta ochilganda tanlov saqlanadi
   await p.reload(); await p.waitForTimeout(4500);
   const t6 = await p.evaluate(() => WB.view); ok(t6 === 'web', 'qayta ochilganda oxirgi tanlov (Web) qoʻllanadi');
@@ -52,7 +50,7 @@ const login = () => { currentUser = { tabel: ADMIN_TABEL, name: 'Soxta Test', ro
   ok(k6.act === 'screen-main', 'chap panel «Orqaga» ni egallamaydi');
   const k7 = await d.evaluate(() => ['ПЭ2М', 'ПЭ2У', 'МПЭ2У', 'ЕЛ-1'].every(t => techImgKey('lok', { type: t }) === 'lok-el'));
   ok(k7, 'ПЭ2М, ПЭ2У, МПЭ2У, ЕЛ-1 — elektrovoz rasmi');
-  const n1 = await d.evaluate(async () => { openHisob(); await new Promise(r => setTimeout(r, 700)); const vis = Array.from(document.querySelectorAll('#screen-hisob [onclick]')).filter(c => c.offsetParent).map(c => c.getAttribute('onclick')); const o = { nox: vis.some(x => /HS\.akt='noxush'/.test(x)), grp: vis.some(x => /HS\.akt='nosozg'/.test(x)) };
+  const n1 = await d.evaluate(async () => { openHisob(); HS.yon = HS.yon || 'vag'; hsRender(); await new Promise(r => setTimeout(r, 700)); const vis = Array.from(document.querySelectorAll('#screen-hisob [onclick]')).filter(c => c.offsetParent).map(c => c.getAttribute('onclick')); const o = { nox: vis.some(x => /HS\.akt='noxush'/.test(x)), grp: vis.some(x => /HS\.akt='nosozg'/.test(x)) };
     HS.akt = 'nosozg'; hsRender(); await new Promise(r => setTimeout(r, 300)); const k = Array.from(document.querySelectorAll('.wb-nsz [onclick]')).map(x => x.getAttribute('onclick')); o.k = k.some(x => /noxush/.test(x)) && k.some(x => /cxOpen\('nosoz'\)/.test(x));
     HS.akt = 'noxush'; hsRender(); await new Promise(r => setTimeout(r, 300)); document.querySelector('#screen-hisob .hs-back').click(); await new Promise(r => setTimeout(r, 300)); o.back1 = HS.akt;
     document.querySelector('#screen-hisob .hs-back').click(); await new Promise(r => setTimeout(r, 300)); o.back2 = HS.akt; return o; });
@@ -77,7 +75,7 @@ const login = () => { currentUser = { tabel: ADMIN_TABEL, name: 'Soxta Test', ro
     localStorage.setItem('agmk_alive', JSON.stringify({ t: ADMIN_TABEL, at: Date.now() })); showLock(); o.ok = ss57Resume() && !document.body.classList.contains('locked');
     o.demo = wbDemoItems().map(x => x.t).join(' | '); return o; });
   ok(!ss.old && ss.ok, 'kutilmagan qayta ochilish: 12 soat ichida sessiya tiklanadi, eskisi — yoʻq');
-  ok(/SVO/.test(ss.demo) && /lokomotiv/.test(ss.demo) && /avtotraktor/.test(ss.demo), 'bosh sahifa ⋮: taqdimot demolari — ' + ss.demo);
+  ok(!/SVO/.test(ss.demo) && /lokomotiv/.test(ss.demo) && /avtotraktor/.test(ss.demo), 'bosh sahifa ⋮: taqdimot demolari — ' + ss.demo);
   await dc.close();
   ok(errs.length === 0, 'sahifa xatolari: ' + errs.length + (errs.length ? ' — ' + errs.slice(0, 3).join(' | ') : ''));
   await b.close(); console.log(F ? '❌ ' + F + ' ta xato' : '✅ hammasi oʻtdi'); process.exit(F ? 1 : 0);

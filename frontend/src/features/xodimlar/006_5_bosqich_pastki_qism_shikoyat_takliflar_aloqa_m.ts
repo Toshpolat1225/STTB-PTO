@@ -73,7 +73,7 @@
         }
         function fbComposeText() {
             const d = new Date();
-            return "AGMK-STTB PTO — " + FB.type + "\n\n" + $id('fbText').value.trim() +
+            return "AGMK STTB-AIT — " + FB.type + "\n\n" + $id('fbText').value.trim() +
                 "\n\n— " + fbSenderLine() + "\n" + fmtDateTime(d.toISOString());
         }
         function fbCheckText() {
@@ -97,7 +97,7 @@
             if (!fbCheckText()) return;
             const c = getContacts();
             if (!c.email) return;
-            const subj = "AGMK-STTB PTO: " + FB.type;
+            const subj = "AGMK STTB-AIT: " + FB.type;
             window.location.href = 'mailto:' + encodeURIComponent(c.email) + '?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(fbComposeText());
         }
         function sendFeedbackTelegram() {

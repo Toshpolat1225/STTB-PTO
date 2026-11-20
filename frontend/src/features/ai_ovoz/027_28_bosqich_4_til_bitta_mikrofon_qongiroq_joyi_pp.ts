@@ -468,7 +468,7 @@
             const name = { vag: 'vagonlar', lok: 'lokomotivlar', yol: "yo'l texnikalari", avto: 'avtotraktor texnikasi' }[kind];
             const rows = list.map((v, i) => `<tr><td>${i + 1}</td><td>${escapeHtml(unitLabel(v))}</td><td>${escapeHtml(v.type || '')}</td><td>${escapeHtml(v.status)}${v.kun !== null ? ' (' + (v.kun < 0 ? Math.abs(v.kun) + " kun o'tdi" : v.kun + ' kun') + ')' : ''}</td><td>${escapeHtml(v.nextLabel || fmtISO(v.keyingi) || '—')}</td></tr>`).join('');
             const html = `<div class="a-head"><span>Olmaliq sh.</span><span>${fmtISO(todayISO())}-y.</span></div><div class="a-title">${escapeHtml(tl.charAt(0).toUpperCase() + tl.slice(1))} ${escapeHtml(name)} ro'yxati<br>HISOBOT</div>
-                <p class="ni">Jami: ${list.length} ta. Manba: «AGMK-STTB PTO» dasturi bazasi, ${fmtDateTime(new Date().toISOString())} holatiga.</p>
+                <p class="ni">Jami: ${list.length} ta. Manba: «AGMK STTB-AIT» tizimi bazasi, ${fmtDateTime(new Date().toISOString())} holatiga.</p>
                 <table><tr><th>№</th><th>Texnika</th><th>Turi</th><th>Holati</th><th>Keyingi ta'mir</th></tr>${rows || '<tr><td>—</td><td>Mos texnika yo\'q</td><td></td><td></td><td></td></tr>'}</table>
                 <table class="a-sign"><tr><td class="l">Tuzuvchi: ${escapeHtml(currentUser.role || '')}</td><td class="m"></td><td class="r">${escapeHtml(ppShort(currentUser.name || '', 'uz'))}</td></tr></table>`;
             setTimeout(() => pdfFromHtml(html, 'Hisobot_' + kind + '_' + todayISO() + '.pdf'), 400);

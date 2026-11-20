@@ -127,7 +127,7 @@
             });
             obj(pN, '<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ' + st59F(PW) + ' ' + st59F(PH) + '] /Resources << /Font << /F1 3 0 R /F2 8 0 R >> >> /Contents ' + (pN + 1) + ' 0 R >>');
             obj(pN + 1, '<< /Length ' + enc.encode(s).length + ' >>\nstream\n' + s + 'endstream');
-            obj(pN + 2, '<< /Title <FEFF' + Array.from('AGMK STTB — tashkiliy tuzilma').map(c => hex4(c.charCodeAt(0))).join('') + '> /Producer (AGMK-STTB PTO) >>');
+            obj(pN + 2, '<< /Title <FEFF' + Array.from('AGMK STTB — tashkiliy tuzilma').map(c => hex4(c.charCodeAt(0))).join('') + '> /Producer (AGMK STTB-AIT) >>');
             const nObj = pN + 3, xr = len; let x = 'xref\n0 ' + nObj + '\n0000000000 65535 f \n'; for (let i = 1; i < nObj; i++) x += String(offs[i] || 0).padStart(10, '0') + ' 00000 n \n';
             put(x + 'trailer\n<< /Size ' + nObj + ' /Root 1 0 R /Info ' + (pN + 2) + ' 0 R >>\nstartxref\n' + xr + '\n%%EOF');
             return { blob: new Blob(parts, { type: 'application/pdf' }), w: PW, h: PH, n: texts.length };

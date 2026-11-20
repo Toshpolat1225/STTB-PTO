@@ -115,7 +115,7 @@
             const D = h9MenuData(); H9.D = D; const me = (Q9.currentUser && Q9.currentUser.name) || '';
             const row = (x: any, i: string, sub?: boolean) => `<div class="h9-di${sub ? ' sub' : ''}" data-k="${i}"><span class="h9-dic">${x.ic}</span><span class="h9-dn">${h9E(x.n)}${x.c && !sub ? `<small>${h9E(x.c)}</small>` : ''}</span>${x.kids && x.kids.length ? `<span class="h9-dx" data-g="${i}">${h9Ic('chev', 18)}</span>` : `<span class="h9-dx">${h9Ic('chev', 18)}</span>`}</div>` +
                 (x.kids && x.kids.length ? `<div class="h9-dk" data-gk="${i}">${x.kids.map((k: any, j: number) => row(k, i + '.' + j, true)).join('')}</div>` : '');
-            d.querySelector('.h9-dp').innerHTML = `<div class="h9-dh"><b>AGMK-STTB</b><button type="button" onclick="h9DrawerClose()">${h9Ic('x', 22)}</button></div>
+            d.querySelector('.h9-dp').innerHTML = `<div class="h9-dh"><b>AGMK STTB-AIT</b><button type="button" onclick="h9DrawerClose()">${h9Ic('x', 22)}</button></div>
                 <div class="h9-ds">Boʻlimlar</div>${D.map((x, i) => row(x, String(i))).join('')}
                 <div class="h9-ds">Umumiy</div>
                 <div class="h9-di" data-f="home"><span class="h9-dic h9-ico">${h9Ic('home', 20)}</span><span class="h9-dn">Bosh sahifa</span></div>

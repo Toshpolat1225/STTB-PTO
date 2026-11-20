@@ -22,10 +22,7 @@
 | 168 | `v3166.ts` | v3.16.6 — xodimlarning yangi roʻyxati (1C, 13.10.2026) va 🦺 mehnat muhofazasi qoʻshimchalari |
 | 172 | `v3180.ts` | v3.18.0 — «👷 Mening hodimlarim» va «🧥 Maxsus kiyim» (docs/TALABLAR_3.18.md) |
 | 199 | `v49tk.ts` | 4.9 b119 — 🎂 Tugʻilgan kunlar (muallif soʻrovi, 27.10.2026) |
-| 209 | `v55dav.ts` | 5.5 — 🛡 SVO: davomat (turniket kirish-chiqishi) nazorati (muallif soʻrovi, 30.10.2026) |
-| 210 | `v55davimg.ts` | 5.5 — 🛡 SVO — Davomat: bosh sahifa kartasi boshqa boʻlimlardek rasmli (oʻzimiz chizgan: turniket, qalqon, soat). 192 px |
 | 217 | `v58demo.ts` | 5.8 — Taqdimot demolari (server ulangan boʻlsa ham): 🦺 Mehnat muhofazasi (TB) va 🧥 Maxsus kiyim |
-| 231 | `v60mon.ts` | 6.0 — 8-band (muallif videosi 15:38): SVO «🖥 Monitoring oynasi» telefonda kompyuter maketi siqilib chiqar edi |
 | 240 | `v61tel.ts` | 6.1 — xodim pasportida «📞 Qoʻngʻiroq» (muallif 13:36, namuna «qongiroq_namuna.png» — tasdiqlangan) |
 
 ## Saqlash kalitlari (localStorage / sinxron)
@@ -41,3 +38,5 @@
 - Fayl nomi oʻzgartirilmaydi (yigʻilgan ilovadagi belgilar shu nomga bogʻlangan).
 - Yangi fayl — shu papkaga va `TARTIB.json` dagi `mod` roʻyxatining oxiriga.
 - Mavjud funksiyani oʻzgartirish — `agmkExtend` bilan oʻrash orqali.
+
+> 6.2 (16.11.2026): SVO davomat (v55dav, v55davimg, v60mon) yakuniy koddan olib tashlandi — arxiv: `arxiv/svo-davomat` tarmogʻi.

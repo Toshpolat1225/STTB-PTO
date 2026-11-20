@@ -29,18 +29,7 @@ const lum = s => { const m = String(s).match(/[\d.]+/g) || [0, 0, 0]; return (0.
       vp.dispatchEvent(new TouchEvent('touchstart', { touches: [T(y)], bubbles: true })); vp.dispatchEvent(new TouchEvent('touchmove', { touches: [T(y + 220)], bubbles: true }));
       return { y0: PTR.y0, dy: PTR.dy }; });
     ok(ptr.y0 === null && !ptr.dy, theme + ': Struktura surilganda «pastga tortib yangilash» ishlamaydi');
-    // 4–6) SVO
-    await p.evaluate(async () => { openScreen('screen-main'); await dvOpen(); dvDemoOn(); }); await p.waitForTimeout(1200);
-    await p.evaluate(async () => { DV.demo = false; window.dvDay = async () => ({ nodata: true, list: [], cnt: {} }); DV.d = '2099-03-01'; try { localStorage.removeItem('agmk_dv_nd_hide_2099-03-01'); localStorage.removeItem('agmk_dv_nd_hide_2099-03-02'); } catch (e) {} await dvRender(); }); await p.waitForTimeout(600);
-    const w = await p.evaluate(() => { const bx = document.querySelector('.dv-box.n59-nd'); return bx ? { b: getComputedStyle(bx.querySelector('b')).color, bg: getComputedStyle(bx).backgroundImage, x: !!bx.querySelector('.n59-x') } : null; });
-    ok(w && lum(w.b) > 0.9 && /rgba\(30, 41, 59/.test(w.bg) && w.x, theme + ': SVO ogohlantirishi — toʻq koʻkimtir kartochka, oq sarlavha, ✕ bor (6.0): ' + JSON.stringify(w));
-    await p.click('.dv-box.n59-nd .n59-x'); await p.waitForTimeout(200);
-    const h1 = await p.evaluate(async () => { const a = !document.querySelector('.n59-nd'); await dvRender(); await new Promise(r => setTimeout(r, 300)); const b2 = !document.querySelector('.n59-nd');
-      DV.d = '2099-03-02'; await dvRender(); await new Promise(r => setTimeout(r, 300)); return { a, b2, next: !!document.querySelector('.n59-nd') }; });
-    ok(h1.a && h1.b2 && h1.next, theme + ': ✕ — shu kunga yashiriladi, boshqa kunda yana chiqadi: ' + JSON.stringify(h1));
-    const s = await p.evaluate(() => { const f = document.querySelector('.dv-fs'), sel = f && f.querySelector('select'), q = document.querySelector('.dv-q');
-      return { f: f && getComputedStyle(f).backgroundColor, sel: sel && getComputedStyle(sel).color, q: q && getComputedStyle(q).backgroundColor, qc: q && getComputedStyle(q).color }; });
-    ok(s.f && lum(s.f) < 0.2 && lum(s.sel) > 0.9 && lum(s.q) < 0.2 && lum(s.qc) > 0.9, theme + ': SVO tanlovlari va qidiruv — toʻq, oq yozuv: ' + JSON.stringify(s));
+    // 4–6) SVO — 6.2 da yakuniy koddan olib tashlandi
     ok(await p.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1), theme + ': 412 px — gorizontal siljish yoʻq');
     ok(errs.length === 0, theme + ': sahifa xatolari: ' + errs.length + (errs.length ? ' — ' + errs.slice(0, 3).join(' | ') : ''));
   }

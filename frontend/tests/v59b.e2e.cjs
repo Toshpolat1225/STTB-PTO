@@ -41,7 +41,7 @@ const login = () => { currentUser = { tabel: ADMIN_TABEL, name: 'Sinov', role: '
   await p.waitForTimeout(2900); // 6.0: tugma 2,5 s koʻrinib turadi (muallif)
   ok(!(await p.evaluate(() => document.getElementById('fs59').classList.contains('on'))), 'tegilmasa tugma yashirinadi');
   // ---------- 9) Yuklab olinganlar ----------
-  await p.evaluate(() => { openHisob(); HS.tab = 'hisob'; hsRender(); }); await p.waitForTimeout(500);
+  await p.evaluate(() => { openHisob(); HS.yon = HS.yon || 'vag'; hsRender(); HS.tab = 'hisob'; hsRender(); }); await p.waitForTimeout(500);
   await p.evaluate(() => { try { localStorage.removeItem('agmk_dl59'); localStorage.removeItem('agmk_dl59_seen'); } catch (e) {} docDownload([{ name: 'Soxta_hisobot.xlsx', blob: new Blob([new Uint8Array(1500)], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }) }]); });
   await p.waitForTimeout(500);
   ok(await p.evaluate(() => !document.getElementById('exSheet').classList.contains('hidden') && dl59All().length === 0), 'format oynasi ochildi — hali roʻyxatga yozilmadi');
@@ -84,7 +84,7 @@ const login = () => { currentUser = { tabel: ADMIN_TABEL, name: 'Sinov', role: '
   ok(r.num === '786,456 va 10.2026 va 31.10.2026', 'yaxlitlash sanalarni buzmaydi: ' + r.num);
   const zh = await p.evaluate(() => hp3ZamHtml({ files: ['Birinchi_soxta_fayl_juda_uzun_nom_' + 'x'.repeat(200) + '.xlsx', 'Ikkinchi_soxta.xlsx', 'Uchinchi_soxta.rtf'], at: new Date().toISOString() }, { findings: [], month: '2026-10' }, 'Soxta', '2026-11-07', false, false).html);
   ok(/Fayllar \(3 ta\):/.test(zh) && /3\) Uchinchi_soxta\.rtf/.test(zh), 'zamechaniyada fayllar roʻyxati toʻliq (3 ta)');
-  await p.evaluate(() => { openHisob(); HS.tab = 'hisob'; HS.cat = 'vagon'; HS.chk = null; hsRender(); }); await p.waitForTimeout(500);
+  await p.evaluate(() => { openHisob(); HS.yon = HS.yon || 'vag'; hsRender(); HS.tab = 'hisob'; HS.cat = 'vagon'; HS.chk = null; hsRender(); }); await p.waitForTimeout(500);
   ok(await p.evaluate(() => { const d = document.getElementById('ceh59'); return !!d && /\(5\)/.test(d.textContent) && /9204/.test(d.innerHTML) && !!d.closest('.f61-cfg') && /31 18 9203/.test(d.innerHTML); }), 'Forma-30 oynasida «Sex kodi ↔ 1C ombor» (5 ta) — 6.1: «⚙️ Ombor sozlamalari» ichida');
   ok(await p.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1), '412 px — gorizontal siljish yoʻq');
   ok(errs.length === 0, 'sahifa xatolari: ' + errs.length + (errs.length ? ' — ' + errs.slice(0, 3).join(' | ') : ''));

@@ -24,7 +24,7 @@ let F = 0; const ok = (c, m) => { console.log((c ? 'OK   ' : 'FAIL ') + m); if (
     const oq = await p.evaluate(() => [msOqJoy('Razvyazka'), msOqJoy('Qolmaqir stansiyasi 1-yo’li'), msOqJoy('1-TYS'), msOqJoy('1-Yoshlik (37-ekskavator yoni)'), msOqJoy('Kalmakir bekatida')]);
     ok(oq[0] === '' && oq[1] === 'Qolmaqir stansiyasi 1-yo’lida' && oq[2] === '1-TYSda' && oq[3] === '1-Yoshlik (37-ekskavator yoni)da' && oq[4] === 'Kalmakir bekatida', theme + ': oʻq sinishi — hodisa joyi: ' + JSON.stringify(oq));
     // ---------- (B) mahsulot sinovi ----------
-    await p.evaluate(() => { openHisob(); HS.tab = 'akt'; HS.akt = null; hsRender(); }); await p.waitForTimeout(300);
+    await p.evaluate(() => { openHisob(); HS.yon = HS.yon || 'vag'; hsRender(); HS.tab = 'akt'; HS.akt = null; hsRender(); }); await p.waitForTimeout(300);
     ok(/Mahalliylashtirilgan mahsulot sinovi/.test(await p.evaluate(() => document.body.innerText)), theme + ': «🧪 Mahalliylashtirilgan mahsulot sinovi» kartochkasi');
     await p.evaluate(() => { HS.akt = 'mahsinov'; hsRender(); }); await p.waitForTimeout(300);
     await p.click('text=Sinovga qoʻyish — yangi mahsulot'); await p.waitForTimeout(200);

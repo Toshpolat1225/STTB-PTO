@@ -18,6 +18,8 @@
 | 224 | `v59chk.ts` | 5.9 — 12-band (muallif, 02.11.2026 10:29–11:19): hisobot tekshiruvidagi notoʻgʻri zamechaniyalar |
 | 242 | `v61f30.ts` | 6.1 (138) — 1C (Forma-30) ga urilgan, lekin spravka-raschetda yoʻq talabnomalar (buxgalter savoli, 04.11.2026) |
 | 246 | `v62own.ts` | 6.2 (141) — 🔒 HISOBOT TEKSHIRUVLARI AKKAUNT BOʻYICHA (muallif, 08.11.2026) |
+| 251 | `v62hsshpz.ts` | 6.2 (144) — 🧾 MASTER HISOBOTI: ШПЗ 221, 222, 08100 DAN TASHQARI MATERIALLAR — KOʻK (muallif, 13.11.2026) |
+| 250 | `v62wkshpz.ts` | 6.2 (144) — 📅 HAFTALIK ACHOT: FAQAT ШПЗ 221, 222, 08100 (muallif, 13.11.2026) |
 
 ## Saqlash kalitlari (localStorage / sinxron)
 
@@ -32,3 +34,4 @@
 - Fayl nomi oʻzgartirilmaydi (yigʻilgan ilovadagi belgilar shu nomga bogʻlangan).
 - Yangi fayl — shu papkaga va `TARTIB.json` dagi `mod` roʻyxatining oxiriga.
 - Mavjud funksiyani oʻzgartirish — `agmkExtend` bilan oʻrash orqali.
+| 254 | `v62yonwk.ts` | 6.2 (146) — 📅 HAFTALIK RASXOD — har bir yoʻnalish uchun alohida skladlar, tarix, ШПЗ qoidasi (muallif, 16.11.2026) |

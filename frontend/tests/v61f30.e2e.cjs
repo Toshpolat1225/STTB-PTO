@@ -27,12 +27,13 @@ let F = 0; const ok = (c, m) => { console.log((c ? 'OK   ' : 'FAIL ') + m); if (
     return { n: nos.map(f => f.name), lvl: nos.map(f => f.lvl), m227: (nos.find(f => /227/.test(f.name)) || {}).msg || '', sum: R.find(f => f.t === 'f30nosprS'),
       extra: R.filter(f => f.t === 'extra' && /№(174|227)\b/.test(f.msg)).length, oth: R.some(f => /300/.test(f.name + f.msg)),
       ok5: !R.some(f => f.t === 'f30nospr' && /№ (5|7)\b/.test(f.name)),
-      src: (nos[0] || {}).src };
+      src: (nos[0] || {}).src, b227: (R.find(f => f.t === 'f30shpz' && /227/.test(f.name)) || {}) };
   });
-  ok(JSON.stringify(r.n.map(s => s.replace(/ \(.*/, ''))) === JSON.stringify(['Talabnoma № 174', 'Talabnoma № 227']), '174 va 227 — «1C ga urilgan, spravkada yoʻq» ' + JSON.stringify(r.n));
+  // 6.2 (144, muallif 13.11.2026): ШПЗ 221/222/08100 dan tashqari (224000) — qizil emas, koʻk izoh («f30shpz»)
+  ok(JSON.stringify(r.n.map(s => s.replace(/ \(.*/, ''))) === JSON.stringify(['Talabnoma № 174']), '174 — «1C ga urilgan, spravkada yoʻq» (qizil) ' + JSON.stringify(r.n));
   ok(r.lvl.every(l => l === 'red'), 'qizil xato (koʻk izoh emas)');
-  ok(/Кран тестовый/.test(r.m227) && /Прокладка тестовая/.test(r.m227) && /ШПЗ 224000/.test(r.m227), 'boshqa ШПЗ bilan urilgan talabnoma ham chiqdi, barcha materiallari bilan');
-  ok(r.sum && /2 ta talabnoma/.test(r.sum.name) && /174, 227/.test(r.sum.msg), 'jami qator: ' + (r.sum && r.sum.msg));
+  ok(r.b227.lvl === 'blue' && /Кран тестовый/.test(r.b227.msg) && /Прокладка тестовая/.test(r.b227.msg) && /ШПЗ 224000/.test(r.b227.msg), 'boshqa ШПЗ bilan urilgan talabnoma — koʻk izoh, barcha materiallari bilan');
+  ok(!r.sum, 'bitta qizil talabnoma — jami qator kerak emas');
   ok(r.extra === 0, 'eski koʻk izoh takrorlanmadi');
   ok(!r.oth, 'boshqa sklad (boshqa master) talabnomasi chiqmadi');
   ok(r.ok5, 'spravkadagi talabnomalar (5, 7) xato emas');

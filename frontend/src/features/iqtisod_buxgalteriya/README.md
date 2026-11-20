@@ -32,3 +32,4 @@
 - Fayl nomi oʻzgartirilmaydi (yigʻilgan ilovadagi belgilar shu nomga bogʻlangan).
 - Yangi fayl — shu papkaga va `TARTIB.json` dagi `mod` roʻyxatining oxiriga.
 - Mavjud funksiyani oʻzgartirish — `agmkExtend` bilan oʻrash orqali.
+| 255 | `v62nrmed.ts` | 6.2 (149) — 📐 normani hujjat sahifasida tahrirlash: jonli jadval, miqdor, yangi qator, olib tashlash, yangi norma (muallif, 17.11.2026) |

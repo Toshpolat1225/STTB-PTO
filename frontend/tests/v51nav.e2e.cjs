@@ -21,7 +21,7 @@ let F = 0; const ok = (c, m) => { console.log((c ? 'OK   ' : 'FAIL ') + m); if (
     await cat('ОС-3');
     ok(await p.evaluate(() => HS.akt) === 'os3', T + 'ОС-3 kategoriyasi ochildi (bosish)');
     await p.evaluate(() => openScreen('screen-main')); await p.waitForTimeout(150);
-    await p.evaluate(() => openHisob()); await p.waitForTimeout(250);
+    await p.evaluate(() => { openHisob(); HS.yon = HS.yon || 'vag'; hsRender(); }); await p.waitForTimeout(250);
     let r = await p.evaluate(() => ({ akt: HS.akt, cat: HS.cat, chk: HS.chk, n: document.querySelectorAll('#screen-hisob .hs-grid .hs-card').length }));
     ok(r.akt === null && r.cat === null && r.chk === null && r.n >= 5, T + 'qayta kirish → umumiy sahifa, HS.akt === null');
 

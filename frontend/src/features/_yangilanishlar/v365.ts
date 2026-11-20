@@ -999,7 +999,7 @@ body.carda-on :is(.btn-card,.hs-card,.vagon-card,.stat-box,.nd-doc,.mm-card,.hr-
                 <p style="text-align:justify">Imtihonlardan oʻtganligi haqidagi qayd (bayonnoma raqami va sanasi): ${exs}.</p>
                 <table class="a-sign" style="width:100%;border-collapse:collapse;font-size:13.5pt"><tr><td style="width:62%">Xodim roziligi</td><td style="width:18%">____________</td><td style="text-align:right">${E(narShort(f.b.name))}</td></tr></table><br>
                 <table class="a-sign" style="width:100%;border-collapse:collapse;font-size:13.5pt">${sig}</table>
-                <p style="font-size:10pt;color:#444;margin-top:14px">Sana: ${narDmy(f.date)} · AGMK-STTB PTO ilovasida tuzilgan</p></div>`;
+                <p style="font-size:10pt;color:#444;margin-top:14px">Sana: ${narDmy(f.date)} · AGMK STTB-AIT tizimida tuzilgan</p></div>`;
         }
         function narVtSave(toast) {
             if (!narVtCheck()) return null; const f = NARV.f, all = narVtList();

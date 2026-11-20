@@ -64,3 +64,4 @@
 - Fayl nomi oʻzgartirilmaydi (yigʻilgan ilovadagi belgilar shu nomga bogʻlangan).
 - Yangi fayl — shu papkaga va `TARTIB.json` dagi `mod` roʻyxatining oxiriga.
 - Mavjud funksiyani oʻzgartirish — `agmkExtend` bilan oʻrash orqali.
+| 252 | `v62yopiq.ts` | 6.2 (146) — 🔒 Yopiq kontur, yakuniy: tashqi sunʼiy intellekt butunlay oʻchirilgan |

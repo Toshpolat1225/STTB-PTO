@@ -101,6 +101,7 @@
             #d60h.e61 .d60-b{width:38px;height:38px;flex:0 0 38px;border-radius:12px}
             #d60h.e61 .d60-lg{width:42px;height:42px;flex:0 0 42px}
             #d60h.e61 .d60-tt{min-width:0}#d60h.e61 .d60-tt b{white-space:nowrap;font-size:18px}
+            @media (max-width:520px){#d60h.e61 .d60-tt b{white-space:normal;word-break:keep-all;font-size:17px;line-height:1.05}#d60h.e61 .d60-tt small{display:block;margin-top:2px}} /* 6.2: «AGMK STTB-AIT» tugmalar orqasida qolmasin — telefonda 2 qatorga */
             #d60h.e61 .e61-ur{display:flex;align-items:center;height:38px;border-radius:12px;background:rgba(15,23,42,.62);border:1px solid rgba(255,255,255,.14);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);flex:0 0 auto}
             #d60h.e61 .e61-ur button{width:30px;height:38px;display:grid;place-items:center;background:none;border:0;color:#e2e8f0;padding:0;cursor:pointer}
             #d60h.e61 .e61-ur button.off{opacity:.38}#d60h.e61 .e61-ur i{width:1px;height:18px;background:rgba(255,255,255,.18)}

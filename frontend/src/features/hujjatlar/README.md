@@ -42,3 +42,4 @@
 - Fayl nomi oʻzgartirilmaydi (yigʻilgan ilovadagi belgilar shu nomga bogʻlangan).
 - Yangi fayl — shu papkaga va `TARTIB.json` dagi `mod` roʻyxatining oxiriga.
 - Mavjud funksiyani oʻzgartirish — `agmkExtend` bilan oʻrash orqali.
+| 253 | `v62yon.ts` | 6.2 (146) — 📂 «Dalolatnoma va hujjatlar tayyorlash»: 10 ta yoʻnalish, har birida 3 tugma; faqat ICHTB (muallif, 16.11.2026) |

@@ -77,7 +77,7 @@ const ADMIN = (() => { if (process.env.AGMK_ADMIN) return process.env.AGMK_ADMIN
 html = html.replace(/@@ADMIN_TABEL@@/g, ADMIN).replace(/@@ADMIN_NAME@@/g, () => (NAMES[ADMIN] || NAMES.admin || 'Administrator').replace(/"/g, ''));
 html = html.replace(/@@N:(\d+)@@/g, (_, k) => NAMES[k] || 'F.I.Sh.');
 html = html.replace(/@@VENDOR:([^@]+)@@/g, (_, f) => fs.readFileSync(path.join(ROOT, 'vendor', f), 'utf8'));
-html = html.replace(/<title>AGMK-STTB PTO v[^<]*<\/title>/, `<title>AGMK-STTB PTO v${V}</title>`);
+html = html.replace(/<title>(?:AGMK-STTB PTO|AGMK STTB-AIT) v[^<]*<\/title>/, `<title>AGMK STTB-AIT v${V}</title>`);
 // ---------- 🔒 YOPIQ KONTUR (6.1/138): CSP va tashqi murojaat tekshiruvi ----------
 // CSP: tashqi skript, shrift, freym, obyekt yuklanmaydi (web, telefon, kompyuter — bir xil). Tarmoq soʻrovlarini features/core/v61yk.ts qoʻriqlaydi.
 const CSP = "object-src 'none'; base-uri 'self'; form-action 'self'; frame-src 'self' blob: data:; font-src 'self' data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: data: file:; worker-src 'self' blob: data:";

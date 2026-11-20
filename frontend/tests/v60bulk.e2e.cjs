@@ -9,7 +9,7 @@ let F = 0; const ok = (c, m) => { console.log((c ? 'OK   ' : 'FAIL ') + m); if (
   await p.goto('file://' + process.argv[2]); await p.waitForTimeout(4000);
   const fx = ['bk_usta_a.xlsx', 'bk_usta_b.xlsx', 'bk_nomalum.xlsx', 'bk_forma30.xlsx'].map(n => ({ n, b: fs.readFileSync(path.join(__dirname, 'fixtures', n)).toString('base64') }));
   await p.evaluate(() => { currentUser = { tabel: ADMIN_TABEL, name: 'Sinov', role: 'admin' }; document.body.classList.remove('locked'); window.uiConfirm = async () => true;
-    kvSet('agmk_sklad_master', { '9100': 'Soxtaev Anvar', '9204': 'Namunaviy Bekzod' }); openHisob(); HS.tab = 'hisob'; HS.cat = 'vagon'; hsRender(); });
+    kvSet('agmk_sklad_master', { '9100': 'Soxtaev Anvar', '9204': 'Namunaviy Bekzod' }); openHisob(); HS.yon = HS.yon || 'vag'; hsRender(); HS.tab = 'hisob'; HS.cat = 'vagon'; hsRender(); });
   await p.waitForTimeout(600);
   ok(await p.evaluate(() => !!document.querySelector('#hpBox .bk60-in')), 'Hisobotlarda «📥 Umumiy yuklash» tugmasi bor (anʼanaviy «Oylik toʻplam» ham joyida)');
   const n0 = await p.evaluate(() => hsChecks().length);

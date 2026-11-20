@@ -8,19 +8,10 @@ let F = 0; const ok = (c, m) => { console.log((c ? 'OK   ' : 'FAIL ') + m); if (
   await p.goto('file://' + process.argv[2]); await p.waitForTimeout(4000);
   await p.evaluate(() => { currentUser = { tabel: ADMIN_TABEL, name: 'Sinov', role: 'admin' }; document.body.classList.remove('locked'); });
   // 3) Oylik toʻplam
-  await p.evaluate(() => { openHisob(); HS.tab = 'hisob'; HS.cat = 'vagon'; hsRender(); }); await p.waitForTimeout(700);
+  await p.evaluate(() => { openHisob(); HS.yon = HS.yon || 'vag'; hsRender(); HS.tab = 'hisob'; HS.cat = 'vagon'; hsRender(); }); await p.waitForTimeout(700);
   const r = await p.evaluate(() => { const L = [...document.querySelectorAll('#hpBox .alb-btn')].map(e => e.getBoundingClientRect()); if (L.length < 2) return null; return { n: L.length, gap: L[1].top - L[0].bottom, w0: L[0].width, w1: L[1].width }; });
   ok(r && r.gap >= 0 && Math.abs(r.w0 - r.w1) < 2, 'Oylik toʻplam: «Fayllarni tanlash» va «Word» alohida qatorda, teng kenglikda ' + JSON.stringify(r));
-  // 11) SVO demo
-  await p.evaluate(() => dvDemoOn()); await p.waitForTimeout(1500);
-  ok(await p.evaluate(() => !!document.querySelector('#screen-dav .dv-demo .dv60-off')), 'SVO demo: «⏹ Toʻxtatish» tugmasi bor');
-  await p.evaluate(async () => { DV.demo = false; await dvRender().catch(() => {}); }); await p.waitForTimeout(800);
-  ok(await p.evaluate(() => !!document.querySelector('#screen-dav .dv-acts .dv60-on') && !document.querySelector('#screen-dav .dv-demo')), 'SVO onlayn (server bilan): «🧪 Demo» tugmasi bor');
-  // 9) Monitoring → «Orqaga» → ☰ va ⋮ joyida; keyin har bir boʻlim sahifasida ham
-  await p.evaluate(() => { DV.demo = true; DV.cfg = null; dvOpen(); }); await p.waitForTimeout(1200);
-  await p.evaluate(() => dvMonOpen()); await p.waitForTimeout(1200); await p.evaluate(() => history.back()); await p.waitForTimeout(800);
-  const m = await p.evaluate(() => ({ scr: (document.querySelector('.screen.active') || {}).id, mon: !!document.getElementById('dvMon'), cls: document.body.classList.contains('dv-mon-on'), menu: !!document.querySelector('.screen.active .h9-menu'), more: !!document.querySelector('.screen.active .h9-mo') }));
-  ok(m.scr === 'screen-dav' && !m.mon && !m.cls && m.menu && m.more, '«Orqaga» monitoringni yopadi, SVO da ☰ va ⋮ bor ' + JSON.stringify(m));
+  // 11), 9) SVO demo va monitoring — 6.2 da yakuniy koddan olib tashlandi
   const miss = await p.evaluate(async () => { const w = ms => new Promise(r => setTimeout(r, ms)), out = []; openScreen('screen-main'); await w(200);
     const n = [...document.querySelectorAll('#main-card-list > .btn-card')].filter(c => c.offsetParent).length;
     for (let i = 0; i < n; i++) { document.querySelectorAll('.modal-overlay:not(.hidden)').forEach(x => x.classList.add('hidden')); openScreen('screen-main'); await w(120); const c = [...document.querySelectorAll('#main-card-list > .btn-card')].filter(c => c.offsetParent)[i]; const t = c.textContent.trim().slice(0, 25); c.click(); await w(500);

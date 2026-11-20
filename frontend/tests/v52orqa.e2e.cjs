@@ -13,7 +13,7 @@ let F = 0; const ok = (c, m) => { console.log((c ? 'OK   ' : 'FAIL ') + m); if (
     const st = () => p.evaluate(() => ({ scr: (document.querySelector('.screen.active') || {}).id, akt: HS.akt, tab: HS.tab }));
     for (const k of ['noxush', 'kirish', 'mahsinov', 'kolodka']) {
       await p.evaluate(() => { openScreen('screen-main'); }); await p.waitForTimeout(150);
-      await p.evaluate(() => openHisob()); await p.waitForTimeout(300);
+      await p.evaluate(() => { openHisob(); HS.yon = HS.yon || 'vag'; hsRender(); }); await p.waitForTimeout(300);
       await p.evaluate(() => { HS.tab = 'akt'; hsRender(); }); await p.waitForTimeout(200);
       if (k === 'noxush') { await p.click(`[onclick*="HS.akt='nosozg'"]`); await p.waitForTimeout(300); } // 5.7: Nosozlik dalolatnomasi ichida
       await p.click(`.hs-card[onclick*="HS.akt='${k}'"]`); await p.waitForTimeout(300);
@@ -22,11 +22,13 @@ let F = 0; const ok = (c, m) => { console.log((c ? 'OK   ' : 'FAIL ') + m); if (
       await p.evaluate(() => window.agmkBack()); await p.waitForTimeout(450);
       const b1 = await st();
       await p.waitForTimeout(450); await p.evaluate(() => window.agmkBack()); await p.waitForTimeout(450);
-      const b2 = await st();
-      ok(a.akt === k && b1.scr === 'screen-hisob' && !b1.akt && b2.scr === 'screen-main', theme + ': ' + k + ' → «Orqaga» → boʻlimlar roʻyxati → «Orqaga» → bosh menyu: ' + JSON.stringify([a.akt, b1.scr + '/' + b1.akt, b2.scr]));
+      const b2 = await st(), yl = await p.evaluate(() => document.querySelectorAll('#screen-hisob .yon62-c').length); // 6.2: oraliq qadam — yoʻnalishlar roʻyxati
+      await p.evaluate(() => window.agmkBack()); await p.waitForTimeout(450);
+      const b3 = await st();
+      ok(a.akt === k && b1.scr === 'screen-hisob' && !b1.akt && b2.scr === 'screen-hisob' && yl === 10 && b3.scr === 'screen-main', theme + ': ' + k + ' → «Orqaga» → boʻlimlar roʻyxati → «Orqaga» → yoʻnalishlar → «Orqaga» → bosh menyu: ' + JSON.stringify([a.akt, b1.scr + '/' + b1.akt, b2.scr + '/' + yl, b3.scr]));
     }
     // yuqoridagi ‹ tugmasi ham bir qadam
-    await p.evaluate(() => { openHisob(); HS.tab = 'akt'; HS.akt = 'noxush'; hsRender(); }); await p.waitForTimeout(300);
+    await p.evaluate(() => { openHisob(); HS.yon = HS.yon || 'vag'; hsRender(); HS.tab = 'akt'; HS.akt = 'noxush'; hsRender(); }); await p.waitForTimeout(300);
     await p.evaluate(() => { const b = [...document.querySelectorAll('#screen-hisob .back-btn')].find(x => x.getBoundingClientRect().width); b.click(); }); await p.waitForTimeout(300);
     const t1 = await st();
     ok(t1.scr === 'screen-hisob' && t1.akt === 'nosozg', theme + ': yuqoridagi ‹ — avval Nosozlik dalolatnomasiga (5.7)');

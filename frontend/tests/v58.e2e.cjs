@@ -30,9 +30,7 @@ const login = () => { currentUser = { tabel: ADMIN_TABEL, name: 'Soxta Test', ro
   const ink = await p.evaluate(async () => { const c = document.createElement('canvas'); c.width = 800; c.height = 400; const g = c.getContext('2d'); g.fillStyle = '#f5f5f5'; g.fillRect(0, 0, 800, 400); g.strokeStyle = '#1d4ed8'; g.lineWidth = 3; g.beginPath(); g.moveTo(380, 180); g.lineTo(440, 230); g.stroke();
     const u = await sigInk(c.toDataURL('image/png')); const im = new Image(); await new Promise(r => { im.onload = r; im.src = u; }); const k = document.createElement('canvas'); k.width = im.width; k.height = im.height; const kg = k.getContext('2d'); kg.drawImage(im, 0, 0); return { w: im.width, h: im.height, a: kg.getImageData(0, 0, 1, 1).data[3] }; });
   ok(ink.w < 80 && ink.h < 70 && ink.a === 0, 'imzo: oq / kulrang fonli rasmda ham faqat siyoh qoladi, fon shaffof — ' + JSON.stringify(ink));
-  const dv = await p.evaluate(async () => { await dvOpen(); dvDemoOn(); await new Promise(r => setTimeout(r, 1000)); const K = document.querySelectorAll('.dv-kf i'), chips = document.querySelectorAll('.dv-chips').length;
-    K[4].click(); await new Promise(r => setTimeout(r, 300)); const on = Array.from(document.querySelectorAll('.dv-kf i.on')).map(x => x.innerText); const f = DV.f; try { DV.demo = false; } catch (e) { } return { n: K.length, chips: chips, f: f, on: on }; });
-  ok(dv.n === 8 && dv.chips === 0 && dv.f === 'sababsiz' && dv.on.length === 1 && /Sababsiz/.test(dv.on[0]), 'SVO: 8 ta kartochka — filtr, yozuvli tugmalar yoʻq — ' + JSON.stringify(dv));
+  // 6.2: SVO davomat yakuniy koddan olib tashlandi
   ok(!errs.length, 'Sahifa xatolari yoʻq ' + errs.join(' ; '));
   console.log(F ? '❌ ' + F + ' ta xato' : '✅ hammasi oʻtdi'); await b.close(); process.exit(F ? 1 : 0);
 })();

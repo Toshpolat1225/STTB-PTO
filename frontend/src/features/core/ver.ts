@@ -2,8 +2,17 @@
         // =====================================================================
         // v3.0 — Versiya va «Nima yangi»
         // =====================================================================
-        var AGMK_VERSION = '6.2', AGMK_BUILD = 143; // har tuzatishlar toʻplami — yangi versiya (4.5, 4.6, 4.7 …), build — har yigʻishda +1
+        var AGMK_VERSION = '7.0', AGMK_BUILD = 150; // har tuzatishlar toʻplami — yangi versiya (4.5, 4.6, 4.7 …), build — har yigʻishda +1
         var AGMK_NEWS = [
+            ['🚀', 'AGMK STTB-AIT 7.0', 'Yangi nom va yangi versiya: Avtomatlashtirilgan Intellektual Tizim. Yoʻnalishlar boʻyicha boʻlimlar, har yoʻnalish uchun haftalik rasxod, normalarni hujjat sahifasida tahrirlash, xavfsizlik tuzatishlari — yakuniy kod korxona serveri uchun.'],
+            ['📐', 'Normalarni hujjat sahifasida tahrirlash', 'Normativ hujjatlar → «Meʼyor 2026 · 2VS-105» va h.k.: «✏️ Tahrirlash» — miqdorni oʻzgartirish, yangi ehtiyot qism/material qatori, qatorni olib tashlash; «➕ Yangi norma» — yangi tur. Har oʻzgarish sababi bilan tarixda, hisobot tekshiruvi darhol yangi meʼyor bilan ishlaydi.'],
+            ['↩️', '«Orqaga» — bir qadam orqaga', 'Dalolatnoma va hujjatlar tayyorlash boʻlimida «‹ Orqaga» (ekrandagi va telefondagi) endi bosh sahifaga emas, bir qadam orqaga qaytaradi: ichki sahifa → yoʻnalish → yoʻnalishlar roʻyxati → bosh sahifa. Telefonda sarlavha «AGMK STTB-AIT» tugmalar orqasida qolmaydi.'],
+            ['📂', 'Dalolatnoma va hujjatlar tayyorlash — yoʻnalishlar boʻyicha', 'Boʻlimga kirilganda ICHTB ning 10 ta yoʻnalishi chiqadi. Har yoʻnalishda 3 tugma: «Dalolatnoma tayyorlash» (hujjat yuklash va imzoga yuborish shu ichida), «Hisobotlar», «Haftalik rasxod». Boʻlim faqat ICHTB xodimlari, rahbariyat va administrator uchun.'],
+            ['📅', 'Haftalik rasxod — har yoʻnalish uchun alohida', 'Har yoʻnalishning oʻz skladlari va oʻz haftalari tarixi: temir yoʻl harakat tarkibi, lokomotivlar (tortuv agregatlari), temir yoʻl qurilishi, avtomatlashtirish (faqat ШПЗ 221000), teplovozlar. Qoʻlqop, perchatka, sovun, vetosh hech qayerda qoʻshilmaydi. Umumiy skladlar (3330, 3380 va h.k.) alohida satrda koʻrsatiladi.'],
+            ['🔒', 'Xavfsizlik — yakuniy tekshiruv', 'SVO davomat va tashqi AI yakuniy koddan olib tashlandi; yuklangan fayllar ilova ichida ishga tushmaydi (faqat yuklab olinadi); server xato tafsilotini foydalanuvchiga koʻrsatmaydi; tashqi manzil oʻchirildi — faqat ichki tarmoq.'],
+            ['🏷', 'Yangi nom — AGMK STTB-AIT', 'Ilova endi «AGMK STTB-AIT — Avtomatlashtirilgan Intellektual Tizim» deb ataladi. Barcha maʼlumotlar, akkauntlar va hujjatlar oʻz joyida qoladi.'],
+            ['🧾', 'Hisobot tekshiruvi — kir sovun, qoʻlqop xato emas', 'Master hisobotida 1C ga urilgan, lekin spravka-raschetda yoʻq materiallar ШПЗ 221, 222, 08100 dan boshqa boʻlsa (kir sovun, qoʻlqop, respirator) — qizil xato emas, koʻk izoh: tekshirib qoʻying.'],
+            ['📅', 'Haftalik achot — faqat ШПЗ 221, 222, 08100', 'Haftalik achot summasiga faqat ШПЗ kodi 221, 222 yoki 08100 bilan boshlanadigan qatorlar kiradi. Qoʻlqop, kir sovun kabi boshqa ШПЗ dagi materiallar hisobga olinmaydi va alohida koʻrsatiladi.'],
             ['📁', 'Qabul qilingan ehtiyot qismlar — MTTB ichida', 'Bosh sahifadan «MTTB — Moddiy-texnik taʼminot» guruhi ichiga koʻchirildi, yangi rasm bilan.'],
             ['🛞', 'Gʻildirak juftliklari — Vagonlar parki ichida', 'Bosh sahifadan Texnika → STTB texnikalari → Vagonlar parki ichiga koʻchirildi, yangi rasm bilan.'],
             ['✍️', 'Imzolangan hujjat oflaynda ham ochiladi', 'Server bilan bir marta ochilgan hujjat (matni, imzolari bilan) shu qurilmada saqlanadi. Server oʻchsa — «📴 Oflayn nusxa» belgisi bilan koʻrish mumkin; imzolash va rad etish — server ulanganda.'],
@@ -27,7 +36,7 @@
         ];
         function verNews() {
             const E = escapeHtml;
-            mdl('verModal', `<div class="px-h"><b>🆕 AGMK-STTB PTO ${AGMK_VERSION} — nima yangi</b><button class="mini-btn" onclick="mdlClose('verModal')">✕</button></div>
+            mdl('verModal', `<div class="px-h"><b>🆕 AGMK STTB-AIT ${AGMK_VERSION} — nima yangi</b><button class="mini-btn" onclick="mdlClose('verModal')">✕</button></div>
                 ${AGMK_NEWS.map(n => `<div class="ver-n"><span>${n[0]}</span><div><b>${E(n[1])}</b><small>${E(n[2])}</small></div></div>`).join('')}
                 <div class="nd-tip">Versiya ${AGMK_VERSION} (${AGMK_BUILD}). Maʼlumotlaringiz yangilashda saqlanadi.</div>`, true);
         }
@@ -35,7 +44,7 @@
             const c = document.createElement('style'); c.textContent = '.ver-n{display:flex;gap:10px;padding:8px 2px;border-bottom:1px solid rgba(255,255,255,.07)}.ver-n>span{font-size:22px}.ver-n b{display:block;color:#f8fafc;font-size:14px}.ver-n small{color:#94a3b8;font-size:12.5px;line-height:1.35}.ver-foot{text-align:center;color:#64748b;font-size:12px;margin:14px 0 4px;cursor:pointer}';
             document.head.appendChild(c);
             const wk = $id('set-theme-sub') && $id('set-theme-sub').closest('.btn-card');
-            if (wk && !$id('verFoot')) { const d = document.createElement('div'); d.id = 'verFoot'; d.className = 'ver-foot'; d.onclick = verNews; d.textContent = 'AGMK-STTB PTO · versiya ' + AGMK_VERSION + ' · 🆕 nima yangi'; wk.parentNode.appendChild(d); }
+            if (wk && !$id('verFoot')) { const d = document.createElement('div'); d.id = 'verFoot'; d.className = 'ver-foot'; d.onclick = verNews; d.textContent = 'AGMK STTB-AIT · versiya ' + AGMK_VERSION + ' · 🆕 nima yangi'; wk.parentNode.appendChild(d); }
             // Yangilangandan keyin birinchi kirishda — bir marta «nima yangi»
             let had = false; try { had = !!localStorage.getItem('agmk_accounts') || !!localStorage.getItem('agmk_db_v2'); } catch (e) {} // yangi o'rnatishda emas — yangilanganda
             try { if (typeof SEC_EV !== 'undefined') SEC_EV.fns.push(function verOnce() { let s = ''; try { s = localStorage.getItem('agmk_ver_seen') || ''; } catch (e) {} if (s === AGMK_VERSION) return; try { localStorage.setItem('agmk_ver_seen', AGMK_VERSION); } catch (e) {} if (had) setTimeout(verNews, 1200); }); } catch (e) {}

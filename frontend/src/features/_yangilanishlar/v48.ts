@@ -214,7 +214,7 @@
         }
         async function p8Make(mode: string): Promise<void> {
             H8.mdlClose('p8M'); const D = p8Collect(); if (!D) { H8.alert('Pasport ochiq emas.'); return; }
-            const cls = mode === 'bw' ? 'b' : 'c', foot = 'AGMK-STTB PTO · ' + D.no + ' · tuzilgan: ' + h8Dmy(h8Today());
+            const cls = mode === 'bw' ? 'b' : 'c', foot = 'AGMK STTB-AIT · ' + D.no + ' · tuzilgan: ' + h8Dmy(h8Today());
             try {
                 const P = p8Paginate(D, cls), imgs: string[] = [];
                 for (let i = 0; i < P.length; i++) imgs.push(await p8Raster(p8Svg(P[i], cls, i + 1, P.length, foot)));

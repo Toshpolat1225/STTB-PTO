@@ -210,8 +210,6 @@
   "features/aktlar/v52nx.ts",
   "features/mttb_ombor/v52kq.ts",
   "features/mttb_ombor/v52ms.ts",
-  "features/xodimlar/v55dav.ts",
-  "features/xodimlar/v55davimg.ts",
   "features/hisobot_tekshiruvi/v56chk.ts",
   "features/_yangilanishlar/v57web.ts",
   "features/vagonlar/v57norm.ts",
@@ -232,7 +230,6 @@
   "features/core/v59hdr.ts",
   "features/core/v60ui.ts",
   "features/core/v60touch.ts",
-  "features/xodimlar/v60mon.ts",
   "features/core/v60hdr.ts",
   "features/hujjatlar/v60bulk.ts",
   "features/core/v61hdr.ts",
@@ -250,6 +247,12 @@
   "features/hisobot_tekshiruvi/v62own.ts",
   "features/mttb_ombor/v62qbx.ts",
   "features/vagonlar/v62kpnav.ts",
-  "features/mttb_ombor/v62qbnav.ts"
+  "features/mttb_ombor/v62qbnav.ts",
+  "features/hisobot_tekshiruvi/v62wkshpz.ts",
+  "features/hisobot_tekshiruvi/v62hsshpz.ts",
+  "features/core/v62yopiq.ts",
+  "features/hujjatlar/v62yon.ts",
+  "features/hisobot_tekshiruvi/v62yonwk.ts",
+  "features/iqtisod_buxgalteriya/v62nrmed.ts"
  ]
 }

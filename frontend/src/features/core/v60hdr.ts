@@ -66,7 +66,7 @@
             const m = d60Me();
             return `<div class="d60-org">SANOAT TEMIR YOʻL TRANSPORTI BOSHQARMASI</div>
                 <div class="d60-wr">${m.wp ? `<span class="d60-wp">${d60E(m.wp)}</span>` : '<span></span>'}${m.tabel ? `<span class="d60-tb">Tab № ${d60E(m.tabel)}</span>` : ''}</div>
-                ${m.lav ? `<div class="d60-lv">${d60E(m.lav)}</div>` : ''}<div class="d60-nm">${d60E(m.name || 'AGMK-STTB')}</div>`;
+                ${m.lav ? `<div class="d60-lv">${d60E(m.lav)}</div>` : ''}<div class="d60-nm">${d60E(m.name || 'AGMK STTB-AIT')}</div>`;
         }
         function d60Build(): void {
             try {
@@ -76,7 +76,7 @@
                     h = document.createElement('div'); h.id = 'd60h';
                     const btn = (k: string, t: string, cls?: string) => `<button type="button" class="d60-b ${cls || ''}" data-k="${k}" title="${t}">${d60Svg(k)}<i class="d60-n"></i></button>`;
                     const dk = (k: string, t: string, cls?: string) => `<button type="button" class="d60-d ${cls || ''}" data-k="${k}"><span>${d60Svg(k)}<i class="d60-n"></i></span>${t}</button>`;
-                    h.innerHTML = `<div class="d60-top"><button type="button" class="d60-b d60-menu" data-k="menu" title="Bosh menyu">${d60Svg('menu')}</button><div class="d60-lg">${d60Logo()}</div><div class="d60-tt"><b>AGMK-STTB</b><small class="d60-hi">${d60Hi()}</small></div>
+                    h.innerHTML = `<div class="d60-top"><button type="button" class="d60-b d60-menu" data-k="menu" title="Bosh menyu">${d60Svg('menu')}</button><div class="d60-lg">${d60Logo()}</div><div class="d60-tt"><b>AGMK <span style="white-space:nowrap">STTB-AIT</span></b><small class="d60-hi">${d60Hi()}</small></div>
                         ${btn('qr', 'QR-kod')}${btn('bell', 'Bildirishnomalar')}${btn('more', 'Boshqa amallar')}</div>
                         <div class="d60-bn" data-k="me" title="Profil">${d60Banner()}</div>
                         <div class="d60-dock">${dk('chat', 'Chat')}${dk('task', 'Vazifalar')}${dk('alert', 'Kamchilik', 'd60-ns')}${dk('dl', 'Yuklangan', 'dl59-btn')}${dk('info', 'Maʼlumot')}</div>

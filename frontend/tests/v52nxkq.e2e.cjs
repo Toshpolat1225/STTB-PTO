@@ -10,7 +10,7 @@ let F = 0; const ok = (c, m) => { console.log((c ? 'OK   ' : 'FAIL ') + m); if (
     await p.evaluate(t => { currentUser = { tabel: ADMIN_TABEL, name: 'Test', role: 'admin' }; document.body.classList.remove('locked'); window.uiConfirm = async () => true; window.__OUT = []; window.exOpen = (f) => { window.__OUT.push(...f); }; try { if (t === 'glass') document.body.classList.add('glass'); } catch (e) {} }, theme);
     await p.evaluate(() => { void window.XLSX; }); await p.waitForFunction(() => typeof JSZip !== 'undefined' && typeof XLSX !== 'undefined', null, { timeout: 15000 });
     // ---------- Dalolatnomalar → boʻlimlar koʻrinadi ----------
-    await p.evaluate(() => { openHisob(); HS.tab = 'akt'; HS.akt = null; hsRender(); }); await p.waitForTimeout(300);
+    await p.evaluate(() => { openHisob(); HS.yon = HS.yon || 'vag'; hsRender(); HS.tab = 'akt'; HS.akt = null; hsRender(); }); await p.waitForTimeout(300);
     const cards = await p.evaluate(() => document.body.innerText);
     ok(/Nosozlik dalolatnomasi/.test(cards) && /Kirish nazorati/.test(cards), theme + ': «⚠️ Nosozlik dalolatnomasi» (5.7: Noxush hodisalar shu ichida) va «📦 Kirish nazorati» kartochkalari');
     // ---------- Noxush: hodisa kiritish (haqiqiy bosish) ----------
